@@ -2,6 +2,7 @@ Game.addClass({
 	'name': 'BlocSpecial',
 	'eventCreate': function()
 	{
+		this.solid = true;
 		this.sprite = new Sprite(Game.getImage('blocSpecialSprite'));
 		this.sprite.makeTiles(16,16,0);
 		this.sprite.imagespeed = 0.2;
