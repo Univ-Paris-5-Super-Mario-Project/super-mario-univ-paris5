@@ -27,11 +27,13 @@ var SuperMario = {
       Game.instanceCreate(250,192,Piece);
       Game.instanceCreate(300,192,Piece);
       Game.instanceCreate(350,192,Piece);
+      Game.instanceCreate(200,240,BlocSpecial);
     };
     Game.loadAndRun('jeu',
     {
       'marioSpriteLeft': 'img/game/marioSpriteLeft.png',
       'marioSpriteRight': 'img/game/marioSpriteRight.png',
+      'blocSpecialSprite': 'img/game/blocSpecialSprite.png',
       'coinSprite': 'img/game/coinSprite.png'
     });
   }

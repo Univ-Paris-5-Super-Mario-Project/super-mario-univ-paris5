@@ -11,10 +11,10 @@ Game.addClass({
 		this.sprite.tiles = this.sprite.STATUS_BLOC_SPECIAL;
 		this.state = Element.STATE_STAND;
 		this.items = {
-			'Piece' : 0//,
+			'PIECE' : 'Piece'//,
 			//'Champignon' : 1 // Ou autres objets à implémenter dans le futur.
 		};
-		this.container = this.items.Piece;
+		this.container = this.items.PIECE;
 		this.pixelsNumToMove = 2;
 	},
 
@@ -24,7 +24,8 @@ Game.addClass({
 			this.state = Element.STATE_MOVE;
 			var moveDown = function()
 			{
-				Game.instanceCreate(this.x,this.y,Piece).destroy();
+				Game.instanceCreate(this.x,this.y,this.container).pickUp();
+				
 				this.sprite.tiles = this.sprite.STATUS_BLOC_TAPE;
 				this.moveToPoint(this.x,this.y+this.pixelsNumToMove,1,function(){
 					this.state = Element.STATE_STAND;

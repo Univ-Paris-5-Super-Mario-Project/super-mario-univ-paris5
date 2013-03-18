@@ -11,6 +11,12 @@ Game.addClass({
 		this.coinSound = new buzz.sound("sound/game/coin.wav");
 	},
 
+	'pickUp' : function()
+	{
+		Piece.counter++;
+		this.destroy();
+	},
+
 	'destroy': function()
 	{
 		this.vspeed = -4;
