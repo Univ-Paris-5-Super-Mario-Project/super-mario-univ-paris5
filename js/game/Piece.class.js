@@ -14,13 +14,13 @@ Game.addClass({
 	'pickUp' : function()
 	{
 		Piece.counter++;
+		this.coinSound.play();
 		this.destroy();
 	},
 
 	'destroy': function()
 	{
 		this.vspeed = -4;
-		this.coinSound.play();
 		this.checkForCollisions = false;
 
 		var piece = this;			
