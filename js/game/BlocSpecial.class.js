@@ -25,7 +25,7 @@ Game.addClass({
 			var moveDown = function()
 			{
 				Game.instanceCreate(this.x,this.y,this.container).pickUp();
-				
+				this.toFirstPlan();
 				this.sprite.tiles = this.sprite.STATUS_BLOC_TAPE;
 				this.moveToPoint(this.x,this.y+this.pixelsNumToMove,1,function(){
 					this.state = Element.STATE_STAND;

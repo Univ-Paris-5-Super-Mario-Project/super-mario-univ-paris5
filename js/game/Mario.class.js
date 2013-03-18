@@ -208,8 +208,7 @@ Game.addClass({
 		if (other.instanceOf(Piece))
 		{
 			this.toFirstPlan();
-			other.destroy();
-			Piece.counter++;
+			other.pickUp();
 		}
 	},
 
