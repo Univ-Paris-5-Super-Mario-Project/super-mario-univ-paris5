@@ -6,6 +6,7 @@ function CreditsCtrl($scope) {
 }
 
 function GameCtrl($scope) {
+<<<<<<< HEAD
   Game.infoGameBuilder = false;
   Game.setRooms([new Room(592,400)]);
 
@@ -42,6 +43,9 @@ function GameCtrl($scope) {
     'coinSprite' : 'img/game/coinSprite.png',
     'blocSpecialSprite' : 'img/game/blocSpecialSprite.png'
   });
+=======
+  SuperMario.start();
+>>>>>>> c54e3a9d040b48016ee1b759d703656bca0ee269
 }
 
 HomeCtrl.$inject = ['$scope'];
