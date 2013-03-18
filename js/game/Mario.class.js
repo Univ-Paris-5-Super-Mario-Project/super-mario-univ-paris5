@@ -1,94 +1,94 @@
 Game.addClass({
-	'name': 'Mario',
-	'eventCreate': function()
+	name: 'Mario',
+	eventCreate: function()
 	{
 		//Définition des différents sprites de l'élément Mario
-		this.spriteLeft=new Sprite(Game.getImage('marioSpriteLeft'));
+		this.spriteLeft =new Sprite(Game.getImage('marioSpriteLeft'));
 		this.spriteLeft.makeTiles(16,32,0);
-		this.spriteLeft.STAND_LEFT = [7,7];
+		this.spriteLeft.STAND_LEFT      = [7,7];
 		this.spriteLeft.STAND_DOWN_LEFT = [1,1];
-		this.spriteLeft.MOVE_UP_LEFT = [3,3];
-		this.spriteLeft.MOVE_LEFT = [7,6,5];
-		this.spriteLeft.imagespeed=0.2;
+		this.spriteLeft.MOVE_UP_LEFT    = [3,3];
+		this.spriteLeft.MOVE_LEFT       = [7,6,5];
+		this.spriteLeft.imagespeed      = 0.2;
 		
-		this.spriteRight=new Sprite(Game.getImage('marioSpriteRight'));
+		this.spriteRight = new Sprite(Game.getImage('marioSpriteRight'));
 		this.spriteRight.makeTiles(16,32,0);
-		this.spriteRight.STAND_RIGHT = [1,1];
+		this.spriteRight.STAND_RIGHT      = [1,1];
 		this.spriteRight.STAND_DOWN_RIGHT = [7,7];
-		this.spriteRight.MOVE_UP_RIGHT = [5,5];
-		this.spriteRight.MOVE_RIGHT = [1,2,3];
-		this.spriteRight.imagespeed=0.2;
+		this.spriteRight.MOVE_UP_RIGHT    = [5,5];
+		this.spriteRight.MOVE_RIGHT       = [1,2,3];
+		this.spriteRight.imagespeed       = 0.2;
 		
 		//Statut de départ de Mario
-		this.state=Element.STATE_STAND_RIGHT;
+		this.state = Element.STATE_STAND_RIGHT;
 		
 		//Définition de la vitesse verticale et horizontale de l'élément
 		this.NB_PIX_DEPLACEMENT_HORIZ = 4;
 		this.NB_PIX_DEPLACEMENT_VERTIC = 6;
 		
 		// Doc : Indique si l'instance doit être téléportée de l'autre côté de la room lorsqu'elle sort de celle-ci.
-		this.switchPositionWhenLeave=true;
+		this.switchPositionWhenLeave = true;
 		
 	},
 	
 	//Doc : Méthode appelée au début de chaque Step, juste avant le déplacement de l'élément.
 	//Elle sert principalement à modifier les statuts de l'objet avant le déplacement et l'animation de celui-ci
-	'eventStartStep': function()
+	eventStartStep: function()
 	{
-		switch(this.state)
+		switch (this.state)
 		{
-			case Element.STATE_STAND_LEFT :
-				this.sprite=this.spriteLeft;
-				this.sprite.tiles=this.sprite.STAND_LEFT;
-				this.hspeed=0;
-				this.vspeed=0;
+			case Element.STATE_STAND_LEFT:
+				this.sprite       = this.spriteLeft;
+				this.sprite.tiles = this.sprite.STAND_LEFT;
+				this.hspeed       = 0;
+				this.vspeed       = 0;
 			break;
 
-			case Element.STATE_STAND_RIGHT :
-				this.sprite=this.spriteRight;
-				this.sprite.tiles=this.sprite.STAND_RIGHT;
-				this.hspeed=0;
-				this.vspeed=0;
+			case Element.STATE_STAND_RIGHT:
+				this.sprite       = this.spriteRight;
+				this.sprite.tiles = this.sprite.STAND_RIGHT;
+				this.hspeed       = 0;
+				this.vspeed       = 0;
 			break;
 			
 			case Element.STATE_STAND_DOWN_LEFT :
-				this.sprite=this.spriteLeft;
-				this.sprite.tiles=this.sprite.STAND_DOWN_LEFT;
-				this.hspeed=0;
-				this.vspeed=0;
+				this.sprite       = this.spriteLeft;
+				this.sprite.tiles = this.sprite.STAND_DOWN_LEFT;
+				this.hspeed       = 0;
+				this.vspeed       = 0;
 			break;
 
-			case Element.STATE_STAND_DOWN_RIGHT :
-				this.sprite=this.spriteRight;
-				this.sprite.tiles=this.sprite.STAND_DOWN_RIGHT;
-				this.hspeed=0;
-				this.vspeed=0;
+			case Element.STATE_STAND_DOWN_RIGHT:
+				this.sprite       = this.spriteRight;
+				this.sprite.tiles = this.sprite.STAND_DOWN_RIGHT;
+				this.hspeed       = 0;
+				this.vspeed       = 0;
 			break;
 			
-			case Element.STATE_MOVE_LEFT :
-				this.sprite=this.spriteLeft;
-				this.sprite.tiles=this.sprite.MOVE_LEFT;
-				this.hspeed=-(this.NB_PIX_DEPLACEMENT_HORIZ);
-				this.vspeed=0;
+			case Element.STATE_MOVE_LEFT:
+				this.sprite       = this.spriteLeft;
+				this.sprite.tiles = this.sprite.MOVE_LEFT;
+				this.hspeed       = -(this.NB_PIX_DEPLACEMENT_HORIZ);
+				this.vspeed       = 0;
 			break;
 
 			case Element.STATE_MOVE_RIGHT :
-				this.sprite=this.spriteRight;
-				this.sprite.tiles=this.sprite.MOVE_RIGHT;
-				this.hspeed=this.NB_PIX_DEPLACEMENT_HORIZ;
-				this.vspeed=0;
+				this.sprite       = this.spriteRight;
+				this.sprite.tiles = this.sprite.MOVE_RIGHT;
+				this.hspeed       = this.NB_PIX_DEPLACEMENT_HORIZ;
+				this.vspeed       = 0;
 			break;
 			
-			case Element.STATE_MOVE_UP_LEFT :
-				this.sprite=this.spriteLeft;
-				this.sprite.tiles=this.sprite.MOVE_UP_LEFT;
-				this.vspeed=-(this.NB_PIX_DEPLACEMENT_VERTIC);
+			case Element.STATE_MOVE_UP_LEFT:
+				this.sprite       = this.spriteLeft;
+				this.sprite.tiles = this.sprite.MOVE_UP_LEFT;
+				this.vspeed       = -(this.NB_PIX_DEPLACEMENT_VERTIC);
 			break;
 
-			case Element.STATE_MOVE_UP_RIGHT :
-				this.sprite=this.spriteRight;
-				this.sprite.tiles=this.sprite.MOVE_UP_RIGHT;
-				this.vspeed=-(this.NB_PIX_DEPLACEMENT_VERTIC);
+			case Element.STATE_MOVE_UP_RIGHT:
+				this.sprite       = this.spriteRight;
+				this.sprite.tiles = this.sprite.MOVE_UP_RIGHT;
+				this.vspeed       = -(this.NB_PIX_DEPLACEMENT_VERTIC);
 			break;
 		}
 	},
@@ -107,43 +107,43 @@ Game.addClass({
 	// Doc : Méthode appelée lorsqu'une touche du clavier reste pressée. Le paramètre indique le code ASCII de la touche pressée.
 	// quand KEY_LEFT est pressée le status de Mario est STATE_MOVE_LEFT
 	// quand KEY_RIGHT est pressée le statut de Mario est STATE_MOVE_RIGHT
-	'eventKeyPressed': function(key)
+	eventKeyPressed: function(key)
 	{
-		switch(key)
+		switch (key)
 		{
-			case Game.KEY_LEFT :
-				if(this.state!=Element.STATE_STAND_DOWN_LEFT && this.state!=Element.STATE_STAND_DOWN_RIGHT)
+			case Game.KEY_LEFT:
+				if (this.state != Element.STATE_STAND_DOWN_LEFT && this.state != Element.STATE_STAND_DOWN_RIGHT)
 				{
-					this.state=Element.STATE_MOVE_LEFT;
+					this.state = Element.STATE_MOVE_LEFT;
 				}
 			break;
 			
-			case Game.KEY_RIGHT :
-				if(this.state!=Element.STATE_STAND_DOWN_LEFT && this.state!=Element.STATE_STAND_DOWN_RIGHT)
+			case Game.KEY_RIGHT:
+				if (this.state != Element.STATE_STAND_DOWN_LEFT && this.state != Element.STATE_STAND_DOWN_RIGHT)
 				{
-					this.state=Element.STATE_MOVE_RIGHT;
+					this.state = Element.STATE_MOVE_RIGHT;
 				}
 			break;
 			
-			case Game.KEY_DOWN :
-				if(this.state==Element.STATE_MOVE_LEFT || this.state==Element.STATE_STAND_LEFT)
+			case Game.KEY_DOWN:
+				if (this.state == Element.STATE_MOVE_LEFT || this.state == Element.STATE_STAND_LEFT)
 				{
-					this.state=Element.STATE_STAND_DOWN_LEFT;
+					this.state = Element.STATE_STAND_DOWN_LEFT;
 				}
-				else if(this.state==Element.STATE_MOVE_RIGHT || this.state==Element.STATE_STAND_RIGHT)
+				else if (this.state == Element.STATE_MOVE_RIGHT || this.state == Element.STATE_STAND_RIGHT)
 				{
-					this.state=Element.STATE_STAND_DOWN_RIGHT;
+					this.state = Element.STATE_STAND_DOWN_RIGHT;
 				}
 			break;
 			
-			case Game.KEY_UP :
-				if(this.state==Element.STATE_STAND_LEFT || this.state==Element.STATE_MOVE_LEFT)
+			case Game.KEY_UP:
+				if (this.state == Element.STATE_STAND_LEFT || this.state == Element.STATE_MOVE_LEFT)
 				{
-					this.state=Element.STATE_MOVE_UP_LEFT;
+					this.state = Element.STATE_MOVE_UP_LEFT;
 				}
-				else if (this.state==Element.STATE_STAND_RIGHT || this.state==Element.STATE_MOVE_RIGHT)
+				else if (this.state == Element.STATE_STAND_RIGHT || this.state == Element.STATE_MOVE_RIGHT)
 				{
-					this.state=Element.STATE_MOVE_UP_RIGHT;
+					this.state = Element.STATE_MOVE_UP_RIGHT;
 				}
 			break;
 		}
@@ -159,53 +159,53 @@ Game.addClass({
 	// Quand on relâche KEY_LEFT et que KEY_RIGHT n'est pas pressé alors Mario passe en STATE_STAND_LEFT
 	// Quand on relâche KEY_RIGHT et que KEY_LEFT n'est pas pressé alors Mario passe en STATE_STAND_RIGHT
 	// Quand on relâche KEY_DOWN alors Mario passe en STAND_LEFT ou STAND_RIGHT selon son state
-	'eventKeyUp': function(key)
+	eventKeyUp: function(key)
 	{
-		if(key==Game.KEY_LEFT&&!Game.isKeyPressed(Game.KEY_RIGHT))
+		if (key == Game.KEY_LEFT && ! Game.isKeyPressed(Game.KEY_RIGHT))
 		{
-			if(	!(this.state==Element.STATE_STAND_DOWN_LEFT || this.state==Element.STATE_STAND_DOWN_RIGHT) )
+			if (	! (this.state == Element.STATE_STAND_DOWN_LEFT || this.state == Element.STATE_STAND_DOWN_RIGHT) )
 			{
-				this.state=Element.STATE_STAND_LEFT;
+				this.state = Element.STATE_STAND_LEFT;
 			}			
 		}
-		else if(key==Game.KEY_RIGHT&&!Game.isKeyPressed(Game.KEY_LEFT))
+		else if (key == Game.KEY_RIGHT && ! Game.isKeyPressed(Game.KEY_LEFT))
 		{
-			if(	!(this.state==Element.STATE_STAND_DOWN_LEFT || this.state==Element.STATE_STAND_DOWN_RIGHT) )
+			if(	! (this.state == Element.STATE_STAND_DOWN_LEFT || this.state == Element.STATE_STAND_DOWN_RIGHT) )
 			{
-				this.state=Element.STATE_STAND_RIGHT;
+				this.state = Element.STATE_STAND_RIGHT;
 			}
 		}
-		else if(key==Game.KEY_DOWN)
+		else if (key == Game.KEY_DOWN)
 		{
-			switch(this.state)
+			switch (this.state)
 			{
 				case Element.STATE_STAND_DOWN_LEFT :
-					this.state=Element.STATE_STAND_LEFT;
+					this.state = Element.STATE_STAND_LEFT;
 				break;
 
 				case Element.STATE_STAND_DOWN_RIGHT :
-					this.state=Element.STATE_STAND_RIGHT;
+					this.state = Element.STATE_STAND_RIGHT;
 				break;
 			}
 		}
-		else if(key==Game.KEY_UP)
+		else if (key == Game.KEY_UP)
 		{
-			switch(this.state)
+			switch (this.state)
 			{
 				case Element.STATE_MOVE_UP_LEFT :
-					this.state=Element.STATE_STAND_LEFT;
+					this.state = Element.STATE_STAND_LEFT;
 				break;
 
 				case Element.STATE_MOVE_UP_RIGHT :
-					this.state=Element.STATE_STAND_RIGHT;
+					this.state = Element.STATE_STAND_RIGHT;
 				break;
 			}
 		}
 	},
 
-	'eventCollisionWith': function(other)
+  eventCollisionWith: function(other)
 	{
-		if(other.instanceOf(Piece))
+		if (other.instanceOf(Piece))
 		{
 			this.toFirstPlan();
 			other.destroy();
