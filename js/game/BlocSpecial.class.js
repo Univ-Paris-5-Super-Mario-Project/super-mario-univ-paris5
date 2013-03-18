@@ -18,7 +18,7 @@ Game.addClass({
 		this.pixelsNumToMove = 2;
 	},
 
-	'moveAfterJump': function()
+	'hitBlock': function()
 	{
 		if (this.state == Element.STATE_STAND && this.sprite.tiles != this.sprite.STATUS_BLOC_TAPE) {
 			this.state = Element.STATE_MOVE;
@@ -39,7 +39,7 @@ Game.addClass({
 	'eventClick': function()
 	{
 		if (this.isMouseOver()) {
-			this.moveAfterJump();
+			this.hitBlock();
 		}
 	}
 });

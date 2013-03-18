@@ -27,7 +27,7 @@ var SuperMario = {
       Game.instanceCreate(250,192,Piece);
       Game.instanceCreate(300,192,Piece);
       Game.instanceCreate(350,192,Piece);
-      Game.instanceCreate(200,240,BlocSpecial);
+      Game.instanceCreate(250,130,BlocSpecial);
     };
     Game.loadAndRun('jeu',
     {
