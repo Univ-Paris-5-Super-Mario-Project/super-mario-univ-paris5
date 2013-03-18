@@ -7,30 +7,38 @@ Game.addClass({
 		this.sprite.imagespeed = 0.2;
 		this.sprite.STATUS_BLOC_SPECIAL = [1,2,3,4];
 		this.sprite.STATUS_BLOC_TAPE = [5,5];
-//		this.sprite.STATUS_BLOC_TOURNE = [6,7,8,9];
+		this.sprite.STATUS_BLOC_TOURNE = [6,7,8,9];
 		this.sprite.tiles = this.sprite.STATUS_BLOC_SPECIAL;
+		this.state = Element.STATE_STAND;
+		this.items = {
+			'Piece' : 0//,
+			//'Champignon' : 1 // Ou autres objets à implémenter dans le futur.
+		};
+		this.container = this.items.Piece;
+		this.pixelsNumToMove = 2;
+	},
+
+	'moveAfterJump': function()
+	{
+		if (this.state == Element.STATE_STAND && this.sprite.tiles != this.sprite.STATUS_BLOC_TAPE) {
+			this.state = Element.STATE_MOVE;
+			var moveDown = function()
+			{
+				Game.instanceCreate(this.x,this.y,Piece).destroy();
+				this.sprite.tiles = this.sprite.STATUS_BLOC_TAPE;
+				this.moveToPoint(this.x,this.y+this.pixelsNumToMove,1,function(){
+					this.state = Element.STATE_STAND;
+					this.vspeed = 0;
+				});
+			};
+			this.moveToPoint(this.x,this.y-this.pixelsNumToMove,1,moveDown);
+		}
 	},
 
 	'eventClick': function()
 	{
 		if (this.isMouseOver()) {
-			this.vspeed = -4;
-			this.checkForCollisions = false;
-			var bloc = this;
-			bloc.sprite.tiles = bloc.sprite.STATUS_BLOC_TAPE;
-			setTimeout(
-				function()
-				{
-					bloc.vspeed = 4;
-					setTimeout(
-						function()
-						{
-							bloc.vspeed = 0;
-							this.y = yPos;
-						},80
-					);
-				},80
-			);
+			this.moveAfterJump();
 		}
 	}
 });
