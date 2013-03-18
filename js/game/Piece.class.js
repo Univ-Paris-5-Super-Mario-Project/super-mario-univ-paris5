@@ -51,8 +51,8 @@ Game.addClass({
 	{
 		this.drawText({
 			'text': 'x ' + Piece.counter,
-			'x': this.x + 16, // Positionne le nombre de pieces en fonction de la position l'image de la piece.
-			'y': this.y - 5
+			'x': this.x + 20, // Positionne le nombre de pieces en fonction de la position l'image de la piece.
+			'y': this.y - 3
 		});
 	}
 });
