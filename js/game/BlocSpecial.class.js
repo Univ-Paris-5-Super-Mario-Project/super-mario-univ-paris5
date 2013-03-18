@@ -12,7 +12,7 @@ Game.addClass({
 		this.state = Element.STATE_STAND;
 		this.items = {
 			'PIECE' : 'Piece'//,
-			//'Champignon' : 1 // Ou autres objets à implémenter dans le futur.
+			//'CHAMPIGNON' : 'Champignon' // Ou autres objets à implémenter dans le futur.
 		};
 		this.container = this.items.PIECE;
 		this.pixelsNumToMove = 2;
