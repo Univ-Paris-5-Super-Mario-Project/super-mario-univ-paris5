@@ -212,7 +212,8 @@ Game.addClass({
 		}
 		else if (other.instanceOf(BlocSpecial))
 		{
-			other.hitBlock();
+			if (this.y >= other.y+14) // Noter qu'il y a 5 pixels transparents de hauteur dans le sprite de Mario, ça fausse un peu.
+				other.hitBlock();
 		}
 	},
 
