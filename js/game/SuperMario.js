@@ -22,7 +22,7 @@ var SuperMario = {
 
       // Création des différents éléments
       Game.instanceCreate(280,192,Mario);
-      Game.instanceCreate(25,13,PieceController);
+      Game.instanceCreate(10,13,PieceController);
       Game.instanceCreate(200,192,Piece);
       Game.instanceCreate(250,192,Piece);
       Game.instanceCreate(300,192,Piece);
