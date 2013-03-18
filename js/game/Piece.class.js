@@ -2,6 +2,7 @@ Game.addClass({
 	'name': 'Piece',
 	'eventCreate': function()
 	{
+		this.collideSolid = false;
 		this.sprite = new Sprite(Game.getImage('coinSprite'));
 		this.sprite.makeTiles(16,16,0);
 		this.sprite.imagespeed = 0.2;
