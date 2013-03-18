@@ -11,7 +11,7 @@ var SuperMario = {
       Piece.counter = 0;
 
       // Suppression des instances créées dans les parties précédentes
-      var types = [Piece, PieceController, Mario];
+      var types = [Piece, PieceController, Mario, BlocSpecial];
       _.each(types, function(t) {
         var instances = Game.getInstancesByType(t);
 
