@@ -1,0 +1,30 @@
+function HomeCtrl($scope) {
+  Game.end = true;
+}
+
+function GameCtrl($scope) {
+  Game.setRooms([new Room(592,400)]);
+
+  Game.gameEnd = function() {
+    Piece.counter = 0;
+  };
+  Game.gameStart = function()
+  {
+    Game.instanceCreate(280,192,Mario);
+    
+    Game.instanceCreate(25,13,PieceController);
+    Game.instanceCreate(200,192,Piece);
+    Game.instanceCreate(250,192,Piece);
+    Game.instanceCreate(300,192,Piece);
+    Game.instanceCreate(350,192,Piece);
+  };
+  Game.loadAndRun('jeu',
+  {
+    'marioSpriteLeft': 'img/game/marioSpriteLeft.png',
+    'marioSpriteRight': 'img/game/marioSpriteRight.png',
+    'coinSprite': 'img/game/coinSprite.png'
+  });
+}
+
+HomeCtrl.$inject = ['$scope']
+GameCtrl.$inject = ['$scope']
