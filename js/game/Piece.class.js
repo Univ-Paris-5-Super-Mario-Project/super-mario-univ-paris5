@@ -33,7 +33,6 @@ Game.addClass({
 	}
 });
 
-Piece.counter = 0; // Nombre de pièces récoltées au chargement de la partie.
 Game.addClass({
 	'name': 'PieceController',
 
