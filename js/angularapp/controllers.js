@@ -33,12 +33,14 @@ function GameCtrl($scope) {
     Game.instanceCreate(250,192,Piece);
     Game.instanceCreate(300,192,Piece);
     Game.instanceCreate(350,192,Piece);
+    Game.instanceCreate(200,230,BlocSpecial);
   };
   Game.loadAndRun('jeu',
   {
-    'marioSpriteLeft': 'img/game/marioSpriteLeft.png',
-    'marioSpriteRight': 'img/game/marioSpriteRight.png',
-    'coinSprite': 'img/game/coinSprite.png'
+    'marioSpriteLeft' : 'img/game/marioSpriteLeft.png',
+    'marioSpriteRight' : 'img/game/marioSpriteRight.png',
+    'coinSprite' : 'img/game/coinSprite.png',
+    'blocSpecialSprite' : 'img/game/blocSpecialSprite.png'
   });
 }
 
