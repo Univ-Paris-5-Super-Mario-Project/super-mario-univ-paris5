@@ -1,46 +1,109 @@
 Game.addClass({
-	'name': 'BlocSpecial',
-	'eventCreate': function()
+
+	'name': 'Bloc',
+
+	'eventCreate' : function()
+
 	{
+
 		this.solid = true;
+
+	}
+
+});
+
+
+
+Game.addClass({
+
+	'name': 'BlocSpecial',
+
+	'parent':'Bloc',
+
+	'eventCreate': function()
+
+	{
+
+		this.callParent('eventCreate');
+
 		this.sprite = new Sprite(Game.getImage('blocSpecialSprite'));
+
 		this.sprite.makeTiles(16,16,0);
+
 		this.sprite.imagespeed = 0.2;
+
 		this.sprite.STATUS_BLOC_SPECIAL = [1,2,3,4];
+
 		this.sprite.STATUS_BLOC_TAPE = [5,5];
+
 		this.sprite.STATUS_BLOC_TOURNE = [6,7,8,9];
+
 		this.sprite.tiles = this.sprite.STATUS_BLOC_SPECIAL;
+
 		this.state = Element.STATE_STAND;
+
 		this.items = {
+
 			'PIECE' : 'Piece'//,
-			//'CHAMPIGNON' : 'Champignon' // Ou autres objets à implémenter dans le futur.
+
+			//'CHAMPIGNON' : 'Champignon' // Ou autres objets Ã  implÃ©menter dans le futur.
+
 		};
+
 		this.container = this.items.PIECE;
+
 		this.pixelsNumToMove = 2;
+
 	},
+
+
 
 	'hitBlock': function()
+
 	{
+
 		if (this.state == Element.STATE_STAND && this.sprite.tiles != this.sprite.STATUS_BLOC_TAPE) {
+
 			this.state = Element.STATE_MOVE;
+
 			var moveDown = function()
+
 			{
+
 				Game.instanceCreate(this.x,this.y,this.container).pickUp();
+
 				this.toFirstPlan();
+
 				this.sprite.tiles = this.sprite.STATUS_BLOC_TAPE;
+
 				this.moveToPoint(this.x,this.y+this.pixelsNumToMove,1,function(){
+
 					this.state = Element.STATE_STAND;
+
 					this.vspeed = 0;
+
 				});
+
 			};
+
 			this.moveToPoint(this.x,this.y-this.pixelsNumToMove,1,moveDown);
+
 		}
+
 	},
 
+
+
 	'eventClick': function()
+
 	{
+
 		if (this.isMouseOver()) {
+
 			this.hitBlock();
+
 		}
+
 	}
+
 });
