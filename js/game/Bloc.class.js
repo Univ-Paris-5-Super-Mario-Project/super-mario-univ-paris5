@@ -1,5 +1,6 @@
 Game.addClass({
 	'name': 'Bloc',
+	'abstract': true,
 	'eventCreate' : function()
 	{
 		this.solid = true;
