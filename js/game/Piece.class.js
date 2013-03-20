@@ -3,41 +3,43 @@ Game.addClass({
 	'eventCreate': function()
 	{
 		this.collideSolid = false;
+		this.coinSound = new buzz.sound("sound/game/coin.wav");
 		this.sprite = new Sprite(Game.getImage('coinSprite'));
 		this.sprite.makeTiles(16,16,0);
 		this.sprite.imagespeed = 0.2;
 		this.sprite.STATUS_SPINNING = [1,2,3,4];
 		this.sprite.STATUS_NOT_SPINNING = [1];
 		this.sprite.tiles = this.sprite.STATUS_SPINNING;
-		this.coinSound = new buzz.sound("sound/game/coin.wav");
+		this.state = Element.STATE_STAND;
+		this.pixelsNumToMove = 24;
 	},
 
-	'pickUp' : function()
+	'animatePickUp': function()
 	{
-		Piece.counter++;
-		this.coinSound.play();
-		this.destroy();
-	},
-
-	'destroy': function()
-	{
-		this.vspeed = -4;
-		this.checkForCollisions = false;
-
-		var piece = this;			
-		setTimeout(
-			function()
+		if (this.state == Element.STATE_STAND) {
+			this.checkForCollisions = false;
+			this.state = Element.STATE_MOVE;
+			var moveUp = function()
 			{
-				piece.vspeed = 0;
-				piece.sprite.tiles = piece.sprite.STATUS_NOT_SPINNING;
+				this.vspeed = 0;
+				this.sprite.tiles = this.sprite.STATUS_NOT_SPINNING;
+				var piece = this;
 				setTimeout(
 					function()
 					{
 						Game.instanceDestroy(piece);
 					},300
 				);
-			},200
-		);
+			};
+			this.moveToPoint(this.x,this.y-this.pixelsNumToMove,4,moveUp);
+		}
+	},
+
+	'pickUp' : function()
+	{
+		Piece.counter++;
+		this.coinSound.play();
+		this.animatePickUp();
 	}
 });
 
