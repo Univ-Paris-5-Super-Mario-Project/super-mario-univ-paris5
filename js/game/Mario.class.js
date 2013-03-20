@@ -212,7 +212,7 @@ Game.addClass({
 		}
 		else if (other.instanceOf(Bloc))
 		{
-			if (this.y >= other.y+14) // Noter qu'il y a 5 pixels transparents de hauteur dans le sprite de Mario, ça fausse un peu.
+			if (this.getDirection() == 90) // 90 correspond a la direction vers le haut.
 				other.hitBlock();
 		}
 	},
