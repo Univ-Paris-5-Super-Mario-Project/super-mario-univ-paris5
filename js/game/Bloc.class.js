@@ -7,7 +7,6 @@ Game.addClass({
 	}
 });
 
-
 Game.addClass({
 	'name': 'BlocSpecial',
 	'parent':'Bloc',
