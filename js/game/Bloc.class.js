@@ -1,7 +1,7 @@
 Game.addClass({
 	'name': 'Bloc',
 	'abstract': true,
-	'eventCreate' : function()
+	'eventCreate': function()
 	{
 		this.solid = true;
 	}
@@ -23,8 +23,8 @@ Game.addClass({
 		this.sprite.tiles = this.sprite.STATUS_BLOC_SPECIAL;
 		this.state = Element.STATE_STAND;
 		this.items = {
-			'PIECE' : 'Piece'//,
-			//'CHAMPIGNON' : 'Champignon' // Ou autres objets à implémenter dans le futur.
+			'PIECE': 'Piece'//,
+			//'CHAMPIGNON': 'Champignon' // Ou autres objets à implémenter dans le futur.
 		};
 		this.container = this.items.PIECE;
 		this.pixelsNumToMove = 2;
@@ -34,10 +34,11 @@ Game.addClass({
 	{
 		if (this.state == Element.STATE_STAND && this.sprite.tiles != this.sprite.STATUS_BLOC_TAPE) {
 			this.state = Element.STATE_MOVE;
+			this.containerObject = Game.instanceCreate(this.x,this.y,this.container);
+			this.toFirstPlan();
 			var moveDown = function()
 			{
-				Game.instanceCreate(this.x,this.y,this.container).pickUp();
-				this.toFirstPlan();
+				this.containerObject.pickUp();
 				this.sprite.tiles = this.sprite.STATUS_BLOC_TAPE;
 				this.moveToPoint(this.x,this.y+this.pixelsNumToMove,1,function(){
 					this.state = Element.STATE_STAND;
