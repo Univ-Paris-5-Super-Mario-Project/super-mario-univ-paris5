@@ -35,7 +35,7 @@ Game.addClass({
 		this.defaultGravity = this.gravity; // on ne la modifie pas, juste sert de référence
 		
 		// Doc : Indique si l'instance doit être téléportée de l'autre côté de la room lorsqu'elle sort de celle-ci.
-		this.switchPositionWhenLeave = true;
+		this.switchPositionWhenLeave = false;
 
 		this.jumpAllowed = true;
 	},
@@ -281,5 +281,11 @@ Game.addClass({
 				}
 			}
 		}
+	},
+
+	eventOutsideView: function()
+	{
+		SuperMario.gameOver();
+		Game.end = true;
 	}
 });

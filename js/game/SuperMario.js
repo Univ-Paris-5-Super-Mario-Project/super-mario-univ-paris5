@@ -39,5 +39,15 @@ var SuperMario = {
 				'coinSprite': 'img/game/coinSprite.png'
 			}
 		);
+	},
+	gameOver: function() {
+		// Musique de fin
+		var sound = new buzz.sound("sound/game/gameover.wav");
+		sound.play();
+
+		// sauvegarde de partie etc?
+
+		// redirection vers la page de game over
+		document.location.href = "#/game-over";
 	}
 };
