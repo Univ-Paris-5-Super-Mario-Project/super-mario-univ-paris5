@@ -243,6 +243,9 @@ Game.addClass({
 					intervalTime = 50;
 
 			jumpUpInterval = setInterval(function() {
+				// on augmente la gravité jusqu'à maximum la gravité normale x 2
+				// pour donner un sentiment de ralentissement en début de saut et
+				// d'accélération vers le bas en chute libre
 				if (that.gravity < that.defaultGravity * 2) that.gravity += 10 * upIndex * upIndex;
 
 				upIndex++;
