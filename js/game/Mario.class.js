@@ -38,60 +38,54 @@ Game.addClass({
 	//Elle sert principalement à modifier les statuts de l'objet avant le déplacement et l'animation de celui-ci
 	eventStartStep: function()
 	{
+		this.vspeed = 0;
+
 		switch (this.state)
 		{
 			case Element.STATE_STAND_LEFT:
 				this.sprite       = this.spriteLeft;
 				this.sprite.tiles = this.sprite.STAND_LEFT;
 				this.hspeed       = 0;
-				this.vspeed       = 0;
 			break;
 
 			case Element.STATE_STAND_RIGHT:
 				this.sprite       = this.spriteRight;
 				this.sprite.tiles = this.sprite.STAND_RIGHT;
 				this.hspeed       = 0;
-				this.vspeed       = 0;
 			break;
 			
 			case Element.STATE_STAND_DOWN_LEFT :
 				this.sprite       = this.spriteLeft;
 				this.sprite.tiles = this.sprite.STAND_DOWN_LEFT;
 				this.hspeed       = 0;
-				this.vspeed       = 0;
 			break;
 
 			case Element.STATE_STAND_DOWN_RIGHT:
 				this.sprite       = this.spriteRight;
 				this.sprite.tiles = this.sprite.STAND_DOWN_RIGHT;
 				this.hspeed       = 0;
-				this.vspeed       = 0;
 			break;
 			
 			case Element.STATE_MOVE_LEFT:
 				this.sprite       = this.spriteLeft;
 				this.sprite.tiles = this.sprite.MOVE_LEFT;
 				this.hspeed       = -(this.NB_PIX_DEPLACEMENT_HORIZ);
-				this.vspeed       = 0;
 			break;
 
 			case Element.STATE_MOVE_RIGHT :
 				this.sprite       = this.spriteRight;
 				this.sprite.tiles = this.sprite.MOVE_RIGHT;
 				this.hspeed       = this.NB_PIX_DEPLACEMENT_HORIZ;
-				this.vspeed       = 0;
 			break;
 			
 			case Element.STATE_MOVE_UP_LEFT:
 				this.sprite       = this.spriteLeft;
 				this.sprite.tiles = this.sprite.MOVE_UP_LEFT;
-				this.vspeed       = -(this.NB_PIX_DEPLACEMENT_VERTIC);
 			break;
 
 			case Element.STATE_MOVE_UP_RIGHT:
 				this.sprite       = this.spriteRight;
 				this.sprite.tiles = this.sprite.MOVE_UP_RIGHT;
-				this.vspeed       = -(this.NB_PIX_DEPLACEMENT_VERTIC);
 			break;
 		}
 	},
@@ -225,13 +219,45 @@ Game.addClass({
 		}
 	},
 
-	'jump': function()
+	jump: function()
 	{
-		var gravity = this.gravity;
-		var thisMario = this;
-		this.gravity = 0;
-//		this.moveToDirection(90,this.NB_PIX_SAUT);
-		setTimeout(function(){thisMario.gravity = gravity;},300);
+		this.gravity = 0; // on met la gravité à zéro (elle sera a)
+
+		var that = this;
+
+		var upIndex = 0,
+				downIndex = 0,
+				jumpUpTime = 200, // durée de la montée
+				jumpDownTime = 150, // durée de la descente
+				jumpUpInterval,
+				jumpDownInterval,
+				intervalTime = 50;
+
+		// Saut vers le haut
+		jumpUpInterval = setInterval(function() {
+			that.gravity -= 5;
+
+			upIndex++;
+
+			if (upIndex > (jumpUpTime / intervalTime)) {
+				clearInterval(jumpUpInterval);
+				that.gravity = -20;
+			}
+		}, intervalTime);
+
+		// Retombée au sol
+		setTimeout(function(){
+			jumpDownInterval = setInterval(function() {
+				that.gravity += 10;
+
+				downIndex++;
+
+				if (downIndex > (jumpDownTime / intervalTime)) {
+					clearInterval(jumpDownInterval);
+					that.gravity = 10;
+				}
+			}, intervalTime);
+		}, jumpUpTime);
 	},
 
 	eventCollisionWith: function(other)
