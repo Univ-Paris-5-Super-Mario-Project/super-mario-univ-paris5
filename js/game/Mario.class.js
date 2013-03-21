@@ -233,7 +233,7 @@ Game.addClass({
 			var that = this;
 
 			var index = 0,
-					jumpTime = 400, // durée de la montée
+					jumpTime = 5, // durée du saut, unité arbitraire
 					jumpInterval,
 					intervalTime = 50;
 
@@ -241,11 +241,10 @@ Game.addClass({
 				// on augmente la gravité jusqu'à maximum la gravité normale x 2
 				// pour donner un sentiment de ralentissement en début de saut et
 				// d'accélération vers le bas en chute libre
-				if (that.gravity < that.defaultGravity * 2) that.gravity += 10 * index * index;
-
-				index++;
-
-				if (index > (jumpTime / intervalTime)) {
+				if (that.gravity < that.defaultGravity * 2) {
+					that.gravity += 5 * index * index / jumpTime;
+					index++;
+				}	else {
 					clearInterval(jumpInterval);
 					that.jumpAllowed = true;
 				}
