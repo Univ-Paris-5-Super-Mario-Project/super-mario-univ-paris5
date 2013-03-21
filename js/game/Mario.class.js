@@ -2,6 +2,9 @@ Game.addClass({
 	name: 'Mario',
 	eventCreate: function()
 	{
+		// pour le debuggage en console dev
+		window.mainMario = this;
+
 		//Définition des différents sprites de l'élément Mario
 		this.spriteLeft =new Sprite(Game.getImage('marioSpriteLeft'));
 		this.spriteLeft.makeTiles(16,32,0);
@@ -263,9 +266,18 @@ Game.addClass({
 		{
 			if(other.instanceOf(BlocSpecial))
 			{
-				if (this.getDirection() == 90) // 90 correspond a la direction vers le haut.
+				var direction = this.getDirection();
+
+				// lorsque Mario tape sa tête contre un bloc
+				if (direction == 90) // 90 correspond a la direction vers le haut.
 				{
 					other.hitBlock();
+				}
+
+				// si Mario retombe sur un bloc, ca gravité retrouve l'état initial
+				if (direction == 270) // 270 correspond a la direction vers le bas
+				{
+					this.gravity = this.defaultGravity;
 				}
 			}
 		}
