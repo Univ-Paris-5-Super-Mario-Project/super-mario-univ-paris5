@@ -228,30 +228,25 @@ Game.addClass({
 		if (this.jumpAllowed) {
 			this.jumpAllowed = false;
 
-			var gravityBefore = this.gravity = -25; // on met la gravité à zéro (elle sera a)
-
-			window.that = this;
+			this.gravity = -25; // on met la gravité à zéro (elle sera a)
 
 			var that = this;
 
-			var upIndex = 0,
-					downIndex = 0,
-					jumpUpTime = 400, // durée de la montée
-					jumpDownTime = 380, // durée de la descente
-					jumpUpInterval,
-					jumpDownInterval,
+			var index = 0,
+					jumpTime = 400, // durée de la montée
+					jumpInterval,
 					intervalTime = 50;
 
-			jumpUpInterval = setInterval(function() {
+			jumpInterval = setInterval(function() {
 				// on augmente la gravité jusqu'à maximum la gravité normale x 2
 				// pour donner un sentiment de ralentissement en début de saut et
 				// d'accélération vers le bas en chute libre
-				if (that.gravity < that.defaultGravity * 2) that.gravity += 10 * upIndex * upIndex;
+				if (that.gravity < that.defaultGravity * 2) that.gravity += 10 * index * index;
 
-				upIndex++;
+				index++;
 
-				if (upIndex > (jumpUpTime / intervalTime)) {
-					clearInterval(jumpUpInterval);
+				if (index > (jumpTime / intervalTime)) {
+					clearInterval(jumpInterval);
 					that.jumpAllowed = true;
 				}
 			}, intervalTime);
