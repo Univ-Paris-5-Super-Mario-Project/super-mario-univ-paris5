@@ -25,10 +25,13 @@ Game.addClass({
 		//Définition de la vitesse verticale et horizontale de l'élément
 		this.NB_PIX_DEPLACEMENT_HORIZ = 4;
 		this.NB_PIX_DEPLACEMENT_VERTIC = 6;
+		this.NB_PIX_SAUT = 16;
+		
+		//Définition de la gravité de l'élément
+		this.gravity = 10;
 		
 		// Doc : Indique si l'instance doit être téléportée de l'autre côté de la room lorsqu'elle sort de celle-ci.
 		this.switchPositionWhenLeave = true;
-		
 	},
 	
 	//Doc : Méthode appelée au début de chaque Step, juste avant le déplacement de l'élément.
@@ -136,7 +139,7 @@ Game.addClass({
 				}
 			break;
 			
-			case Game.KEY_UP:
+/*			case Game.KEY_UP:
 				if (this.state == Element.STATE_STAND_LEFT || this.state == Element.STATE_MOVE_LEFT)
 				{
 					this.state = Element.STATE_MOVE_UP_LEFT;
@@ -145,7 +148,7 @@ Game.addClass({
 				{
 					this.state = Element.STATE_MOVE_UP_RIGHT;
 				}
-			break;
+			break;*/
 		}
 	},
 /*
@@ -203,7 +206,35 @@ Game.addClass({
 		}
 	},
 
-  eventCollisionWith: function(other)
+	eventKeyDown: function(key)
+	{
+		if (key == Game.KEY_UP || key == Game.KEY_SPACE)
+		{
+			switch (this.state)
+			{
+				case Element.STATE_STAND_LEFT: case Element.STATE_STAND_DOWN_LEFT: case Element.STATE_MOVE_LEFT:
+					this.state = Element.STATE_MOVE_UP_LEFT;
+					this.jump();
+				break;
+
+				case Element.STATE_STAND_RIGHT: case Element.STATE_STAND_DOWN_RIGHT: case Element.STATE_MOVE_RIGHT:
+					this.state = Element.STATE_MOVE_UP_RIGHT;
+					this.jump();
+				break;
+			}
+		}
+	},
+
+	'jump': function()
+	{
+		var gravity = this.gravity;
+		var thisMario = this;
+		this.gravity = 0;
+//		this.moveToDirection(90,this.NB_PIX_SAUT);
+		setTimeout(function(){thisMario.gravity = gravity;},300);
+	},
+
+	eventCollisionWith: function(other)
 	{
 		if (other.instanceOf(Piece))
 		{
@@ -215,6 +246,5 @@ Game.addClass({
 			if (this.getDirection() == 90) // 90 correspond a la direction vers le haut.
 				other.hitBlock();
 		}
-	},
-
+	}
 });
