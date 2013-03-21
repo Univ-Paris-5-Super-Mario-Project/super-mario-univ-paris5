@@ -243,8 +243,13 @@ Game.addClass({
 		}
 		else if (other.instanceOf(Bloc))
 		{
-			if (this.getDirection() == 90) // 90 correspond a la direction vers le haut.
-				other.hitBlock();
+			if(other.instanceOf(BlocSpecial))
+			{
+				if (this.getDirection() == 90) // 90 correspond a la direction vers le haut.
+				{
+					other.hitBlock();
+				}
+			}
 		}
 	}
 });
