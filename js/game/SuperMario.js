@@ -46,7 +46,8 @@ var SuperMario = {
 		sound.play();
 
 		// sauvegarde de partie etc?
-
+		Game.end = true;
+		
 		// redirection vers la page de game over
 		document.location.href = "#/game-over";
 	}

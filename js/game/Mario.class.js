@@ -286,6 +286,5 @@ Game.addClass({
 	eventOutsideView: function()
 	{
 		SuperMario.gameOver();
-		Game.end = true;
 	}
 });
