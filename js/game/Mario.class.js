@@ -29,9 +29,12 @@ Game.addClass({
 		
 		//Définition de la gravité de l'élément
 		this.gravity = 10;
+		this.defaultGravity = this.gravity; // on ne la modifie pas, juste sert de référence
 		
 		// Doc : Indique si l'instance doit être téléportée de l'autre côté de la room lorsqu'elle sort de celle-ci.
 		this.switchPositionWhenLeave = true;
+
+		this.jumpAllowed = true;
 	},
 	
 	//Doc : Méthode appelée au début de chaque Step, juste avant le déplacement de l'élément.
@@ -221,43 +224,35 @@ Game.addClass({
 
 	jump: function()
 	{
-		this.gravity = 0; // on met la gravité à zéro (elle sera a)
-
-		var that = this;
-
-		var upIndex = 0,
-				downIndex = 0,
-				jumpUpTime = 200, // durée de la montée
-				jumpDownTime = 150, // durée de la descente
-				jumpUpInterval,
-				jumpDownInterval,
-				intervalTime = 50;
-
 		// Saut vers le haut
-		jumpUpInterval = setInterval(function() {
-			that.gravity -= 5;
+		if (this.jumpAllowed) {
+			this.jumpAllowed = false;
 
-			upIndex++;
+			var gravityBefore = this.gravity = -25; // on met la gravité à zéro (elle sera a)
 
-			if (upIndex > (jumpUpTime / intervalTime)) {
-				clearInterval(jumpUpInterval);
-				that.gravity = -20;
-			}
-		}, intervalTime);
+			window.that = this;
 
-		// Retombée au sol
-		setTimeout(function(){
-			jumpDownInterval = setInterval(function() {
-				that.gravity += 10;
+			var that = this;
 
-				downIndex++;
+			var upIndex = 0,
+					downIndex = 0,
+					jumpUpTime = 400, // durée de la montée
+					jumpDownTime = 380, // durée de la descente
+					jumpUpInterval,
+					jumpDownInterval,
+					intervalTime = 50;
 
-				if (downIndex > (jumpDownTime / intervalTime)) {
-					clearInterval(jumpDownInterval);
-					that.gravity = 10;
+			jumpUpInterval = setInterval(function() {
+				if (that.gravity < that.defaultGravity * 2) that.gravity += 10 * upIndex * upIndex;
+
+				upIndex++;
+
+				if (upIndex > (jumpUpTime / intervalTime)) {
+					clearInterval(jumpUpInterval);
+					that.jumpAllowed = true;
 				}
 			}, intervalTime);
-		}, jumpUpTime);
+		}
 	},
 
 	eventCollisionWith: function(other)
