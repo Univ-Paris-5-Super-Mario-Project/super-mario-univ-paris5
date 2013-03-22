@@ -2,11 +2,7 @@ var SuperMario = {
 	start: function() {
 		Game.infoGameBuilder = false;
 		
-		Piece.counter = 0;
-		var level = new Room('js/game/1.xml');
-		level.setView(592, 400);
-		Game.setRooms([level]);
-		Game.lilo = false;	
+		Piece.counter = 0;		
 		
 		/*
 		Game.setRooms([new Room(592,400)]);
@@ -46,8 +42,7 @@ var SuperMario = {
 				'marioSpriteLeft': 'img/game/marioSpriteLeft.png',
 				'marioSpriteRight': 'img/game/marioSpriteRight.png',
 				'blocSpecialSprite': 'img/game/blocSpecialSprite.png',
-				'coinSprite': 'img/game/coinSprite.png',
-				'blocMapSprite': 'img/game/mapsheet.png'
+				'coinSprite': 'img/game/coinSprite.png'
 			}
 		);
 	},

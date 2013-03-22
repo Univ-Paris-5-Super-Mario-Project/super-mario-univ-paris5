@@ -39,6 +39,7 @@ canvas {
   background: #fff;
   display: block;
   margin: 0 auto;
+  background: url(../img/game/backgroundfar.png);
 }
 
 .btn {
