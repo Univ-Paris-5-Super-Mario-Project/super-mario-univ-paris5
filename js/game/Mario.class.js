@@ -285,6 +285,9 @@ Game.addClass({
 
 	eventOutsideView: function()
 	{
-		SuperMario.gameOver();
+		if(this.y>0)
+		{
+			SuperMario.gameOver();
+		}
 	}
 });
