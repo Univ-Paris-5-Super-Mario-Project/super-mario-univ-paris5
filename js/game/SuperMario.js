@@ -3,7 +3,7 @@ var SuperMario = {
 		Game.infoGameBuilder = false;
 		
 		Piece.counter = 0;
-		var level = new Room('js/game/1.xml');
+		var level = new Room('http://www.ens.math-info.univ-paris5.fr/~ib05432/Projet/super-mario-univ-paris5-master/js/game/1.xml');
 		level.setView(592, 400);
 		Game.setRooms([level]);
 		Game.lilo = false;	
