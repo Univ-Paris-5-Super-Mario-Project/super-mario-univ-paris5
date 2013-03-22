@@ -287,7 +287,12 @@ Game.addClass({
 	{
 		if(this.y>0)
 		{
-			SuperMario.gameOver();
+			this.death();
 		}
+	},
+	
+	death: function()
+	{
+		SuperMario.gameOver();
 	}
 });
