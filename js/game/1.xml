@@ -3,465 +3,105 @@
   <!-- 
    <tiles>
         <Tiles width="84" height="67" src="tiles" tiles_width="16" tiles_height="16" sep="1">
-            <tile x="0" y="176">1</tile>
-            
-            <tile x="16" y="176">1</tile>
-            <tile x="32" y="176">1</tile>
-            <tile x="48" y="176">1</tile>
-            <tile x="64" y="176">1</tile>
-            <tile x="80" y="176">1</tile>
-            <tile x="96" y="176">1</tile>
-            <tile x="112" y="176">1</tile>
-            <tile x="128" y="176">1</tile>
-            <tile x="144" y="176">1</tile>
-            <tile x="160" y="176">1</tile>
-            <tile x="176" y="176">1</tile>
-            <tile x="192" y="176">1</tile>
-            <tile x="208" y="176">1</tile>
-            <tile x="240" y="176">1</tile>
-            <tile x="224" y="176">1</tile>
-            <tile x="256" y="176">1</tile>
-            <tile x="272" y="176">1</tile>
-            <tile x="288" y="176">1</tile>
-            <tile x="304" y="176">1</tile>
-            <tile x="320" y="176">1</tile>
-            <tile x="336" y="176">1</tile>
-            <tile x="352" y="176">1</tile>
-            <tile x="368" y="176">1</tile>
-            <tile x="384" y="176">1</tile>
-            <tile x="400" y="176">1</tile>
-            <tile x="416" y="176">1</tile>
-            <tile x="432" y="176">1</tile>
-            <tile x="448" y="176">1</tile>
-            <tile x="464" y="176">1</tile>
-            <tile x="464" y="160">12</tile>
-            <tile x="464" y="144">7</tile>
-            <tile x="448" y="144">6</tile>
-            <tile x="448" y="160">11</tile>
-            <tile x="480" y="176">1</tile>
-            <tile x="496" y="176">1</tile>
-            <tile x="512" y="176">1</tile>
-            <tile x="528" y="176">1</tile>
-            <tile x="544" y="176">1</tile>
-            <tile x="560" y="176">1</tile>
-            <tile x="576" y="176">1</tile>
-            <tile x="592" y="176">1</tile>
-            <tile x="608" y="176">1</tile>
-            <tile x="624" y="176">1</tile>
-            <tile x="624" y="160">12</tile>
-            <tile x="624" y="144">12</tile>
-            <tile x="624" y="128">7</tile>
-            <tile x="608" y="128">6</tile>
-            <tile x="608" y="160">11</tile>
-            <tile x="608" y="144">11</tile>
-            <tile x="752" y="176">1</tile>
-            <tile x="736" y="176">1</tile>
-            <tile x="720" y="176">1</tile>
-            <tile x="704" y="176">1</tile>
-            <tile x="688" y="176">1</tile>
-            <tile x="672" y="176">1</tile>
-            <tile x="656" y="176">1</tile>
-            <tile x="640" y="176">1</tile>
-            <tile x="752" y="160">12</tile>
-            <tile x="752" y="144">12</tile>
-            <tile x="752" y="128">12</tile>
-            <tile x="736" y="160">11</tile>
-            <tile x="736" y="144">11</tile>
-            <tile x="736" y="128">11</tile>
-            <tile x="752" y="112">7</tile>
-            <tile x="736" y="112">6</tile>
-            <tile x="1072" y="176">1</tile>
-            <tile x="1056" y="176">1</tile>
-            <tile x="1040" y="176">1</tile>
-            <tile x="1024" y="176">1</tile>
-            <tile x="1008" y="176">1</tile>
-            <tile x="976" y="176">1</tile>
-            <tile x="992" y="176">1</tile>
-            <tile x="944" y="176">1</tile>
-            <tile x="960" y="176">1</tile>
-            <tile x="928" y="176">1</tile>
-            <tile x="912" y="176">1</tile>
-            <tile x="928" y="160">12</tile>
-            <tile x="928" y="144">12</tile>
-            <tile x="928" y="128">12</tile>
-            <tile x="928" y="112">7</tile>
-            <tile x="912" y="112">6</tile>
-            <tile x="912" y="160">11</tile>
-            <tile x="912" y="144">11</tile>
-            <tile x="912" y="128">11</tile>
-            <tile x="896" y="176">1</tile>
-            <tile x="864" y="176">1</tile>
-            <tile x="880" y="176">1</tile>
-            <tile x="848" y="176">1</tile>
-            <tile x="832" y="176">1</tile>
-            <tile x="816" y="176">1</tile>
-            <tile x="800" y="176">1</tile>
-            <tile x="784" y="176">1</tile>
-            <tile x="768" y="176">1</tile>
-            <tile x="1344" y="176">1</tile>
-            <tile x="1328" y="176">1</tile>
-            <tile x="1312" y="176">1</tile>
-            <tile x="1296" y="176">1</tile>
-            <tile x="1280" y="176">1</tile>
-            <tile x="1264" y="176">1</tile>
-            <tile x="1232" y="176">1</tile>
-            <tile x="1216" y="176">1</tile>
-            <tile x="1200" y="176">1</tile>
-            <tile x="1184" y="176">1</tile>
-            <tile x="1168" y="176">1</tile>
-            <tile x="1152" y="176">1</tile>
-            <tile x="1440" y="176">1</tile>
-            <tile x="1456" y="176">1</tile>
-            <tile x="1472" y="176">1</tile>
-            <tile x="1488" y="176">1</tile>
-            <tile x="1504" y="176">1</tile>
-            <tile x="1520" y="176">1</tile>
-            <tile x="1536" y="176">1</tile>
-            <tile x="1552" y="176">1</tile>
-            <tile x="1568" y="176">1</tile>
-            <tile x="1584" y="176">1</tile>
-            <tile x="1600" y="176">1</tile>
-            <tile x="1616" y="176">1</tile>
-            <tile x="1632" y="176">1</tile>
-            <tile x="1648" y="176">1</tile>
-            <tile x="1664" y="176">1</tile>
-            <tile x="1680" y="176">1</tile>
-            <tile x="1696" y="176">1</tile>
-            <tile x="1712" y="176">1</tile>
-            <tile x="1728" y="176">1</tile>
-            <tile x="1744" y="176">1</tile>
-            <tile x="1760" y="176">1</tile>
-            <tile x="1792" y="176">1</tile>
-            <tile x="1808" y="176">1</tile>
-            <tile x="1824" y="176">1</tile>
-            <tile x="1840" y="176">1</tile>
-            <tile x="1856" y="176">1</tile>
-            <tile x="1888" y="176">1</tile>
-            <tile x="1920" y="176">1</tile>
-            <tile x="1936" y="176">1</tile>
-            <tile x="1952" y="176">1</tile>
-            <tile x="1968" y="176">1</tile>
-            <tile x="2192" y="176">1</tile>
-            <tile x="2176" y="176">1</tile>
-            <tile x="2160" y="176">1</tile>
-            <tile x="2144" y="176">1</tile>
-            <tile x="2128" y="176">1</tile>
-            <tile x="2096" y="176">1</tile>
-            <tile x="1248" y="176">1</tile>
-            <tile x="1776" y="176">1</tile>
-            <tile x="1872" y="176">1</tile>
-            <tile x="1904" y="176">1</tile>
-            <tile x="2112" y="176">1</tile>
-            <tile x="2080" y="176">1</tile>
-            <tile x="2064" y="176">1</tile>
-            <tile x="2048" y="176">1</tile>
-            <tile x="2032" y="176">1</tile>
-            <tile x="2016" y="176">1</tile>
-            <tile x="2000" y="176">1</tile>
-            <tile x="1984" y="176">1</tile>
-            <tile x="2192" y="112">2</tile>
-            <tile x="2240" y="112">2</tile>
-            <tile x="2192" y="128">2</tile>
-            <tile x="2192" y="144">2</tile>
-            <tile x="2192" y="160">2</tile>
-            <tile x="2176" y="128">2</tile>
-            <tile x="2160" y="144">2</tile>
-            <tile x="2176" y="144">2</tile>
-            <tile x="2176" y="160">2</tile>
-            <tile x="2160" y="160">2</tile>
-            <tile x="2144" y="160">2</tile>
-            <tile x="2240" y="128">2</tile>
-            <tile x="2240" y="144">2</tile>
-            <tile x="2240" y="160">2</tile>
-            <tile x="2256" y="160">2</tile>
-            <tile x="2272" y="160">2</tile>
-            <tile x="2256" y="128">2</tile>
-            <tile x="2256" y="144">2</tile>
-            <tile x="2272" y="144">2</tile>
-            <tile x="2288" y="160">2</tile>
-            <tile x="2416" y="176">1</tile>
-            <tile x="2400" y="176">1</tile>
-            <tile x="2384" y="176">1</tile>
-            <tile x="2368" y="176">1</tile>
-            <tile x="2352" y="176">1</tile>
-            <tile x="2336" y="176">1</tile>
-            <tile x="2320" y="176">1</tile>
-            <tile x="2304" y="176">1</tile>
-            <tile x="2288" y="176">1</tile>
-            <tile x="2272" y="176">1</tile>
-            <tile x="2256" y="176">1</tile>
-            <tile x="2240" y="176">1</tile>
-            <tile x="2224" y="176">1</tile>
-            <tile x="2208" y="176">1</tile>
-            <tile x="2432" y="160">2</tile>
-            <tile x="2432" y="144">2</tile>
-            <tile x="2432" y="128">2</tile>
-            <tile x="2432" y="112">2</tile>
-            <tile x="2416" y="112">2</tile>
-            <tile x="2400" y="128">2</tile>
-            <tile x="2368" y="160">2</tile>
-            <tile x="2384" y="144">2</tile>
-            <tile x="2384" y="160">2</tile>
-            <tile x="2400" y="160">2</tile>
-            <tile x="2400" y="144">2</tile>
-            <tile x="2416" y="144">2</tile>
-            <tile x="2416" y="160">2</tile>
-            <tile x="2416" y="128">2</tile>
-            <tile x="2480" y="112">2</tile>
-            <tile x="2480" y="128">2</tile>
-            <tile x="2480" y="144">2</tile>
-            <tile x="2512" y="160">2</tile>
-            <tile x="2480" y="160">2</tile>
-            <tile x="2496" y="160">2</tile>
-            <tile x="2528" y="160">2</tile>
-            <tile x="2512" y="144">2</tile>
-            <tile x="2496" y="128">2</tile>
-            <tile x="2496" y="144">2</tile>
-            <tile x="2496" y="176">1</tile>
-            <tile x="2512" y="176">1</tile>
-            <tile x="2528" y="176">1</tile>
-            <tile x="2544" y="176">1</tile>
-            <tile x="2560" y="176">1</tile>
-            <tile x="2576" y="176">1</tile>
-            <tile x="2592" y="176">1</tile>
-            <tile x="2608" y="176">1</tile>
-            <tile x="2624" y="176">1</tile>
-            <tile x="2880" y="176">1</tile>
-            <tile x="2864" y="176">1</tile>
-            <tile x="2880" y="144">7</tile>
-            <tile x="2624" y="144">7</tile>
-            <tile x="2608" y="144">6</tile>
-            <tile x="2864" y="144">6</tile>
-            <tile x="2608" y="160">11</tile>
-            <tile x="2864" y="160">11</tile>
-            <tile x="2624" y="160">12</tile>
-            <tile x="2880" y="160">12</tile>
-            <tile x="3376" y="176">1</tile>
-            <tile x="3344" y="176">1</tile>
-            <tile x="3360" y="176">1</tile>
-            <tile x="3328" y="176">1</tile>
-            <tile x="3312" y="176">1</tile>
-            <tile x="3296" y="176">1</tile>
-            <tile x="3280" y="176">1</tile>
-            <tile x="3264" y="176">1</tile>
-            <tile x="3248" y="176">1</tile>
-            <tile x="3232" y="176">1</tile>
-            <tile x="3216" y="176">1</tile>
-            <tile x="3200" y="176">1</tile>
-            <tile x="3184" y="176">1</tile>
-            <tile x="3168" y="176">1</tile>
-            <tile x="3152" y="176">1</tile>
-            <tile x="3136" y="176">1</tile>
-            <tile x="3120" y="176">1</tile>
-            <tile x="3104" y="176">1</tile>
-            <tile x="3072" y="176">1</tile>
-            <tile x="3088" y="176">1</tile>
-            <tile x="3040" y="176">1</tile>
-            <tile x="3056" y="176">1</tile>
-            <tile x="3024" y="176">1</tile>
-            <tile x="3008" y="176">1</tile>
-            <tile x="2992" y="176">1</tile>
-            <tile x="2976" y="176">1</tile>
-            <tile x="2960" y="176">1</tile>
-            <tile x="2944" y="176">1</tile>
-            <tile x="2928" y="176">1</tile>
-            <tile x="2912" y="176">1</tile>
-            <tile x="2896" y="176">1</tile>
-            <tile x="2832" y="176">1</tile>
-            <tile x="2848" y="176">1</tile>
-            <tile x="2800" y="176">1</tile>
-            <tile x="2816" y="176">1</tile>
-            <tile x="2784" y="176">1</tile>
-            <tile x="2768" y="176">1</tile>
-            <tile x="2752" y="176">1</tile>
-            <tile x="2736" y="176">1</tile>
-            <tile x="2720" y="176">1</tile>
-            <tile x="2704" y="176">1</tile>
-            <tile x="2688" y="176">1</tile>
-            <tile x="2672" y="176">1</tile>
-            <tile x="2656" y="176">1</tile>
-            <tile x="2640" y="176">1</tile>
-            <tile x="2896" y="160">2</tile>
-            <tile x="3008" y="48">2</tile>
-            <tile x="3024" y="48">2</tile>
-            <tile x="3024" y="64">2</tile>
-            <tile x="3024" y="80">2</tile>
-            <tile x="3024" y="96">2</tile>
-            <tile x="3024" y="112">2</tile>
-            <tile x="3024" y="128">2</tile>
-            <tile x="3024" y="144">2</tile>
-            <tile x="3024" y="160">2</tile>
-            <tile x="3008" y="160">2</tile>
-            <tile x="2992" y="160">2</tile>
-            <tile x="2976" y="160">2</tile>
-            <tile x="2960" y="160">2</tile>
-            <tile x="2944" y="160">2</tile>
-            <tile x="2928" y="160">2</tile>
-            <tile x="2912" y="160">2</tile>
-            <tile x="2912" y="144">2</tile>
-            <tile x="2928" y="128">2</tile>
-            <tile x="2944" y="112">2</tile>
-            <tile x="2960" y="112">2</tile>
-            <tile x="2960" y="96">2</tile>
-            <tile x="2976" y="80">2</tile>
-            <tile x="2992" y="80">2</tile>
-            <tile x="2992" y="64">2</tile>
-            <tile x="3008" y="64">2</tile>
-            <tile x="3008" y="80">2</tile>
-            <tile x="3008" y="96">2</tile>
-            <tile x="3008" y="112">2</tile>
-            <tile x="3008" y="128">2</tile>
-            <tile x="3008" y="144">2</tile>
-            <tile x="2992" y="144">2</tile>
-            <tile x="2992" y="128">2</tile>
-            <tile x="2992" y="112">2</tile>
-            <tile x="2992" y="96">2</tile>
-            <tile x="2976" y="96">2</tile>
-            <tile x="2976" y="112">2</tile>
-            <tile x="2976" y="128">2</tile>
-            <tile x="2976" y="144">2</tile>
-            <tile x="2960" y="144">2</tile>
-            <tile x="2928" y="144">2</tile>
-            <tile x="2944" y="144">2</tile>
-            <tile x="2960" y="128">2</tile>
-            <tile x="2944" y="128">2</tile>
-            <tile x="0" y="160">13</tile>
-            <tile x="16" y="160">13</tile>
-            <tile x="32" y="160">13</tile>
-            <tile x="48" y="160">13</tile>
-            <tile x="0" y="144">14</tile>
-            <tile x="16" y="144">14</tile>
-            <tile x="32" y="144">14</tile>
-            <tile x="48" y="144">14</tile>
-            <tile x="0" y="128">9</tile>
-            <tile x="16" y="128">9</tile>
-            <tile x="32" y="128">9</tile>
-            <tile x="48" y="128">9</tile>
-            <tile x="240" y="160">5</tile>
-            <tile x="224" y="160">4</tile>
-            <tile x="208" y="160">3</tile>
-            <tile x="256" y="160">13</tile>
-            <tile x="272" y="160">13</tile>
-            <tile x="256" y="144">8</tile>
-            <tile x="272" y="144">8</tile>
-            <tile x="368" y="160">3</tile>
-            <tile x="384" y="160">5</tile>
-            <tile x="672" y="160">3</tile>
-            <tile x="688" y="160">5</tile>
-            <tile x="768" y="160">13</tile>
-            <tile x="784" y="160">13</tile>
-            <tile x="800" y="160">13</tile>
-            <tile x="816" y="160">13</tile>
-            <tile x="832" y="160">13</tile>
-            <tile x="832" y="144">8</tile>
-            <tile x="768" y="144">8</tile>
-            <tile x="816" y="144">14</tile>
-            <tile x="800" y="144">14</tile>
-            <tile x="784" y="144">14</tile>
-            <tile x="784" y="128">9</tile>
-            <tile x="800" y="128">9</tile>
-            <tile x="816" y="128">9</tile>
-            <tile x="944" y="160">3</tile>
-            <tile x="960" y="160">4</tile>
-            <tile x="976" y="160">5</tile>
-            <tile x="1040" y="160">13</tile>
-            <tile x="1040" y="144">8</tile>
-            <tile x="1152" y="160">13</tile>
-            <tile x="1152" y="144">8</tile>
-            <tile x="1440" y="160">3</tile>
-            <tile x="1456" y="160">5</tile>
-            <tile x="1568" y="160">13</tile>
-            <tile x="1568" y="144">14</tile>
-            <tile x="1568" y="128">9</tile>
-            <tile x="1744" y="160">4</tile>
-            <tile x="1760" y="160">5</tile>
-            <tile x="1728" y="160">3</tile>
-            <tile x="1776" y="160">13</tile>
-            <tile x="1776" y="144">8</tile>
-            <tile x="1904" y="144">8</tile>
-            <tile x="1904" y="160">13</tile>
-            <tile x="2208" y="160">4</tile>
-            <tile x="2224" y="160">4</tile>
-            <tile x="2352" y="160">13</tile>
-            <tile x="2336" y="160">13</tile>
-            <tile x="2352" y="144">14</tile>
-            <tile x="2336" y="144">14</tile>
-            <tile x="2352" y="128">9</tile>
-            <tile x="2336" y="128">9</tile>
-            <tile x="1088" y="176">17</tile>
-            <tile x="1360" y="176">17</tile>
-            <tile x="1136" y="176">16</tile>
-            <tile x="1424" y="176">16</tile>
-            <tile x="2480" y="176">16</tile>
-            <tile x="2432" y="176">17</tile>
+            <tile x="2432" y="336">17</tile>
         </Tiles>
     </tiles>
     -->
     <elements>
-        <element x="0" y="176">Terre</element>
-        <element x="10" y="13">PieceController</element>
-        <element x="16" y="176">Terre</element>
-        <element x="32" y="176">Terre</element>
-        <element x="48" y="176">Terre</element>
-        <element x="64" y="176">Terre</element>
-        <element x="80" y="176">Terre</element>
-        <element x="96" y="176">Terre</element>
-        <element x="112" y="176">Terre</element>
-        <element x="128" y="176">Terre</element>
-        <element x="144" y="176">Terre</element>
-        <element x="160" y="176">Terre</element>
-        <element x="176" y="176">Terre</element>
-        <element x="192" y="176">Terre</element>
-        <element x="208" y="176">Terre</element>
-        <element x="224" y="176">Terre</element>
-        <element x="240" y="176">Terre</element>
-        <element x="256" y="176">Terre</element>
-        <element x="16" y="160">Mario</element>
-        <element x="256" y="112">BlocSpecial</element>
-        <element x="272" y="176">Terre</element>
-        <element x="288" y="176">Terre</element>
-        <element x="304" y="176">Terre</element>
+        <element x="0" y="0">PieceController</element>
+
+	<element x="0" y="336">Terre</element>
+	<element x="0" y="352">SousTerre</element>
+	<element x="0" y="368">SousTerre</element>
+	<element x="0" y="384">SousTerre</element>
+
+	<element x="16" y="336">Terre</element>
+	<element x="16" y="352">SousTerre</element>
+	<element x="16" y="368">SousTerre</element>
+	<element x="16" y="384">SousTerre</element>
+
+	<element x="32" y="336">Terre</element>
+	<element x="32" y="352">SousTerre</element>
+	<element x="32" y="368">SousTerre</element>
+	<element x="32" y="384">SousTerre</element>
+
+	<element x="48" y="336">Terre</element>
+	<element x="48" y="352">SousTerre</element>
+	<element x="48" y="368">SousTerre</element>
+	<element x="48" y="384">SousTerre</element>
+
+	<element x="64" y="336">Terre</element>
+	<element x="64" y="352">SousTerre</element>
+	<element x="64" y="368">SousTerre</element>
+	<element x="64" y="384">SousTerre</element>
+
+	<element x="80" y="336">Terre</element>
+	<element x="80" y="352">SousTerre</element>
+	<element x="80" y="368">SousTerre</element>
+	<element x="80" y="384">SousTerre</element>
+
+        <element x="16" y="336">Terre</element>
+        <element x="32" y="336">Terre</element>
+        <element x="48" y="336">Terre</element>
+        <element x="64" y="336">Terre</element>
+        <element x="80" y="336">Terre</element>
+        <element x="96" y="336">Terre</element>
+        <element x="112" y="336">Terre</element>
+        <element x="128" y="336">Terre</element>
+        <element x="144" y="336">Terre</element>
+        <element x="160" y="336">Terre</element>
+        <element x="176" y="336">Terre</element>
+        <element x="192" y="336">Terre</element>
+        <element x="208" y="336">Terre</element>
+        <element x="224" y="336">Terre</element>
+        <element x="240" y="336">Terre</element>
+        <element x="256" y="336">Terre</element>
+        <element x="16" y="280">Mario</element>
+        <element x="256" y="280">BlocSpecial</element>
+        <element x="272" y="336">Terre</element>
+        <element x="288" y="336">Terre</element>
+        <element x="304" y="336">Terre</element>
         <!--
         <element x="320" y="112">Brique</element>
         -->
-        <element x="320" y="176">Terre</element>
-        <element x="336" y="176">Terre</element>
-        <element x="352" y="176">Terre</element>
-        <element x="368" y="176">Terre</element>
-        <element x="384" y="176">Terre</element>
+        <element x="320" y="336">Terre</element>
+        <element x="336" y="336">Terre</element>
+        <element x="352" y="336">Terre</element>
+        <element x="368" y="336">Terre</element>
+        <element x="384" y="336">Terre</element>
         <!--
         <element x="352" y="112">Brique</element>
         <element x="384" y="112">Brique</element>
         -->
-        <element x="368" y="112">BlocSpecial</element>
-        <element x="352" y="48">BlocSpecial</element>
-        <element x="400" y="176">Terre</element>
-        <element x="416" y="176">Terre</element>
-        <element x="432" y="176">Terre</element>
+        <element x="368" y="300">BlocSpecial</element>
+        <element x="352" y="320">BlocSpecial</element>
+        <element x="400" y="336">Terre</element>
+        <element x="416" y="336">Terre</element>
+        <element x="432" y="336">Terre</element>
         <element x="448" y="160">Terre</element>
         <element x="448" y="144">Terre</element>
         <element x="464" y="144">Terre</element>
         <element x="464" y="160">Terre</element>
-        <element x="480" y="176">Terre</element>
-        <element x="496" y="176">Terre</element>
-        <element x="512" y="176">Terre</element>
-        <element x="528" y="176">Terre</element>
-        <element x="544" y="176">Terre</element>
-        <element x="560" y="176">Terre</element>
-        <element x="576" y="176">Terre</element>
-        <element x="592" y="176">Terre</element>
+        <element x="480" y="336">Terre</element>
+        <element x="496" y="336">Terre</element>
+        <element x="512" y="336">Terre</element>
+        <element x="528" y="336">Terre</element>
+        <element x="544" y="336">Terre</element>
+        <element x="560" y="336">Terre</element>
+        <element x="576" y="336">Terre</element>
+        <element x="592" y="336">Terre</element>
         <element x="608" y="160">Terre</element>
         <element x="608" y="144">Terre</element>
         <element x="608" y="128">Terre</element>
         <element x="624" y="128">Terre</element>
         <element x="624" y="144">Terre</element>
         <element x="624" y="160">Terre</element>
-        <element x="640" y="176">Terre</element>
-        <element x="656" y="176">Terre</element>
-        <element x="672" y="176">Terre</element>
-        <element x="688" y="176">Terre</element>
-        <element x="704" y="176">Terre</element>
-        <element x="720" y="176">Terre</element>
+        <element x="640" y="336">Terre</element>
+        <element x="656" y="336">Terre</element>
+        <element x="672" y="336">Terre</element>
+        <element x="688" y="336">Terre</element>
+        <element x="704" y="336">Terre</element>
+        <element x="720" y="336">Terre</element>
         <element x="736" y="160">Terre</element>
         <element x="736" y="144">Terre</element>
         <element x="736" y="128">Terre</element>
@@ -470,15 +110,15 @@
         <element x="752" y="128">Terre</element>
         <element x="752" y="144">Terre</element>
         <element x="752" y="160">Terre</element>
-        <element x="768" y="176">Terre</element>
-        <element x="784" y="176">Terre</element>
-        <element x="800" y="176">Terre</element>
-        <element x="816" y="176">Terre</element>
-        <element x="832" y="176">Terre</element>
-        <element x="848" y="176">Terre</element>
-        <element x="864" y="176">Terre</element>
-        <element x="880" y="176">Terre</element>
-        <element x="896" y="176">Terre</element>
+        <element x="768" y="336">Terre</element>
+        <element x="784" y="336">Terre</element>
+        <element x="800" y="336">Terre</element>
+        <element x="816" y="336">Terre</element>
+        <element x="832" y="336">Terre</element>
+        <element x="848" y="336">Terre</element>
+        <element x="864" y="336">Terre</element>
+        <element x="880" y="336">Terre</element>
+        <element x="896" y="336">Terre</element>
         <element x="912" y="160">Terre</element>
         <element x="912" y="144">Terre</element>
         <element x="912" y="128">Terre</element>
@@ -487,35 +127,35 @@
         <element x="928" y="128">Terre</element>
         <element x="928" y="144">Terre</element>
         <element x="928" y="160">Terre</element>
-        <element x="944" y="176">Terre</element>
-        <element x="960" y="176">Terre</element>
-        <element x="976" y="176">Terre</element>
-        <element x="992" y="176">Terre</element>
-        <element x="1008" y="176">Terre</element>
-        <element x="1024" y="176">Terre</element>
-        <element x="1040" y="176">Terre</element>
-        <element x="1056" y="176">Terre</element>
-        <element x="1072" y="176">Terre</element>
-        <element x="1088" y="176">Terre</element>
-        <element x="1136" y="176">Terre</element>
-        <element x="1152" y="176">Terre</element>
-        <element x="1168" y="176">Terre</element>
-        <element x="1184" y="176">Terre</element>
-        <element x="1200" y="176">Terre</element>
-        <element x="1216" y="176">Terre</element>
-        <element x="1232" y="176">Terre</element>
+        <element x="944" y="336">Terre</element>
+        <element x="960" y="336">Terre</element>
+        <element x="976" y="336">Terre</element>
+        <element x="992" y="336">Terre</element>
+        <element x="1008" y="336">Terre</element>
+        <element x="1024" y="336">Terre</element>
+        <element x="1040" y="336">Terre</element>
+        <element x="1056" y="336">Terre</element>
+        <element x="1072" y="336">Terre</element>
+        <element x="1088" y="336">Terre</element>
+        <element x="1136" y="336">Terre</element>
+        <element x="1152" y="336">Terre</element>
+        <element x="1168" y="336">Terre</element>
+        <element x="1184" y="336">Terre</element>
+        <element x="1200" y="336">Terre</element>
+        <element x="1216" y="336">Terre</element>
+        <element x="1232" y="336">Terre</element>
         <!--
         <element x="1232" y="112">Brique</element>
         <element x="1264" y="112">Brique</element>
         -->
-        <element x="1248" y="176">Terre</element>
-        <element x="1264" y="176">Terre</element>
-        <element x="1280" y="176">Terre</element>
-        <element x="1296" y="176">Terre</element>
-        <element x="1312" y="176">Terre</element>
-        <element x="1328" y="176">Terre</element>
-        <element x="1344" y="176">Terre</element>
-        <element x="1360" y="176">Terre</element>
+        <element x="1248" y="336">Terre</element>
+        <element x="1264" y="336">Terre</element>
+        <element x="1280" y="336">Terre</element>
+        <element x="1296" y="336">Terre</element>
+        <element x="1312" y="336">Terre</element>
+        <element x="1328" y="336">Terre</element>
+        <element x="1344" y="336">Terre</element>
+        <element x="1360" y="336">Terre</element>
         <!--
         <element x="1280" y="48">Brique</element>
         <element x="1296" y="48">Brique</element>
@@ -531,49 +171,49 @@
         <element x="1504" y="112">Brique</element>
         -->
         <element x="1504" y="48">BlocSpecial</element>
-        <element x="1504" y="176">Terre</element>
-        <element x="1488" y="176">Terre</element>
-        <element x="1472" y="176">Terre</element>
-        <element x="1456" y="176">Terre</element>
-        <element x="1440" y="176">Terre</element>
-        <element x="1424" y="176">Terre</element>
-        <element x="1520" y="176">Terre</element>
-        <element x="1536" y="176">Terre</element>
-        <element x="1552" y="176">Terre</element>
-        <element x="1568" y="176">Terre</element>
-        <element x="1584" y="176">Terre</element>
-        <element x="1600" y="176">Terre</element>
+        <element x="1504" y="336">Terre</element>
+        <element x="1488" y="336">Terre</element>
+        <element x="1472" y="336">Terre</element>
+        <element x="1456" y="336">Terre</element>
+        <element x="1440" y="336">Terre</element>
+        <element x="1424" y="336">Terre</element>
+        <element x="1520" y="336">Terre</element>
+        <element x="1536" y="336">Terre</element>
+        <element x="1552" y="336">Terre</element>
+        <element x="1568" y="336">Terre</element>
+        <element x="1584" y="336">Terre</element>
+        <element x="1600" y="336">Terre</element>
         <element x="1600" y="112">BlocSpecial</element>
         <!--
         <element x="1616" y="112">Brique</element>
         -->
-        <element x="1616" y="176">Terre</element>
-        <element x="1632" y="176">Terre</element>
-        <element x="1648" y="176">Terre</element>
-        <element x="1664" y="176">Terre</element>
-        <element x="1680" y="176">Terre</element>
-        <element x="1696" y="176">Terre</element>
+        <element x="1616" y="336">Terre</element>
+        <element x="1632" y="336">Terre</element>
+        <element x="1648" y="336">Terre</element>
+        <element x="1664" y="336">Terre</element>
+        <element x="1680" y="336">Terre</element>
+        <element x="1696" y="336">Terre</element>
         <element x="1696" y="112">BlocSpecial</element>
         <element x="1744" y="112">BlocSpecial</element>
         <element x="1792" y="112">BlocSpecial</element>
-        <element x="1712" y="176">Terre</element>
-        <element x="1728" y="176">Terre</element>
-        <element x="1744" y="176">Terre</element>
-        <element x="1760" y="176">Terre</element>
-        <element x="1776" y="176">Terre</element>
-        <element x="1792" y="176">Terre</element>
-        <element x="1808" y="176">Terre</element>
-        <element x="1824" y="176">Terre</element>
-        <element x="1840" y="176">Terre</element>
-        <element x="1856" y="176">Terre</element>
-        <element x="1872" y="176">Terre</element>
-        <element x="1888" y="176">Terre</element>
+        <element x="1712" y="336">Terre</element>
+        <element x="1728" y="336">Terre</element>
+        <element x="1744" y="336">Terre</element>
+        <element x="1760" y="336">Terre</element>
+        <element x="1776" y="336">Terre</element>
+        <element x="1792" y="336">Terre</element>
+        <element x="1808" y="336">Terre</element>
+        <element x="1824" y="336">Terre</element>
+        <element x="1840" y="336">Terre</element>
+        <element x="1856" y="336">Terre</element>
+        <element x="1872" y="336">Terre</element>
+        <element x="1888" y="336">Terre</element>
         <!--
         <element x="1888" y="112">Brique</element>
         -->
-        <element x="1904" y="176">Terre</element>
-        <element x="1920" y="176">Terre</element>
-        <element x="1936" y="176">Terre</element>
+        <element x="1904" y="336">Terre</element>
+        <element x="1920" y="336">Terre</element>
+        <element x="1936" y="336">Terre</element>
         <!--
         <element x="1936" y="48">Brique</element>
         <element x="1952" y="48">Brique</element>
@@ -585,18 +225,18 @@
         -->
         <element x="2080" y="48">BlocSpecial</element>
         <element x="2064" y="48">BlocSpecial</element>
-        <element x="2096" y="176">Terre</element>
-        <element x="2080" y="176">Terre</element>
-        <element x="2064" y="176">Terre</element>
-        <element x="2048" y="176">Terre</element>
-        <element x="2016" y="176">Terre</element>
-        <element x="1968" y="176">Terre</element>
-        <element x="1952" y="176">Terre</element>
-        <element x="2000" y="176">Terre</element>
-        <element x="2032" y="176">Terre</element>
-        <element x="1984" y="176">Terre</element>
-        <element x="2112" y="176">Terre</element>
-        <element x="2128" y="176">Terre</element>
+        <element x="2096" y="336">Terre</element>
+        <element x="2080" y="336">Terre</element>
+        <element x="2064" y="336">Terre</element>
+        <element x="2048" y="336">Terre</element>
+        <element x="2016" y="336">Terre</element>
+        <element x="1968" y="336">Terre</element>
+        <element x="1952" y="336">Terre</element>
+        <element x="2000" y="336">Terre</element>
+        <element x="2032" y="336">Terre</element>
+        <element x="1984" y="336">Terre</element>
+        <element x="2112" y="336">Terre</element>
+        <element x="2128" y="336">Terre</element>
         <element x="2144" y="160">Terre</element>
         <element x="2160" y="144">Terre</element>
         <element x="2176" y="128">Terre</element>
@@ -604,8 +244,8 @@
         <element x="2192" y="128">Terre</element>
         <element x="2192" y="144">Terre</element>
         <element x="2192" y="160">Terre</element>
-        <element x="2208" y="176">Terre</element>
-        <element x="2224" y="176">Terre</element>
+        <element x="2208" y="336">Terre</element>
+        <element x="2224" y="336">Terre</element>
         <element x="2240" y="160">Terre</element>
         <element x="2240" y="144">Terre</element>
         <element x="2240" y="128">Terre</element>
@@ -613,10 +253,10 @@
         <element x="2256" y="128">Terre</element>
         <element x="2272" y="144">Terre</element>
         <element x="2288" y="160">Terre</element>
-        <element x="2304" y="176">Terre</element>
-        <element x="2320" y="176">Terre</element>
-        <element x="2336" y="176">Terre</element>
-        <element x="2352" y="176">Terre</element>
+        <element x="2304" y="336">Terre</element>
+        <element x="2320" y="336">Terre</element>
+        <element x="2336" y="336">Terre</element>
+        <element x="2352" y="336">Terre</element>
         <element x="2368" y="160">Terre</element>
         <element x="2384" y="144">Terre</element>
         <element x="2400" y="128">Terre</element>
@@ -625,8 +265,8 @@
         <element x="2432" y="128">Terre</element>
         <element x="2432" y="144">Terre</element>
         <element x="2432" y="160">Terre</element>
-        <element x="2432" y="176">Terre</element>
-        <element x="2480" y="176">Terre</element>
+        <element x="2432" y="336">Terre</element>
+        <element x="2480" y="336">Terre</element>
         <element x="2480" y="160">Terre</element>
         <element x="2480" y="144">Terre</element>
         <element x="2480" y="128">Terre</element>
@@ -634,34 +274,34 @@
         <element x="2496" y="128">Terre</element>
         <element x="2512" y="144">Terre</element>
         <element x="2528" y="160">Terre</element>
-        <element x="2544" y="176">Terre</element>
-        <element x="2560" y="176">Terre</element>
-        <element x="2576" y="176">Terre</element>
-        <element x="2592" y="176">Terre</element>
+        <element x="2544" y="336">Terre</element>
+        <element x="2560" y="336">Terre</element>
+        <element x="2576" y="336">Terre</element>
+        <element x="2592" y="336">Terre</element>
         <element x="2608" y="160">Terre</element>
         <element x="2608" y="144">Terre</element>
         <element x="2624" y="144">Terre</element>
         <element x="2624" y="160">Terre</element>
-        <element x="2640" y="176">Terre</element>
-        <element x="2656" y="176">Terre</element>
-        <element x="2672" y="176">Terre</element>
-        <element x="2688" y="176">Terre</element>
+        <element x="2640" y="336">Terre</element>
+        <element x="2656" y="336">Terre</element>
+        <element x="2672" y="336">Terre</element>
+        <element x="2688" y="336">Terre</element>
         <!--
         <element x="2688" y="112">Brique</element>
         <element x="2704" y="112">Brique</element>
         <element x="2736" y="112">Brique</element>
         -->
         <element x="2720" y="112">BlocSpecial</element>
-        <element x="2736" y="176">Terre</element>
-        <element x="2720" y="176">Terre</element>
-        <element x="2704" y="176">Terre</element>
-        <element x="2752" y="176">Terre</element>
-        <element x="2768" y="176">Terre</element>
-        <element x="2784" y="176">Terre</element>
-        <element x="2800" y="176">Terre</element>
-        <element x="2816" y="176">Terre</element>
-        <element x="2832" y="176">Terre</element>
-        <element x="2848" y="176">Terre</element>
+        <element x="2736" y="336">Terre</element>
+        <element x="2720" y="336">Terre</element>
+        <element x="2704" y="336">Terre</element>
+        <element x="2752" y="336">Terre</element>
+        <element x="2768" y="336">Terre</element>
+        <element x="2784" y="336">Terre</element>
+        <element x="2800" y="336">Terre</element>
+        <element x="2816" y="336">Terre</element>
+        <element x="2832" y="336">Terre</element>
+        <element x="2848" y="336">Terre</element>
         <element x="2864" y="160">Terre</element>
         <element x="2864" y="144">Terre</element>
         <element x="2880" y="144">Terre</element>
@@ -682,28 +322,28 @@
         <element x="3024" y="128">Terre</element>
         <element x="3024" y="144">Terre</element>
         <element x="3024" y="160">Terre</element>
-        <element x="3040" y="176">Terre</element>
-        <element x="3056" y="176">Terre</element>
-        <element x="3072" y="176">Terre</element>
-        <element x="3088" y="176">Terre</element>
-        <element x="3104" y="176">Terre</element>
-        <element x="3120" y="176">Terre</element>
-        <element x="3152" y="176">Terre</element>
-        <element x="3136" y="176">Terre</element>
-        <element x="3168" y="176">Terre</element>
-        <element x="3184" y="176">Terre</element>
-        <element x="3200" y="176">Terre</element>
-        <element x="3216" y="176">Terre</element>
-        <element x="3232" y="176">Terre</element>
-        <element x="3248" y="176">Terre</element>
-        <element x="3264" y="176">Terre</element>
-        <element x="3280" y="176">Terre</element>
-        <element x="3296" y="176">Terre</element>
-        <element x="3312" y="176">Terre</element>
-        <element x="3328" y="176">Terre</element>
-        <element x="3344" y="176">Terre</element>
-        <element x="3360" y="176">Terre</element>
-        <element x="3376" y="176">Terre</element>
+        <element x="3040" y="336">Terre</element>
+        <element x="3056" y="336">Terre</element>
+        <element x="3072" y="336">Terre</element>
+        <element x="3088" y="336">Terre</element>
+        <element x="3104" y="336">Terre</element>
+        <element x="3120" y="336">Terre</element>
+        <element x="3152" y="336">Terre</element>
+        <element x="3136" y="336">Terre</element>
+        <element x="3168" y="336">Terre</element>
+        <element x="3184" y="336">Terre</element>
+        <element x="3200" y="336">Terre</element>
+        <element x="3216" y="336">Terre</element>
+        <element x="3232" y="336">Terre</element>
+        <element x="3248" y="336">Terre</element>
+        <element x="3264" y="336">Terre</element>
+        <element x="3280" y="336">Terre</element>
+        <element x="3296" y="336">Terre</element>
+        <element x="3312" y="336">Terre</element>
+        <element x="3328" y="336">Terre</element>
+        <element x="3344" y="336">Terre</element>
+        <element x="3360" y="336">Terre</element>
+        <element x="3376" y="336">Terre</element>
         <!--
         <element x="336" y="160">Goomba</element>
         <element x="640" y="160">Goomba</element>

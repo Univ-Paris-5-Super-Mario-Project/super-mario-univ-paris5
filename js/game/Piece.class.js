@@ -46,7 +46,7 @@ Game.addClass({
 Game.addClass({
 	'name': 'PieceController',
 
-	'eventCreate': function()
+	eventCreate: function()
 	{
 		this.sprite = new Sprite(Game.getImage('coinSprite'));
 		this.sprite.makeTiles(16,16,0);
@@ -54,14 +54,16 @@ Game.addClass({
 		this.sprite.STATUS_SPINNING = [1,2,3,4];
 		this.sprite.STATUS_NOT_SPINNING = [1];
 		this.sprite.tiles = this.sprite.STATUS_SPINNING;
+
+	
 	},
 
-	'eventStep': function()
+	eventStep: function()
 	{
 		this.drawText({
 			'text': 'x ' + Piece.counter,
 			'x': this.x + 20, // Positionne le nombre de pieces en fonction de la position l'image de la piece.
-			'y': this.y - 3
+			'y': this.y + 10
 		});
 	}
 });

@@ -21,6 +21,19 @@ Game.addClass({
 });
 
 Game.addClass({
+    'name': 'SousTerre',
+	'parent':'Bloc',
+	'eventCreate': function()
+	{
+		this.callParent('eventCreate');
+		this.sprite = new Sprite(Game.getImage('blocMapSprite'));
+		this.sprite.makeTiles(16,16,0);
+		this.sprite.imagespeed = 0;
+        	this.sprite.tiles=[10];
+    }
+});
+
+Game.addClass({
 	'name': 'BlocSpecial',
 	'parent':'Bloc',
 	'eventCreate': function()
