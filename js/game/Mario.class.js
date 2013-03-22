@@ -96,12 +96,13 @@ Game.addClass({
 		}
 	},
 	
-/*
 	// Doc : Méthode appelée au milieu de chaque Step, juste après le déplacement de l'élément et son animation de Sprite.
-	'eventStep': function()
+	eventStep: function()
 	{
+		if (this.x >= (Game.room.view_w / 2) && this.xprev < this.x) Game.room.view_x += this.NB_PIX_DEPLACEMENT_HORIZ;
 	},
 
+	/*
 	// Doc : Méthode appelée à la fin de chaque Step, juste après son affichage et son test des collisions.
 	'eventEndStep': function()
 	{
