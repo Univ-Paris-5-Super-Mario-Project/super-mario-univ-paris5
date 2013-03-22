@@ -26,7 +26,7 @@ Game.addClass({
 		this.state = Element.STATE_STAND_RIGHT;
 		
 		//Définition de la vitesse verticale et horizontale de l'élément
-		this.NB_PIX_DEPLACEMENT_HORIZ = 4;
+		this.NB_PIX_DEPLACEMENT_HORIZ = 6;
 		this.NB_PIX_DEPLACEMENT_VERTIC = 6;
 		this.NB_PIX_SAUT = 16;
 		
