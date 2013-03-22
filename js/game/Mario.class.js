@@ -94,12 +94,19 @@ Game.addClass({
 				this.sprite.tiles = this.sprite.MOVE_UP_RIGHT;
 			break;
 		}
+		// Empecher que Mario ne sorte à gauche de l'écran:
+		if (this.state == Element.STATE_MOVE_LEFT || this.state == Element.STATE_MOVE_UP_LEFT)
+			this.hspeed *= ((this.x>Game.room.view_x+5)?1:0);
+		// Empecher que Mario ne sorte à droite de l'écran:
+		if (this.state == Element.STATE_MOVE_RIGHT || this.state == Element.STATE_MOVE_UP_RIGHT)
+			this.hspeed *= ((this.x+25<Game.room.width)?1:0);
 	},
 	
 	// Doc : Méthode appelée au milieu de chaque Step, juste après le déplacement de l'élément et son animation de Sprite.
 	eventStep: function()
 	{
-		if (this.x >= (Game.room.view_w / 2) && this.xprev < this.x) Game.room.view_x += this.NB_PIX_DEPLACEMENT_HORIZ;
+		if (this.x >= (Game.room.view_w / 2) && this.xprev < this.x && Game.room.view_x + Game.room.view_w + 5< Game.room.width) Game.room.view_x += this.NB_PIX_DEPLACEMENT_HORIZ;
+		// La cindtion Game.room.view_x + Game.room.view_w + 5< Game.room.width sert à ce que le niveau ne défile plus, lorsqu'on atteint la fin du niveau.
 	},
 
 	/*
