@@ -3,10 +3,11 @@ var SuperMario = {
 		Game.infoGameBuilder = false;
 		
 		Piece.counter = 0;
-		var level = new Room('level.xml');
+		var level = new Room('http://www.ens.math-info.univ-paris5.fr/~id00645/projetProg/levelEditor/index.php?getlevel=level.xml');
 		level.view_w = 592;
 		Game.setRooms([level]);
 		Game.lilo = false;	
+		this.gameOverSound = new buzz.sound("sound/game/gameover.wav");
 		
 		/*
 		Game.setRooms([new Room(592,400)]);
@@ -54,8 +55,7 @@ var SuperMario = {
 	},
 	gameOver: function() {
 		// Musique de fin
-		var sound = new buzz.sound("sound/game/gameover.wav");
-		sound.play();
+		this.gameOverSound.play();
 
 		// sauvegarde de partie etc?
 		Game.end = true;
