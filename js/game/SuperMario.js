@@ -3,8 +3,8 @@ var SuperMario = {
 		Game.infoGameBuilder = false;
 		
 		Piece.counter = 0;
-		var level = new Room('http://www.ens.math-info.univ-paris5.fr/~id00645/projetProg/levels/level1.xml');
-		level.setView(592, 400);
+		var level = new Room('http://www.ens.math-info.univ-paris5.fr/~id00645/projetProg/levelEditor/index.php?getlevel=level.xml');
+		level.view_w = 592;
 		Game.setRooms([level]);
 		Game.lilo = false;	
 		
