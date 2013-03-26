@@ -12,7 +12,7 @@ var SuperMario = {
 		Game.infoGameBuilder = false;
 		
 		Piece.counter = 0;
-		var level = new Room('js/game/level.xml');
+		var level = new Room('level.xml');
 		level.view_w = 592;
 		Game.setRooms([level]);
 		Game.lilo = false;	
@@ -24,6 +24,8 @@ var SuperMario = {
 			{
 				'marioSpriteLeft': 'img/game/marioSpriteLeft.png',
 				'marioSpriteRight': 'img/game/marioSpriteRight.png',
+				'koopaSprite': 'img/game/koopaSprite.png',
+				'carapaceSprite': 'img/game/koopaSprite.png',
 				'blocSpecialSprite': 'img/game/blocSpecialSprite.png',
 				'coinSprite': 'img/game/coinSprite.png',
 				'blocMapSprite': 'img/game/mapsheet.png',
