@@ -3,7 +3,7 @@ var SuperMario = {
 		Game.infoGameBuilder = false;
 		
 		Piece.counter = 0;
-		var level = new Room('level.xml');
+		var level = new Room('js/game/level.xml');
 		level.view_w = 592;
 		Game.setRooms([level]);
 		Game.lilo = false;	
