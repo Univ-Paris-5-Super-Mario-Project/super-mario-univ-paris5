@@ -105,8 +105,12 @@ Game.addClass({
 	// Doc : Méthode appelée au milieu de chaque Step, juste après le déplacement de l'élément et son animation de Sprite.
 	eventStep: function()
 	{
-		if (this.x >= (Game.room.view_w / 2) && this.xprev < this.x && Game.room.view_x + Game.room.view_w + 5< Game.room.width) Game.room.view_x += this.NB_PIX_DEPLACEMENT_HORIZ;
-		// La cindtion Game.room.view_x + Game.room.view_w + 5< Game.room.width sert à ce que le niveau ne défile plus, lorsqu'on atteint la fin du niveau.
+		if (this.x >= (Game.room.view_x + Game.room.view_w *3/ 5) && this.xprev < this.x && Game.room.view_x + Game.room.view_w + 5 < Game.room.width) Game.room.view_x += this.NB_PIX_DEPLACEMENT_HORIZ;
+		// La condition Game.room.view_x + Game.room.view_w + 5< Game.room.width sert à ce que le niveau ne défile plus, lorsqu'on atteint la fin du niveau.
+		
+		// La ligne suivante sert à faire défiler le niveau dans l'autre sens si Mario va vers la gauche.
+		// Elle peut tout à fait être supprimée, je l'ai uniquement faite parce que ça rend pas mal.
+		if (this.x <= (Game.room.view_x + Game.room.view_w *2/ 5) && this.xprev > this.x && Game.room.view_x > 0) Game.room.view_x -= this.NB_PIX_DEPLACEMENT_HORIZ;
 	},
 
 	/*
