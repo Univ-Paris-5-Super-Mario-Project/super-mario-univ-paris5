@@ -18,14 +18,16 @@ Game.addClass({
 //		this.gravity = 0.2;
 		this.hspeed = 2;
 		this.vspeed = 8;
-		this.solid = true;
+//		this.solid = true;
 		this.top = this.y + 5;
 		this.bottom = this.y + 32;
 	},
 	'eventCollisionWith': function(other)
 	{
+		var otherMask = other.sprite.getMask();
+		var thisMask = this.sprite.getMask();
 //		document.title=other.y + ' ' + (this.y + this.sprite.getMask().y);
-		if (false) {
+		if (other.toString() != 'Koopa' && other.y + otherMask.y >= this.y + thisMask.y && other.y + otherMask.y + otherMask.height <= this.y + thisMask.y + thisMask.height) {
 			this.hspeed *= -1;
 			if (this.hspeed > 0)
 				this.sprite.tiles = this.sprite.MOVE_RIGHT;
