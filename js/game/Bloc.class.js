@@ -3,33 +3,30 @@ Game.addClass({
 	'abstract': true,
 	'eventCreate': function()
 	{
+		this.sprite = new Sprite(Game.getImage('blocMapSprite'));
+		this.sprite.makeTiles(16,16,0);
+		this.sprite.imagespeed = 0;
 		this.solid = true;
 	}
 });
 
 Game.addClass({
-    'name': 'Terre',
+    'name': 'Terre2',
 	'parent':'Bloc',
 	'eventCreate': function()
 	{
 		this.callParent('eventCreate');
-		this.sprite = new Sprite(Game.getImage('blocMapSprite'));
-		this.sprite.makeTiles(16,16,0);
-		this.sprite.imagespeed = 0;
         this.sprite.tiles=[6];
     }
 });
 
 Game.addClass({
-    'name': 'SousTerre',
+    'name': 'Terre5',
 	'parent':'Bloc',
 	'eventCreate': function()
 	{
 		this.callParent('eventCreate');
-		this.sprite = new Sprite(Game.getImage('blocMapSprite'));
-		this.sprite.makeTiles(16,16,0);
-		this.sprite.imagespeed = 0;
-        	this.sprite.tiles=[10];
+       	this.sprite.tiles=[10];
     }
 });
 
