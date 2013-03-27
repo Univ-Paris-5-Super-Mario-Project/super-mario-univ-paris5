@@ -6,6 +6,8 @@ Game.addClass({
 		this.coinSound = new buzz.sound("sound/game/coin.wav");
 		this.sprite = new Sprite(Game.getImage('coinSprite'));
 		this.sprite.makeTiles(16,16,0);
+		for (var i = 1; i <= 4; i++)
+			this.sprite.setMask(i,{x:2,width:12});
 		this.sprite.imagespeed = 0.2;
 		this.sprite.STATUS_SPINNING = [1,2,3,4];
 		this.sprite.STATUS_NOT_SPINNING = [1];
