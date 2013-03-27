@@ -5,6 +5,8 @@ Game.addClass({
 	{
 		this.sprite = new Sprite(Game.getImage('editorSprite'));
 		this.sprite.makeTiles(16,16,0);
+		for (var i = 1; i < 25; i++)
+			this.sprite.setMask(i,{});
 		this.sprite.imagespeed = 0;
 		this.solid = true;
 	}
@@ -381,6 +383,8 @@ Game.addClass({
 	{
 		this.sprite = new Sprite(Game.getImage('blocSpecialSprite'));
 		this.sprite.makeTiles(16,16,0);
+		for (var i = 1; i < 9; i++)
+			this.sprite.setMask(i,{});
 		this.sprite.imagespeed = 0.2;
 		this.sprite.STATUS_BLOC_SPECIAL = [1,2,3,4];
 		this.sprite.STATUS_BLOC_TAPE = [5,5];
