@@ -30,19 +30,26 @@ function GameCtrl($scope) {
 			level: Game.room.path
 		};
 
-		var games_as_string = localStorage['saved_games'];
-
-		// si aucune partie n'a été enregistrée, on initialise les parties enregistrées à une liste vide
-		if (games_as_string == undefined || JSON.parse(games_as_string).constructor != Object) {
-			localStorage['saved_games'] = games_as_string = JSON.stringify({});
-		}
-
 		// On rajoute la partie en cours aux parties enregistrées, sous forme de JSON car
 		// localStorage n'accepte pas d'objets javascript tel que Game, Mario, Piece, etc.
-		var saved_games = JSON.parse(games_as_string);
-		saved_games['' + timestamp] = data;
+		var saved_games = SuperMario.savedGames();
+		saved_games['' + timestamp] = data; // le '' + timestamp permet de convertir le timestamp (de type int) en chaine de caractères
 		localStorage['saved_games'] = JSON.stringify(saved_games);
 	}
+}
+
+function SavedGameCtrl($scope, $routeParams) {
+
+	var ts = $routeParams.timestamp;
+
+	var games = SuperMario.savedGames();
+	var game = games[ts];
+	if (games != {} && game != undefined && game.constructor == Object) {
+		SuperMario.start(game.coins, game.level, game.mario);
+	} else {
+		console.log("Cette partie n'existe pas...");
+	}
+
 }
 
 function GameOverCtrl($scope) {
@@ -61,3 +68,4 @@ GameCtrl.$inject = ['$scope'];
 CreditsCtrl.$inject = ['$scope'];
 GameOverCtrl.$inject = ['$scope'];
 PartiesCtrl.$inject = ['$scope'];
+SavedGameCtrl.$inject = ['$scope', '$routeParams'];
