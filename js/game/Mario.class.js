@@ -6,7 +6,7 @@ Game.addClass({
 		window.mainMario = this;
 
 		//Définition des différents sprites de l'élément Mario
-		this.spriteLeft =new Sprite(Game.getImage('marioSpriteLeft'));
+		this.spriteLeft = new Sprite(Game.getImage('marioSpriteLeft'));
 		this.spriteLeft.makeTiles(16,32,0);
 		this.spriteLeft.setMask(1,{y:14,height:18});
 		for (var i = 2; i <= 7; i++)
@@ -277,8 +277,8 @@ Game.addClass({
 	{
 		var otherMask = other.sprite.getMask();
 		var thisMask = this.sprite.getMask();
-		if (other.instanceOf(Koopa)) {
-			this.death();
+		if (other.instanceOf(Monstre)) {
+			//this.death();
 		}
 		else if (other.instanceOf(Piece))
 		{
