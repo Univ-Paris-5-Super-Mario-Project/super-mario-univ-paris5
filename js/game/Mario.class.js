@@ -9,7 +9,9 @@ Game.addClass({
 		this.spriteLeft = new Sprite(Game.getImage('marioSpriteLeft'));
 		this.spriteLeft.makeTiles(16,32,0);
 		this.spriteLeft.setMask(1,{y:14,height:18});
-		for (var i = 2; i <= 7; i++)
+		for (var i = 2; i <= 4; i++)
+			this.spriteLeft.setMask(i,{y:5,height:26});
+		for (var i = 5; i <= 7; i++)
 			this.spriteLeft.setMask(i,{y:5,height:27});
 		this.spriteLeft.STAND_LEFT      = [7,7];
 		this.spriteLeft.STAND_DOWN_LEFT = [1,1];
@@ -19,8 +21,10 @@ Game.addClass({
 		
 		this.spriteRight = new Sprite(Game.getImage('marioSpriteRight'));
 		this.spriteRight.makeTiles(16,32,0);
-		for (var i = 1; i <= 6; i++)
+		for (var i = 1; i <= 3; i++)
 			this.spriteLeft.setMask(i,{y:5,height:27});
+		for (var i = 4; i <= 6; i++)
+			this.spriteLeft.setMask(i,{y:5,height:26});
 		this.spriteLeft.setMask(7,{y:14,height:18});
 		this.spriteRight.STAND_RIGHT      = [1,1];
 		this.spriteRight.STAND_DOWN_RIGHT = [7,7];
@@ -278,7 +282,13 @@ Game.addClass({
 		var otherMask = other.sprite.getMask();
 		var thisMask = this.sprite.getMask();
 		if (other.instanceOf(Monstre)) {
-			//this.death();
+			// Si Mario saute ou tombe sur le monstre (j'ai pas encore trouvé la bonne formule)
+		/*	if (other.y + otherMask.y + otherMask.height > this.y + thisMask.y + thisMask.height && other.y + otherMask.y <= this.y + thisMask.y + thisMask.height && other.x + otherMask.x + otherMask.width >= this.x + thisMask.x && other.x + otherMask.x + otherMask.width <= this.x + thisMask.x + thisMask.width) {
+				this.vspeed *= -1;
+				other.die();
+			} else {
+				//this.die();
+			}*/
 		}
 		else if (other.instanceOf(Piece))
 		{
@@ -287,7 +297,7 @@ Game.addClass({
 		}
 		else if (other.instanceOf(Bloc))
 		{
-			if(other.instanceOf(BlocSpecial))
+			if(other.instanceOf(BlocSpecial) || other.instanceOf(BlocTourne))
 			{
 				var direction = this.getDirection();
 
@@ -310,11 +320,11 @@ Game.addClass({
 	{
 		if(this.y>0)
 		{
-			this.death();
+			this.die();
 		}
 	},
 	
-	death: function()
+	die: function()
 	{
 		SuperMario.gameOver();
 	}
