@@ -1,0 +1,11 @@
+<h1>Parties sauvegardées</h1>
+
+<ul>
+	<li ng-repeat="game in games">
+		<h2><a href="#/game/{{ game.timestamp }}">Partie {{ $index }}</a></h2>
+		<p>Level : {{ game.level }}</p>
+		<p>Timestamp : {{ game.timestamp }}</p>
+		<p>Gold coins : {{ game.coins }}</p>
+		<p>Avancement de Mario : {{ game.mario.x }}</p>
+	</li>
+</ul>
