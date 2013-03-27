@@ -8,6 +8,9 @@ Game.addClass({
 		//Définition des différents sprites de l'élément Mario
 		this.spriteLeft =new Sprite(Game.getImage('marioSpriteLeft'));
 		this.spriteLeft.makeTiles(16,32,0);
+		this.spriteLeft.setMask(1,{y:14,height:18});
+		for (var i = 2; i <= 7; i++)
+			this.spriteLeft.setMask(i,{y:5,height:27});
 		this.spriteLeft.STAND_LEFT      = [7,7];
 		this.spriteLeft.STAND_DOWN_LEFT = [1,1];
 		this.spriteLeft.MOVE_UP_LEFT    = [3,3];
@@ -16,6 +19,9 @@ Game.addClass({
 		
 		this.spriteRight = new Sprite(Game.getImage('marioSpriteRight'));
 		this.spriteRight.makeTiles(16,32,0);
+		for (var i = 1; i <= 6; i++)
+			this.spriteLeft.setMask(i,{y:5,height:27});
+		this.spriteLeft.setMask(7,{y:14,height:18});
 		this.spriteRight.STAND_RIGHT      = [1,1];
 		this.spriteRight.STAND_DOWN_RIGHT = [7,7];
 		this.spriteRight.MOVE_UP_RIGHT    = [5,5];
