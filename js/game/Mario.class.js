@@ -275,7 +275,12 @@ Game.addClass({
 
 	eventCollisionWith: function(other)
 	{
-		if (other.instanceOf(Piece))
+		var otherMask = other.sprite.getMask();
+		var thisMask = this.sprite.getMask();
+		if (other.instanceOf(Koopa)) {
+			this.death();
+		}
+		else if (other.instanceOf(Piece))
 		{
 			this.toFirstPlan();
 			other.pickUp();
