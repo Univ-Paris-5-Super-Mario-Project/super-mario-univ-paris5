@@ -26,8 +26,8 @@ Game.addClass({
 	{
 		var otherMask = other.sprite.getMask();
 		var thisMask = this.sprite.getMask();
-//		document.title=other.y + ' ' + (this.y + this.sprite.getMask().y);
-		if (other.toString() != 'Koopa' && other.y + otherMask.y >= this.y + thisMask.y && other.y + otherMask.y + otherMask.height <= this.y + thisMask.y + thisMask.height) {
+		document.title=other.y + ' ' + (this.y + this.sprite.getMask().y);
+		if (!other.instanceOf(Koopa) && !other.instanceOf(Mario) && other.y + otherMask.y >= this.y + thisMask.y && other.y + otherMask.y + otherMask.height <= this.y + thisMask.y + thisMask.height) {
 			this.hspeed *= -1;
 			if (this.hspeed > 0)
 				this.sprite.tiles = this.sprite.MOVE_RIGHT;
