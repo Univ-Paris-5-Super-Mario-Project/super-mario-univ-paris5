@@ -43,7 +43,6 @@ Game.addClass({
 		// Doc : Indique si l'instance doit être téléportée de l'autre côté de la room lorsqu'elle sort de celle-ci.
 		this.switchPositionWhenLeave = false;
 
-		this.jumpAllowed = true;
 	},
 	
 	//Doc : Méthode appelée au début de chaque Step, juste avant le déplacement de l'élément.
@@ -111,6 +110,19 @@ Game.addClass({
 	// Doc : Méthode appelée au milieu de chaque Step, juste après le déplacement de l'élément et son animation de Sprite.
 	eventStep: function()
 	{
+		
+		//on récupère le masque du sprite en cours
+		var mask=this.sprite.getMask();
+		// on test la présence d'un bloc solide sous le sprite de Mario
+		if( Game.placeIsFree(this.x+mask.x,this.y+mask.y,mask.width,mask.height+1)!==true )
+		{
+			// il y a un bloc -> Mario est "sur terre"
+			if(this.state==Element.STATE_MOVE_UP_LEFT)
+				this.state=Element.STATE_STAND_LEFT;
+			else if(this.state==Element.STATE_MOVE_UP_RIGHT)
+				this.state=Element.STATE_STAND_RIGHT;
+		}
+		
 		if (this.x >= (Game.room.view_x + Game.room.view_w *3/ 5) && this.xprev < this.x && Game.room.view_x + Game.room.view_w + 5 < Game.room.width) Game.room.view_x += this.NB_PIX_DEPLACEMENT_HORIZ;
 		// La condition Game.room.view_x + Game.room.view_w + 5< Game.room.width sert à ce que le niveau ne défile plus, lorsqu'on atteint la fin du niveau.
 		
@@ -130,43 +142,55 @@ Game.addClass({
 	// quand KEY_RIGHT est pressée le statut de Mario est STATE_MOVE_RIGHT
 	eventKeyPressed: function(key)
 	{
-		switch (key)
+		//on récupère le masque du sprite en cours
+		var mask=this.sprite.getMask();
+		// on test la présence d'un bloc solide sous le sprite de Mario
+		if( Game.placeIsFree(this.x+mask.x,this.y+mask.y,mask.width,mask.height+1)!==true )
 		{
-			case Game.KEY_LEFT:
-				if (this.state != Element.STATE_STAND_DOWN_LEFT && this.state != Element.STATE_STAND_DOWN_RIGHT)
-				{
-					this.state = Element.STATE_MOVE_LEFT;
-				}
-			break;
-			
-			case Game.KEY_RIGHT:
-				if (this.state != Element.STATE_STAND_DOWN_LEFT && this.state != Element.STATE_STAND_DOWN_RIGHT)
-				{
-					this.state = Element.STATE_MOVE_RIGHT;
-				}
-			break;
-			
-			case Game.KEY_DOWN:
-				if (this.state == Element.STATE_MOVE_LEFT || this.state == Element.STATE_STAND_LEFT)
-				{
-					this.state = Element.STATE_STAND_DOWN_LEFT;
-				}
-				else if (this.state == Element.STATE_MOVE_RIGHT || this.state == Element.STATE_STAND_RIGHT)
-				{
-					this.state = Element.STATE_STAND_DOWN_RIGHT;
-				}
-			break;
-			
-/*			case Game.KEY_UP:
-				if (this.state == Element.STATE_STAND_LEFT || this.state == Element.STATE_MOVE_LEFT)
-				{
-					this.state = Element.STATE_MOVE_UP_LEFT;
-				}
-				else if (this.state == Element.STATE_STAND_RIGHT || this.state == Element.STATE_MOVE_RIGHT)
-				{
-					this.state = Element.STATE_MOVE_UP_RIGHT;
-				}
-			break;*/
+			// il y a un bloc -> Mario est "sur terre"
+			switch (key)
+			{
+				case Game.KEY_LEFT:
+					// si Mario est accroupit, il reste accroupit mais se tourne vers la gauche
+					// sinon Mario est debout, il se déplace donc à gauche
+					(this.state==Element.STATE_STAND_DOWN_LEFT || this.state==Element.STATE_STAND_DOWN_RIGHT)?this.state =Element.STATE_STAND_DOWN_LEFT : this.state = Element.STATE_MOVE_LEFT;
+					break;
+
+				case Game.KEY_RIGHT:
+					// si Mario est accroupit, il reste accroupit mais se tourne vers la droite
+					// sinon Mario est debout, il se déplace donc à droite
+					(this.state==Element.STATE_STAND_DOWN_LEFT || this.state==Element.STATE_STAND_DOWN_RIGHT)?this.state = Element.STATE_STAND_DOWN_RIGHT : this.state = Element.STATE_MOVE_RIGHT;
+					break;
+
+				case Game.KEY_DOWN:
+					switch (this.state)
+					{
+						// Mario était orienté à gauche, il s'accroupit donc à gauche
+						case Element.STATE_MOVE_LEFT : case Element.STATE_STAND_LEFT :
+							this.state = Element.STATE_STAND_DOWN_LEFT;
+							break;
+						// Mario était orienté à droite, il s'accroupit donc à droite
+						case Element.STATE_MOVE_RIGHT : case Element.STATE_STAND_RIGHT :
+							this.state = Element.STATE_STAND_DOWN_RIGHT;
+							break;
+					}
+					break;
+			}
+		}
+		else
+		{
+			// il n'y a pas de bloc -> Mario est "en l'air"
+			switch(key)
+			{
+				case Game.KEY_LEFT:
+					this.state=Element.STATE_MOVE_UP_LEFT;
+					this.hspeed = -(this.NB_PIX_DEPLACEMENT_HORIZ);
+					break;
+				case Game.KEY_RIGHT:
+					this.state=Element.STATE_MOVE_UP_RIGHT;
+					this.hspeed = this.NB_PIX_DEPLACEMENT_HORIZ;
+					break;
+			}
 		}
 	},
 /*
@@ -182,63 +206,74 @@ Game.addClass({
 	// Quand on relâche KEY_DOWN alors Mario passe en STAND_LEFT ou STAND_RIGHT selon son state
 	eventKeyUp: function(key)
 	{
-		if (key == Game.KEY_LEFT && ! Game.isKeyPressed(Game.KEY_RIGHT))
+		//on récupère le masque du sprite en cours
+		var mask=this.sprite.getMask();
+		// on test la présence d'un bloc solide sous le sprite de Mario
+		if( Game.placeIsFree(this.x+mask.x,this.y+mask.y,mask.width,mask.height+1)!==true )
 		{
-			if (	! (this.state == Element.STATE_STAND_DOWN_LEFT || this.state == Element.STATE_STAND_DOWN_RIGHT) )
+			// il y a un bloc -> Mario est "sur terre"
+			switch (key)
 			{
-				this.state = Element.STATE_STAND_LEFT;
-			}			
-		}
-		else if (key == Game.KEY_RIGHT && ! Game.isKeyPressed(Game.KEY_LEFT))
-		{
-			if(	! (this.state == Element.STATE_STAND_DOWN_LEFT || this.state == Element.STATE_STAND_DOWN_RIGHT) )
-			{
-				this.state = Element.STATE_STAND_RIGHT;
-			}
-		}
-		else if (key == Game.KEY_DOWN)
-		{
-			switch (this.state)
-			{
-				case Element.STATE_STAND_DOWN_LEFT :
-					this.state = Element.STATE_STAND_LEFT;
-				break;
+				case Game.KEY_LEFT:
+					if(!Game.isKeyPressed(Game.KEY_RIGHT))
+					{
+						// Si Mario est debout, il reste debout à gauche
+						if( !(this.state==Element.STATE_STAND_DOWN_LEFT || this.state==Element.STATE_STAND_DOWN_RIGHT) )
+							this.state = Element.STATE_STAND_LEFT;
+					}
+					break;
 
-				case Element.STATE_STAND_DOWN_RIGHT :
-					this.state = Element.STATE_STAND_RIGHT;
-				break;
+				case Game.KEY_RIGHT:
+					if(!Game.isKeyPressed(Game.KEY_LEFT))
+					{
+						// Si Mario est debout, il reste debout à droite
+						if( !(this.state==Element.STATE_STAND_DOWN_LEFT || this.state==Element.STATE_STAND_DOWN_RIGHT) )
+							this.state = Element.STATE_STAND_RIGHT;
+					}
+					break;
+
+				case Game.KEY_DOWN:
+					// Si Mario est accroupit à gauche ; il se met debout à gauche
+					// Sinon Mario est accroupit à droite ; il se met debout à droite
+					switch (this.state)
+					{
+						case Element.STATE_STAND_DOWN_LEFT :
+							this.state = Element.STATE_STAND_LEFT;
+							break;
+
+						case Element.STATE_STAND_DOWN_RIGHT :
+							this.state = Element.STATE_STAND_RIGHT;
+							break;
+					}
+					break;
 			}
 		}
-		else if (key == Game.KEY_UP)
-		{
-			switch (this.state)
-			{
-				case Element.STATE_MOVE_UP_LEFT :
-					this.state = Element.STATE_STAND_LEFT;
-				break;
 
-				case Element.STATE_MOVE_UP_RIGHT :
-					this.state = Element.STATE_STAND_RIGHT;
-				break;
-			}
+		else
+		{
+			// il n'y a pas de bloc -> Mario est "en l'air"
 		}
 	},
 
 	eventKeyDown: function(key)
 	{
-		if (key == Game.KEY_UP || key == Game.KEY_SPACE)
+		//on récupère le masque du sprite en cours
+		var mask=this.sprite.getMask();
+		// on test la présence d'un bloc solide sous le sprite de Mario
+		if( Game.placeIsFree(this.x+mask.x,this.y+mask.y,mask.width,mask.height+1)!==true )
 		{
-			switch (this.state)
+			// il y a un bloc -> Mario est "sur terre"
+			if( !(this.state==Element.STATE_STAND_DOWN_LEFT || this.state==Element.STATE_STAND_DOWN_RIGHT) )
 			{
-				case Element.STATE_STAND_LEFT: case Element.STATE_STAND_DOWN_LEFT: case Element.STATE_MOVE_LEFT:
-					this.state = Element.STATE_MOVE_UP_LEFT;
+				// Mario n'est pas accroupit
+				if (key == Game.KEY_UP || key == Game.KEY_SPACE)
+				{
+					if(this.state==Element.STATE_STAND_LEFT || this.state==Element.STATE_MOVE_LEFT)
+						this.state=Element.STATE_MOVE_UP_LEFT;
+					else if (this.state==Element.STATE_STAND_RIGHT || this.state==Element.STATE_MOVE_RIGHT)
+						this.state=Element.STATE_MOVE_UP_RIGHT;
 					this.jump();
-				break;
-
-				case Element.STATE_STAND_RIGHT: case Element.STATE_STAND_DOWN_RIGHT: case Element.STATE_MOVE_RIGHT:
-					this.state = Element.STATE_MOVE_UP_RIGHT;
-					this.jump();
-				break;
+				}
 			}
 		}
 	},
@@ -246,31 +281,26 @@ Game.addClass({
 	jump: function()
 	{
 		// Saut vers le haut
-		if (this.jumpAllowed) {
-			this.jumpAllowed = false;
+		this.gravity = -25; // on met la gravité à zéro (elle sera a)
+		var that = this;
 
-			this.gravity = -25; // on met la gravité à zéro (elle sera a)
+		var index = 0,
+				jumpTime = 5, // durée du saut, unité arbitraire
+				jumpInterval,
+				intervalTime = 50;
 
-			var that = this;
-
-			var index = 0,
-					jumpTime = 5, // durée du saut, unité arbitraire
-					jumpInterval,
-					intervalTime = 50;
-
-			jumpInterval = setInterval(function() {
-				// on augmente la gravité jusqu'à maximum la gravité normale x 2
-				// pour donner un sentiment de ralentissement en début de saut et
-				// d'accélération vers le bas en chute libre
-				if (that.gravity < that.defaultGravity * 2) {
-					that.gravity += 5 * index * index / jumpTime;
-					index++;
-				}	else {
-					clearInterval(jumpInterval);
-					that.jumpAllowed = true;
-				}
-			}, intervalTime);
-		}
+		jumpInterval = setInterval(function() {
+			// on augmente la gravité jusqu'à maximum la gravité normale x 2
+			// pour donner un sentiment de ralentissement en début de saut et
+			// d'accélération vers le bas en chute libre
+			if (that.gravity < that.defaultGravity * 2) {
+				that.gravity += 5 * index * index / jumpTime;
+				index++;
+			}	else {
+				clearInterval(jumpInterval);
+				that.jumpAllowed = true;
+			}
+		}, intervalTime);
 	},
 
 	eventCollisionWith: function(other)
