@@ -20,8 +20,6 @@ Game.addClass({
 				this.sprite.tiles = this.sprite.MOVE_RIGHT;
 			else
 				this.sprite.tiles = this.sprite.MOVE_LEFT;
-		} else if (other.instanceOf(Mario)) {
-				this.sprite.tiles = this.sprite.DANCE_RABBI_JACOB;
 		}
 	},
 	'eventInsideView': function()
