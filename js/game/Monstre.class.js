@@ -64,9 +64,9 @@ Game.addClass({
 	{
 		this.callParent('eventCreate');
 		this.sprite = new Sprite(Game.getImage('goombaSprite'));
-		this.sprite.makeTiles(16,32,0);
+		this.sprite.makeTiles(16,16,0);
 		for (var i = 1; i <= 4; i++)
-			this.sprite.setMask(i,{y:5,height:27});
+			this.sprite.setMask(i,{});
 		this.sprite.STAND_LEFT = [2,2];
 		this.sprite.MOVE_LEFT = [1,2];
 		this.sprite.STAND_RIGHT = [3,3];
