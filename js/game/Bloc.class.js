@@ -9,6 +9,14 @@ Game.addClass({
 			this.sprite.setMask(i,{});
 		this.sprite.imagespeed = 0;
 		this.solid = true;
+	},
+	'eventInsideView': function()
+	{
+		this.setActive(true);
+	},
+	'eventOutsideView': function()
+	{
+		this.setActive(false);
 	}
 });
 
@@ -392,7 +400,15 @@ Game.addClass({
 		this.sprite.STATUS_BLOC_TOURNE = [6,7,8,9];
 		this.state = Element.STATE_STAND;
 		this.solid = true;
-    }
+    },
+	'eventInsideView': function()
+	{
+		this.setActive(true);
+	},
+	'eventOutsideView': function()
+	{
+		this.setActive(false);
+	}
 });
 
 Game.addClass({

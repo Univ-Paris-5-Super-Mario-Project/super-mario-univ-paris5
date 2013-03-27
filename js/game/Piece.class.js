@@ -42,6 +42,14 @@ Game.addClass({
 		Piece.counter++;
 		this.coinSound.play();
 		this.animatePickUp();
+	},
+	'eventInsideView': function()
+	{
+		this.setActive(true);
+	},
+	'eventOutsideView': function()
+	{
+		this.setActive(false);
 	}
 });
 
