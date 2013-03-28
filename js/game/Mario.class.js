@@ -271,7 +271,7 @@ Game.addClass({
 		if (key == Game.KEY_UP || key == Game.KEY_SPACE)
 		{
 			// uniquement si Mario est au sol	
-			if (this.isAboveSolid()) this.jump();
+			if (this.isAboveSolid() && ! this.isDown()) this.jump();
 		}
 
 		if (key == Game.KEY_LEFT)
