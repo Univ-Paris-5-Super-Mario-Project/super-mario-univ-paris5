@@ -13,6 +13,8 @@ var SuperMario = {
 		return games;
 	},
 	start: function(pieces, level_path, mario) {
+		this.reset();
+		
 		Game.infoGameBuilder = false;
 
 		// si on ne charge pas de parties, on initialise à 0, sinon on récupère le nombre de pièces désiré
@@ -63,10 +65,16 @@ var SuperMario = {
 
 		// sauvegarde de partie etc?
 		Game.end = true;
+		
+		this.reset();
+		
+		// redirection vers la page de game over
+		document.location.href = "#/game-over";
+	},
 
+	reset: function() {
 		// Compteur de pièces à 0
 		Piece.counter = 0;
-
 
 		var types = this.types;
 		// Suppression des instances créées dans les parties précédentes
@@ -77,8 +85,5 @@ var SuperMario = {
 				Game.instanceDestroy(p);
 			});
 		});
-		
-		// redirection vers la page de game over
-		document.location.href = "#/game-over";
 	}
 };

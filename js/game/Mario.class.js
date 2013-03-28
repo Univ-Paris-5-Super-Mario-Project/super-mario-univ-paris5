@@ -139,20 +139,27 @@ Game.addClass({
 	eventKeyPressed: function(key)
 	{
 		// Tentative d'accroupissage (ou accroupissement) au sol
-		if (key == Game.KEY_DOWN && this.isAboveSolid())
+		if (key == Game.KEY_DOWN)
 		{
-			// On ne marche pas accroupi
-			this.vspeed = 0;
+			if (this.isAboveSolid())
+			{
+				// On ne marche pas accroupi
+				this.vspeed = 0;
 
-			// Mario regarde ou va à gauche
-			if (this.state == Element.STATE_MOVE_LEFT || this.state == Element.STATE_STAND_LEFT)
-			{
-				this.state = Element.STATE_STAND_DOWN_LEFT;
-			}
-			// Mario regarde ou va à droite
-			else if (this.state == Element.STATE_MOVE_RIGHT || this.state == Element.STATE_STAND_RIGHT)
-			{
-				this.state = Element.STATE_STAND_DOWN_RIGHT;
+				// Mario regarde ou va à gauche
+				if (this.state == Element.STATE_MOVE_LEFT || this.state == Element.STATE_STAND_LEFT)
+				{
+					this.state = Element.STATE_STAND_DOWN_LEFT;
+					this.sprite = this.spriteLeft;
+					this.sprite.tiles = this.sprite.STAND_DOWN_LEFT;
+				}
+				// Mario regarde ou va à droite
+				else if (this.state == Element.STATE_MOVE_RIGHT || this.state == Element.STATE_STAND_RIGHT)
+				{
+					this.state = Element.STATE_STAND_DOWN_RIGHT;
+					this.sprite = this.spriteRight;
+					this.sprite.tiles = this.sprite.STAND_DOWN_RIGHT;
+				}
 			}
 		}
 	},
