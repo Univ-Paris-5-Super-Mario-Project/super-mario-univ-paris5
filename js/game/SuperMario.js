@@ -5,12 +5,13 @@ var SuperMario = {
 		var games = localStorage['saved_games'];
 
 		// si aucune partie n'a été enregistrée, on initialise les parties enregistrées à une liste vide
-		if (games == undefined || JSON.parse(games).constructor != Object) {
-			localStorage['saved_games'] = games = {};
-		} else {
-			games = JSON.parse(games);
+		if (games == undefined || games.constructor != String)
+		{
+			localStorage['saved_games'] = JSON.stringify({});
+			return {};
 		}
-		return games;
+		
+		return JSON.parse(games);
 	},
 	start: function(pieces, level_path, mario) {
 		this.reset();

@@ -57,9 +57,7 @@ function GameOverCtrl($scope) {
 
 function PartiesCtrl($scope) {
 
-	$scope.games = JSON.parse(localStorage['saved_games']);
-
-	console.log($scope.games);
+	$scope.games = SuperMario.savedGames();
 
 }
 
