@@ -1,0 +1,377 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title>Éditeur de niveaux</title>
+<style type="text/css">
+body {
+	padding-bottom: 215px;
+}
+
+.grid {
+	border-collapse: collapse;
+}
+
+.palette {
+	transform: scale(2);
+	-ms-transform: scale(2);
+	-webkit-transform: scale(2);
+	-o-transform: scale(2);
+	-moz-transform: scale(2);
+	position: fixed;
+	border: 1px solid black;
+	background-color: white;
+}
+
+.grid td, .palette td {
+	width: 16px;
+	padding: 0px;
+}
+
+.grid td {
+	height: 16px;
+	background-color: #D0D0D0;
+	text-align: center;
+}
+
+.palette td {
+	height: 18px;
+	border: 1px solid black;
+	opacity: 0.5;
+}
+
+@-moz-document url-prefix() { 
+	.palette td {
+		height: 16px;
+		display: inline-block;
+	}
+}
+
+.grid td:hover {
+	background-color: #00A0E0;
+	cursor: pointer;
+}
+
+.palette td:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+
+.block {
+	background-image: url('../img/game/editorSprite.png');
+	background-repeat: no-repeat;
+}
+
+.innerSpan {
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+}
+
+.surface {
+	background-color: rgba(0,0,0,0.5);
+	background-image: url('../img/game/editorSprite.png');
+	background-repeat: no-repeat;
+}
+
+.grid .block:hover {
+	opacity: 0.5;
+}
+
+.palette .selected {
+	opacity: 1;
+	border: 1px solid red;
+}
+
+#selectedBlock {
+	vertical-align: top;
+}
+
+#selectedBlock > span {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin-right: 2px;
+	border: 1px solid black;
+}
+
+.hidden p
+{
+	display: none;
+}
+
+form {
+	display: none;
+}
+</style>
+	</head>
+	<body>
+<script type="text/javascript">
+function generateBlocksStyle (n) {
+	var blocksStyle = document.createElement("style");
+	blocksStyle.type = "text/css";
+	for (var i = 0; i < blocksTypesNum; i++) {
+		blocksStyle.innerHTML += ".block" + i + "{background-position: " + -i*16 + "px top;}";
+	}
+	for (var i = 0; i < blocksTypesNum; i++) {
+		blocksStyle.innerHTML += ".surface" + i + "{background-position: " + -i*16 + "px top;}";
+	}
+	document.getElementsByTagName("head")[0].appendChild(blocksStyle);
+}
+
+function Cell (row, col) {
+	var thisCell = document.createElement("td");
+	thisCell.setBlock = function (id) {
+		if ((isEditingBG && blocksMasks[id] != 1) || blocksMasks[id] == 0) {
+			thisCell.className = "block block" + id;
+			thisCell.tileID = id;
+		} else {
+			thisCell.firstChild.className = "innerSpan surface surface" + id;
+			thisCell.elementID = id;
+		}
+	};
+	var innerSpan = document.createElement("span");
+	innerSpan.className = "innerSpan surface";
+	thisCell.appendChild(innerSpan);
+	thisCell.onmousedown = function(){if(editorEvents1.mouse){var grid = this.parentNode.parentNode;var x=[[editorEvents1.mouse[1],this.parentNode.rowIndex],[editorEvents1.mouse[0],this.cellIndex]];if(x[0][0]>x[0][1]){var tmp=x[0][0];x[0][0]=x[0][1];x[0][1]=tmp};if(x[1][0]>x[1][1]){var tmp=x[1][0];x[1][0]=x[1][1];x[1][1]=tmp};for(var i=x[0][0];i<=x[0][1];i++){for(var j=x[1][0];j<=x[1][1];j++){changeCellBlock(grid.rows[i].cells[j]);}}editorEvents1.mouse=false;} else if(editorEvents1.isShiftKeyDown){editorEvents1.mouse=[this.cellIndex,this.parentNode.rowIndex];}changeCellBlock(this);};
+	thisCell.onmouseover = function(){if(editorEvents1.isMouseButtonDown && !editorEvents1.isShiftKeyDown){changeCellBlock(this);}};
+	thisCell.setBlock(0);
+	return thisCell;
+}
+
+function Grid (rows, cols) {
+	this.table = document.createElement("table");
+	this.cellSize = 16;
+	this.height = (rows<1)?1:rows;
+	this.width = (cols<1)?1:cols;
+	this.rowsNum = 0;
+	this.colsNum = 0;
+	this.addToView = function () {
+		var tbody = document.createElement("tbody");
+		this.table.appendChild(tbody);
+		document.getElementsByTagName("body")[0].appendChild(this.table);
+		this.table.className = "grid";
+	};
+	this.addToView();
+	this.addRow = function () {
+		this.table.insertRow(this.rowsNum);
+		for (var i = 0; i < this.colsNum; i++) {
+			this.table.rows[this.rowsNum].appendChild(new Cell(this.rowsNum,i));
+		}
+		this.rowsNum++;
+	};
+	this.deleteRow = function () {
+		if (this.rowsNum > 1) {
+			this.table.deleteRow(this.rowsNum-1);
+			this.rowsNum--;
+		}
+	};
+	this.addColumn = function () {
+		for (var i = 0; i < this.rowsNum; i++) {
+			this.table.rows[i].appendChild(new Cell(i,this.colsNum));
+		}
+		this.colsNum++;
+		this.table.style.width = this.colsNum*this.cellSize + "px";
+	};
+	this.deleteColumn = function () {
+		if (this.colsNum > 1) {
+			for (var i = 0; i < this.rowsNum; i++) {
+				this.table.rows[i].deleteCell(this.colsNum-1);
+			}
+			this.colsNum--;
+			this.table.style.width = this.colsNum*this.cellSize + "px";
+		}
+	};
+	this.getRowAt = function (row) {
+		return this.table.rows[row];
+	};
+	this.getCellAt = function (row, col) {
+		return this.table.rows[row].cells[col];
+	};
+	this.save = function () {
+		var result = '<' + '?' + 'xml version="1.0" encoding="UTF-8"' + '?' + '>';
+		result += '<level width="' + this.cellSize*this.colsNum + '" height="' + this.cellSize*this.rowsNum + '" tiles_width="' + this.cellSize + '" tiles_height="' + this.cellSize + '" background="background">';
+		result += '<tiles><Tiles width="' + tilesSource.width + '" height="' + tilesSource.height + '" src="' + tilesSource.value + '" tiles_width="' + 16 + '" tiles_height="' + 16 + '" sep="' + 0 + '">';
+		for (var i = 0; i < this.rowsNum; i++) {
+			for (var j = 0; j < this.colsNum; j++) {
+				if (this.table.rows[i].cells[j].tileID && nomClasses[this.table.rows[i].cells[j].tileID] != 'Air')
+					result += '<tile x="' + (this.cellSize*j) + '" y="' + (this.cellSize*i) + '">' + (this.table.rows[i].cells[j].tileID + 1) + '</tile>';
+			}
+		}
+		result += '</Tiles></tiles>';
+		result += '<elements>';
+		result += '<element x="0" y="0">PieceController</element>';
+		//result += '<element x="16" y="160">Mario</element>';
+		for (var i = 0; i < this.rowsNum; i++) {
+			for (var j = 0; j < this.colsNum; j++) {
+				if (this.table.rows[i].cells[j].elementID && nomClasses[this.table.rows[i].cells[j].elementID] != 'Air')
+					result += '<element x="' + (this.cellSize*j) + '" y="' + (this.cellSize*i) + '">' + nomClasses[this.table.rows[i].cells[j].elementID] + '</element>';
+			}
+		}
+		result += '</elements>';
+		result += '</level>';
+		var form = document.createElement("form");
+		form.method = "post";
+		form.action = "levelEditor.php";
+		form.id = "xmlform";
+		var oldFrom = document.getElementById("xmlform");
+		if (oldFrom)
+			oldFrom.parentNode.removeChild(oldFrom);
+		var xmlContent = document.createElement("textarea");
+		xmlContent.innerHTML = result;
+		xmlContent.name = "xmlfile";
+		form.appendChild(xmlContent);
+		document.getElementsByTagName("body")[0].appendChild(form);
+		form.submit();
+	};
+	for (var i = 0; i < this.height; i++) {
+		this.addRow();
+	}
+	for (var i = 0; i < this.width; i++) {
+		this.addColumn();
+	}
+}
+
+function changeCellBlock (cell) {
+	cell.setBlock(blockID);
+}
+
+function updateSelectedBlock () {
+	var selectedBlock = document.getElementById("selectedBlock");
+	var blockMask;
+	switch (blocksMasks[blockID]) {
+		case 1:
+			blockMask = 'Élément solide';
+			break;
+		case 2:
+			blockMask = 'Décor ou Élément solide';
+			break;
+		default:
+			blockMask = 'Décor';
+			break;
+	}
+	selectedBlock.innerHTML = '<span class="block block' + blockID + '"></span>' + nomClasses[blockID] + ' - ' + blockMask;
+}
+
+function togglePlan () {
+	isEditingBG = !isEditingBG;
+	updateSelectedPlan();
+}
+
+function updateSelectedPlan () {
+	var selectedPlan = document.getElementById("selectedPlan");
+	selectedPlan.innerHTML = isEditingBG?'Édition du décor':'Édition des éléments solides';
+}
+
+function Palette () {
+	function PaletteItem (id) {
+		var thisPaletteItem = document.createElement("td");
+		thisPaletteItem.className = "block block" + id;
+		thisPaletteItem.onclick = function(){if (lastPaletteItem) {lastPaletteItem.className = "block block" + blockID;};this.className = "selected block block" + id;blockID = id;updateSelectedBlock();lastPaletteItem = this;};
+		return thisPaletteItem;
+	}
+	var palette = document.createElement("table");
+	var paletteRowsNum = 0;
+	var itemsPerRow = blocksTypesNum / 5 + 1;
+	palette.style.left = ((itemsPerRow*20+2)-(itemsPerRow*20+2)/2) + "px";
+	palette.style.bottom = ((5*20+2)-(5*20+2)/2) + "px";
+	palette.className = "palette";
+	document.getElementsByTagName("body")[0].appendChild(palette);
+	for (var i = 0; i < blocksTypesNum; i++) {
+		if (i/itemsPerRow >= paletteRowsNum) {
+			palette.insertRow(paletteRowsNum);
+			paletteRowsNum++;
+		}
+		palette.rows[paletteRowsNum-1].appendChild(new PaletteItem(i));
+	}
+	palette.style.width = this.blocksTypesNum*16 + "px";
+	return palette;
+}
+
+function EditorEvents () {
+	this.isMouseButtonDown = false;
+	this.isShiftKeyDown = false;
+	this.mouse = false;
+	var thisEditorEvents = this;
+	document.onmousedown = function(){thisEditorEvents.isMouseButtonDown = true;};
+	document.onmouseup = function(){thisEditorEvents.isMouseButtonDown = false;};
+}
+
+var isEditingBG = false;
+var tilesSource = {value:'editorSprite',width:800,height:16};
+var nomClasses = ['Air', 'Terre1', 'Terre2', 'Terre3', 'Terre4', 'Terre5', 'Terre6', 'Terre7', 'Terre8', 'Terre9', 'Terre10', 'Terre11', 'Terre12', 'Terre13', 'Terre14', 'Terre15', 'Terre16', 'Terre17', 'Terre18', 'Terre19', 'Terre20', 'Terre21', 'Terre22', 'Terre23', 'Terre24', 'Piece', 'TuyauV0', 'TuyauV1', 'TuyauV2', 'TuyauV3', 'TuyauV4', 'TuyauV5', 'TuyauH0', 'TuyauH1', 'TuyauH2', 'TuyauH3', 'TuyauH4', 'TuyauH5', 'BlocSpecial', 'BlocTourne', 'Mario', 'Koopa', 'Goomba', 'Air', 'Air', 'Air', 'Air', 'Air', 'Air', 'Air']
+var blocksMasks = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2];
+var blocksTypesNum = nomClasses.length;
+generateBlocksStyle();
+
+var levelWidth = prompt("Largeur du niveau (en blocs):");
+var levelHeight = prompt("Hauteur du niveau (en blocs):");
+
+var grid1 = new Grid(levelHeight,levelWidth);
+var blockID = 0;
+var lastPaletteItem = false;
+
+var palette = new Palette();
+
+var editorEvents1 = new EditorEvents();
+
+window.onload = function () {
+	updateSelectedPlan();
+	updateSelectedBlock();
+	document.onkeydown = function (event) {
+		if (event.which == 16)
+			editorEvents1.isShiftKeyDown = true;
+		else if (event.which == 17)
+			togglePlan();
+	};
+	document.onkeyup = function (event) {
+		if (event.which == 16)
+			editorEvents1.isShiftKeyDown = false;
+	};
+};
+
+</script>
+		<p>
+			<span id="selectedPlan"></span>
+		</p>
+		<p>
+			<span id="selectedBlock"></span>
+		</p>
+		<p>
+			<input type="button" onclick="togglePlan();" value="Changer de plan (décor/éléments solides)" /><br/>
+			<input type="button" onclick="grid1.addRow();" value="Ajouter une ligne" />
+			<input type="button" onclick="grid1.deleteRow();" value="Supprimer une ligne" /><br/>
+			<input type="button" onclick="grid1.addColumn();" value="Ajouter une colonne" />
+			<input type="button" onclick="grid1.deleteColumn();" value="Supprimer une colonne" /><br/>
+			<input type="button" onclick="grid1.save();" value="Sauver le niveau" />
+		</p>
+		<div id="instructions" class="hidden">
+			<input type="button" value="Instructions" onclick="document.getElementById('instructions').className=(document.getElementById('instructions').className=='')?'hidden':'';" />
+			<p>
+				Il y a deux plans différents: le décor et les éléments.<br />
+				Contrairement au décor, les éléments sont suceptibles de créer des collisions dans le jeu.
+			</p>
+			<p>
+				Certains blocs ne peuvent être placés qu'en tant qu'éléments comme Mario par exemple.<br />
+				De même, il est possible d'avoir des blocs plaçables uniquement en décor.
+			</p>
+			<p>
+				Le bloc de Mario est représenté par sa tête.<br />
+				Vous pouvez placer la tête de Mario aussi bien à un bloc de hauteur du sol que sur le sol pour que Mario appraisse sur le sol.
+			</p>
+			<p>
+				Pour changer de plan vous pouvez soit cliquer sur le bouton "Changer de plan", soit utiliser la touche <code>Ctrl</code>.
+			</p>
+			<p>
+				Pour placer un bloc dans le niveau, sélectionnez-le dans la palette, puis effectuez un clic sur le niveau.
+			</p>
+			<p>
+				Vous pouvez bouger la souris en maintenant le bouton enfoncé pour déposer plusieurs blocs d'un seul coup.<br />
+			</p>
+			<p>
+				Pour déposer plusieurs blocs dans toute une zone de sélection, Maintenez la touche <code>Maj</code> enfoncée,<br />
+				puis cliquez dans un coin de la zone que vous souhaitez utiliser, et enfin cliquez dans le coin opposé.
+			</p>
+		</div>
+	</body>
+</html>

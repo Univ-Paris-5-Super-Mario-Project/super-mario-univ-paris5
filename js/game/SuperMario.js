@@ -21,7 +21,7 @@ var SuperMario = {
 		Piece.counter = (pieces) ? pieces : 0;
 		
 		// idem pour le level
-		level_path = (level_path) ? level_path : 'js/game/level.xml';
+		level_path = (level_path) ? level_path : 'levelEditor/levelEditor.php?getlevel=level.xml';
 
 		var level = new Room(level_path);
 		level.view_w = 592;
