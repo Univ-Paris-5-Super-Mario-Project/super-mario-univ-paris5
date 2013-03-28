@@ -133,6 +133,8 @@ Game.addClass({
 		// La ligne suivante sert à faire défiler le niveau dans l'autre sens si Mario va vers la gauche.
 		// Elle peut tout à fait être supprimée, je l'ai uniquement faite parce que ça rend pas mal.
 		if (this.x <= (Game.room.view_x + Game.room.view_w *2/ 5) && this.xprev > this.x && Game.room.view_x > 0) Game.room.view_x -= this.NB_PIX_DEPLACEMENT_HORIZ;
+		Game.canvas.style.backgroundPosition = -(Game.room.view_x*0.5)+'px bottom';
+		document.getElementById('gameBG').style.backgroundPosition = -(Game.room.view_x*0.2)+'px bottom';
 	},
 
 	/*
@@ -346,6 +348,12 @@ Game.addClass({
 		}
 	},
 
+/*	eventRoomStart: function()
+	{
+		Game.room.viewLink = this;
+		Game.room.background_hspeed = 0.8;
+	},
+*/
 	eventOutsideView: function()
 	{
 		if(this.y>0)

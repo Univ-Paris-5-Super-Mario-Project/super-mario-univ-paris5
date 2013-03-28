@@ -29,6 +29,10 @@ canvas {
   height: 0;
 }
 
+.clearfix {
+  text-align: center;
+}
+
 body {
   background: #222;
   width: 100%;
@@ -36,10 +40,18 @@ body {
 }
 
 canvas {
-  background: #fff;
   display: block;
   margin: 0 auto;
-  background: url(../img/game/backgroundfar.png);
+  background: url('../img/game/background2.png');
+  background-repeat: repeat-x;
+}
+
+#gameBG {
+  background: url('../img/game/backgroundfar.png');
+  background-color: #F8E0B3;
+  background-repeat: repeat-x;
+  display: inline-block;
+  margin-bottom: 40px;
 }
 
 .btn {
