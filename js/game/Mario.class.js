@@ -316,9 +316,16 @@ Game.addClass({
 			this.toFirstPlan();
 			other.pickUp();
 		}
-		else if (other.instanceOf(BlocSpecial))
+		else if (other.instanceOf(BlocTape))
 		{
-			other.hitBlock();
+			if (other.instanceOf(BlocTape))
+			{
+				if (this.headTouchSolid())
+				{
+					other.hitBlock();
+					this.vspeed = 0;
+				}
+			}
 		}
 	},
 
