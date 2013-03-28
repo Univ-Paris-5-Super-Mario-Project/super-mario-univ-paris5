@@ -265,12 +265,6 @@ Game.addClass({
 				{
 					other.hitBlock();
 				}
-
-				// si Mario retombe sur un bloc, ca gravité retrouve l'état initial
-				if (direction == 270) // 270 correspond a la direction vers le bas
-				{
-					this.gravity = this.defaultGravity;
-				}
 			}
 		}
 	},
