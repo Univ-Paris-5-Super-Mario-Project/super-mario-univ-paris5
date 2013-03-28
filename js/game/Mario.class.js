@@ -33,7 +33,7 @@ Game.addClass({
 		this.spriteLeft.STAND_DOWN_LEFT = [1,1];
 		this.spriteLeft.MOVE_UP_LEFT    = [3,3];
 		this.spriteLeft.MOVE_LEFT       = [7,6,5];
-		this.spriteLeft.imagespeed      = 0.2;
+		this.spriteLeft.imagespeed      = 0.8;
 		
 		// Right sprites
 		this.spriteRight = new Sprite(Game.getImage('marioSpriteRight'));
@@ -61,7 +61,7 @@ Game.addClass({
 		this.spriteRight.STAND_DOWN_RIGHT = [7,7];
 		this.spriteRight.MOVE_UP_RIGHT    = [5,5];
 		this.spriteRight.MOVE_RIGHT       = [1,2,3];
-		this.spriteRight.imagespeed       = 0.2;
+		this.spriteRight.imagespeed       = 0.8;
 		
 		//Statut de départ de Mario
 		this.state = Element.STATE_STAND_RIGHT;
