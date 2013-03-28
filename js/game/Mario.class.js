@@ -87,6 +87,13 @@ Game.addClass({
 		var mask = this.sprite.getMask();
 		return true !== Game.placeIsFree(this.x + mask.x, this.y + mask.y + mask.height, mask.width, 1);
 	},
+	
+	// Retourne true si la tête de Mario touche un Element solide, false autrement
+	headTouchSolid: function()
+	{
+		var mask = this.sprite.getMask();
+		return true !== Game.placeIsFree(this.x + mask.x, this.y + mask.y - 1, mask.width, 1);
+	},
 
 	// Modifie le sprite de Mario en fonction de son statut
 	eventStartStep: function()
