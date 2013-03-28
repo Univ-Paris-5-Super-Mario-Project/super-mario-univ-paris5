@@ -97,31 +97,39 @@ Game.addClass({
 		switch(this.state)
 		{
 			case Element.STATE_STAND_LEFT :
-				this.sprite=this.spriteLeft.STAND_LEFT;
+				this.sprite = this.spriteLeft;
+				this.sprite.tiles=this.spriteLeft.STAND_LEFT;
 				break;
 			case Element.STATE_STAND_RIGHT :
-				this.sprite=this.spriteRight.STAND_RIGHT;
+				this.sprite = this.spriteRight;
+				this.sprite.tiles=this.spriteRight.STAND_RIGHT;
 				break;
 
 			case Element.STATE_STAND_DOWN_LEFT :
-				this.sprite=this.spriteLeft.STAND_DOWN_LEFT;
+				this.sprite = this.spriteLeft;
+				this.sprite.tiles=this.spriteLeft.STAND_DOWN_LEFT;
 				break;
 			case Element.STATE_STAND_DOWN_RIGHT :
-				this.sprite=this.spriteRight.STAND_DOWN_RIGHT;
+				this.sprite = this.spriteRight;
+				this.sprite.tiles=this.spriteRight.STAND_DOWN_RIGHT;
 				break;
 
 			case Element.STATE_MOVE_LEFT :
-				this.sprite=this.spriteLeft.MOVE_LEFT;
+				this.sprite = this.spriteLeft;
+				this.sprite.tiles=this.spriteLeft.MOVE_LEFT;
 				break;
 			case Element.STATE_MOVE_RIGHT :
-				this.sprite=this.spriteRight.MOVE_RIGHT;
+				this.sprite = this.spriteRight;
+				this.sprite.tiles=this.spriteRight.MOVE_RIGHT;
 				break;
 
 			case Element.STATE_MOVE_UP_LEFT :
-				this.sprite=this.spriteLeft.MOVE_UP_LEFT;
+				this.sprite = this.spriteLeft;
+				this.sprite.tiles=this.spriteLeft.MOVE_UP_LEFT;
 				break;
 			case Element.STATE_MOVE_UP_RIGHT :
-				this.sprite=this.spriteRight.MOVE_UP_RIGHT;
+				this.sprite = this.spriteRight;
+				this.sprite.tiles=this.spriteRight.MOVE_UP_RIGHT;
 				break;
 		}
 	},
