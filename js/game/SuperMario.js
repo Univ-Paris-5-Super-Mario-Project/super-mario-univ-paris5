@@ -77,14 +77,11 @@ var SuperMario = {
 		// Compteur de pièces à 0
 		Piece.counter = 0;
 
-		var types = this.types;
-		// Suppression des instances créées dans les parties précédentes
-		_.each(types, function(t) {
-			var instances = Game.getInstancesByType(t);
-
-			_.each(instances, function(p) {
-				Game.instanceDestroy(p);
-			});
-		});
+		// On supprime les anciennes instances
+		// le GC du navigateur s'occupera de les retirer de la mémoire
+		Game.elements=[];
+		Game.activeElements=[];
+		Game.tilesAndElements=[];
+		Game.rooms=[];
 	}
 };
