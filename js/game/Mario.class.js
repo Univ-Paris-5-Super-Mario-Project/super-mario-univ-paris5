@@ -321,6 +321,9 @@ Game.addClass({
 			if (this.headTouchSolid())
 			{
 				other.hitBlock();
+
+				// pour éviter que Mario ne continue de monter
+				// après avoir touché le bloc avec sa tête
 				this.vspeed = 0;
 			}
 		}
