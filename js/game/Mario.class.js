@@ -316,12 +316,9 @@ Game.addClass({
 			this.toFirstPlan();
 			other.pickUp();
 		}
-		else if (other.instanceOf(Bloc))
+		else if (other.instanceOf(BlocSpecial))
 		{
-			if(other.instanceOf(BlocSpecial))
-			{
-				other.hitBlock();
-			}
+			other.hitBlock();
 		}
 	},
 
