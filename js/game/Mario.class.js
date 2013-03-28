@@ -258,13 +258,7 @@ Game.addClass({
 		{
 			if(other.instanceOf(BlocSpecial))
 			{
-				var direction = this.getDirection();
-
-				// lorsque Mario tape sa tête contre un bloc
-				if (direction == 90) // 90 correspond a la direction vers le haut.
-				{
-					other.hitBlock();
-				}
+				other.hitBlock();
 			}
 		}
 	},
