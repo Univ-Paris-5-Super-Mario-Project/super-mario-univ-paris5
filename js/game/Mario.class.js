@@ -318,13 +318,10 @@ Game.addClass({
 		}
 		else if (other.instanceOf(BlocTape))
 		{
-			if (other.instanceOf(BlocTape))
+			if (this.headTouchSolid())
 			{
-				if (this.headTouchSolid())
-				{
-					other.hitBlock();
-					this.vspeed = 0;
-				}
+				other.hitBlock();
+				this.vspeed = 0;
 			}
 		}
 	},
