@@ -65,6 +65,7 @@ Game.addClass({
 		
 		//Statut de départ de Mario
 		this.state = Element.STATE_STAND_RIGHT;
+		this.subState = this.state;
 		this.sprite = this.spriteRight;
 		this.sprite.tiles = this.sprite.STAND_RIGHT;
 		
@@ -80,16 +81,22 @@ Game.addClass({
 		this.switchPositionWhenLeave = false;
 	},
 	
-	//Doc : Méthode appelée au début de chaque Step, juste avant le déplacement de l'élément.
-	//Elle sert principalement à modifier les statuts de l'objet avant le déplacement et l'animation de celui-ci
+	// Retourne true si Mario est sur un Element solide, false autrement
+	isAboveSolid: function()
+	{
+		var mask = this.sprite.getMask();
+		return true !== Game.placeIsFree(this.x + mask.x, this.y + mask.y + mask.height, mask.width, 1);
+	},
+
+	// Modifie le sprite de Mario en fonction de son statut
 	eventStartStep: function()
 	{
-		// Empecher que Mario ne sorte à gauche de l'écran:
+		// Empeche Mario de sortir à gauche de l'écran:
 		if (this.x < Game.room.view_x + 15 && this.hspeed < 0) {
 			this.hspeed = 0;
 		}
 
-		// Empecher que Mario ne sorte à droite de l'écran:
+		// Empeche Mario de sortir à droite de l'écran:
 		if (this.x > Game.room.width - 25 && this.hspeed > 0) {
 			this.hspeed = 0;
 		}
@@ -134,10 +141,18 @@ Game.addClass({
 		}
 	},
 
-	isAboveSolid: function()
+	eventStep: function()
 	{
-		var mask = this.sprite.getMask();
-		return true !== Game.placeIsFree(this.x + mask.x, this.y + mask.y + mask.height, mask.width, 1);
+		// Pas de défilement quand Mario arrive à la fin
+		if (this.x >= (Game.room.view_x + Game.room.view_w * 3 / 5)
+			&& this.xprev < this.x
+			&& Game.room.view_x + Game.room.view_w + 5 < Game.room.width)
+		{
+			Game.room.view_x += this.NB_PIX_DEPLACEMENT_HORIZ;
+		}
+
+		Game.canvas.style.backgroundPosition = -(Game.room.view_x*0.5)+'px bottom';
+		document.getElementById('gameBG').style.backgroundPosition = -(Game.room.view_x*0.2)+'px bottom';
 	},
 
 	eventEndStep: function()
@@ -162,19 +177,7 @@ Game.addClass({
 			}
 		}
 	},
-	eventStep: function()
-	{
-		// Pas de défilement quand Mario arrive à la fin
-		if (this.x >= (Game.room.view_x + Game.room.view_w * 3 / 5)
-			&& this.xprev < this.x
-			&& Game.room.view_x + Game.room.view_w + 5 < Game.room.width)
-		{
-			Game.room.view_x += this.NB_PIX_DEPLACEMENT_HORIZ;
-		}
-
-		Game.canvas.style.backgroundPosition = -(Game.room.view_x*0.5)+'px bottom';
-		document.getElementById('gameBG').style.backgroundPosition = -(Game.room.view_x*0.2)+'px bottom';
-	},
+	
 	eventKeyPressed: function(key)
 	{
 		// Tentative d'accroupissage (ou accroupissement) au sol
@@ -261,12 +264,6 @@ Game.addClass({
 				if (direction == 90) // 90 correspond a la direction vers le haut.
 				{
 					other.hitBlock();
-				}
-
-				// si Mario retombe sur un bloc, ca gravité retrouve l'état initial
-				if (direction == 270) // 270 correspond a la direction vers le bas
-				{
-					this.gravity = this.defaultGravity;
 				}
 			}
 		}
