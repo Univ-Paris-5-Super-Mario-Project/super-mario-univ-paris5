@@ -93,6 +93,37 @@ Game.addClass({
 		if (this.x > Game.room.width - 25 && this.hspeed > 0) {
 			this.hspeed = 0;
 		}
+		
+		switch(this.state)
+		{
+			case Element.STATE_STAND_LEFT :
+				this.sprite=this.spriteLeft.STAND_LEFT;
+				break;
+			case Element.STATE_STAND_RIGHT :
+				this.sprite=this.spriteRight.STAND_RIGHT;
+				break;
+
+			case Element.STATE_STAND_DOWN_LEFT :
+				this.sprite=this.spriteLeft.STAND_DOWN_LEFT;
+				break;
+			case Element.STATE_STAND_DOWN_RIGHT :
+				this.sprite=this.spriteRight.STAND_DOWN_RIGHT;
+				break;
+
+			case Element.STATE_MOVE_LEFT :
+				this.sprite=this.spriteLeft.MOVE_LEFT;
+				break;
+			case Element.STATE_MOVE_RIGHT :
+				this.sprite=this.spriteRight.MOVE_RIGHT;
+				break;
+
+			case Element.STATE_MOVE_UP_LEFT :
+				this.sprite=this.spriteLeft.MOVE_UP_LEFT;
+				break;
+			case Element.STATE_MOVE_UP_RIGHT :
+				this.sprite=this.spriteRight.MOVE_UP_RIGHT;
+				break;
+		}
 	},
 
 	isAboveSolid: function()
