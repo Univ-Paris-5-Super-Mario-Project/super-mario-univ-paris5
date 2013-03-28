@@ -88,6 +88,11 @@ Game.addClass({
 		return true !== Game.placeIsFree(this.x + mask.x, this.y + mask.y + mask.height, mask.width, 1);
 	},
 
+	isDown: function()
+	{
+		return this.state == Element.STATE_STAND_DOWN_LEFT || this.state == Element.STATE_STAND_DOWN_RIGHT;
+	},
+
 	// Modifie le sprite de Mario en fonction de son statut
 	eventStartStep: function()
 	{
@@ -99,6 +104,21 @@ Game.addClass({
 		// Empeche Mario de sortir à droite de l'écran:
 		if (this.x > Game.room.width - 25 && this.hspeed > 0) {
 			this.hspeed = 0;
+		}
+
+		// Mario se releve
+		if (this.isDown() && ! Game.isKeyPressed(Game.KEY_DOWN))
+		{
+			// S'il etait a gauche
+			if (this.state == Element.STATE_STAND_DOWN_LEFT)
+			{
+				this.state = Element.STATE_STAND_LEFT;
+			}
+			// S'il était à droite
+			else if (this.state == Element.STATE_STAND_DOWN_RIGHT)
+			{
+				this.state = Element.STATE_STAND_RIGHT;
+			}
 		}
 		
 		switch(this.state)
@@ -181,24 +201,21 @@ Game.addClass({
 	eventKeyPressed: function(key)
 	{
 		// Tentative d'accroupissage (ou accroupissement) au sol
-		if (key == Game.KEY_DOWN)
+		if (key == Game.KEY_DOWN && this.isAboveSolid())
 		{
-			if (this.isAboveSolid())
+			// On ne marche pas accroupi
+			this.vspeed = 0;
+
+			// Mario regarde ou va à gauche
+			if (this.state == Element.STATE_MOVE_LEFT || this.state == Element.STATE_STAND_LEFT)
 			{
-				// On ne marche pas accroupi
-				this.vspeed = 0;
+				this.state = Element.STATE_STAND_DOWN_LEFT;
 
-				// Mario regarde ou va à gauche
-				if (this.state == Element.STATE_MOVE_LEFT || this.state == Element.STATE_STAND_LEFT)
-				{
-					this.state = Element.STATE_STAND_DOWN_LEFT;
-
-				}
-				// Mario regarde ou va à droite
-				else if (this.state == Element.STATE_MOVE_RIGHT || this.state == Element.STATE_STAND_RIGHT)
-				{
-					this.state = Element.STATE_STAND_DOWN_RIGHT;
-				}
+			}
+			// Mario regarde ou va à droite
+			else if (this.state == Element.STATE_MOVE_RIGHT || this.state == Element.STATE_STAND_RIGHT)
+			{
+				this.state = Element.STATE_STAND_DOWN_RIGHT;
 			}
 		}
 	},
