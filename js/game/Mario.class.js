@@ -120,6 +120,44 @@ Game.addClass({
 				this.state = Element.STATE_STAND_RIGHT;
 			}
 		}
+
+		var isOnGround = this.isAboveSolid();
+		// Mario se déplace à gauche
+		if (this.hspeed < 0)
+		{
+			if (isOnGround)
+			{
+				this.state = Element.STATE_MOVE_LEFT;
+			}
+			else
+			{
+				this.state = Element.STATE_MOVE_UP_LEFT;
+			}
+		}
+		// Mario ne se déplace pas
+		else if (this.hspeed == 0)
+		{
+			if (this.state == Element.STATE_MOVE_LEFT || this.state == Element.STATE_MOVE_UP_LEFT)
+			{
+				this.state = Element.STATE_STAND_LEFT;
+			}
+			else if (this.state == Element.STATE_MOVE_RIGHT || this.state == Element.STATE_MOVE_UP_RIGHT)
+			{
+				this.state = Element.STATE_STAND_RIGHT;
+			}
+		}
+		// Mario se déplace à droite
+		else // this.hspeed > 0
+		{
+			if (isOnGround)
+			{
+				this.state = Element.STATE_MOVE_RIGHT;
+			}
+			else
+			{
+				this.state = Element.STATE_MOVE_UP_RIGHT;
+			}
+		}
 		
 		switch(this.state)
 		{
