@@ -189,31 +189,17 @@ Game.addClass({
 				if (this.state == Element.STATE_MOVE_LEFT || this.state == Element.STATE_STAND_LEFT)
 				{
 					this.state = Element.STATE_STAND_DOWN_LEFT;
-					this.sprite = this.spriteLeft;
-					this.sprite.tiles = this.sprite.STAND_DOWN_LEFT;
+
 				}
 				// Mario regarde ou va à droite
 				else if (this.state == Element.STATE_MOVE_RIGHT || this.state == Element.STATE_STAND_RIGHT)
 				{
 					this.state = Element.STATE_STAND_DOWN_RIGHT;
-					this.sprite = this.spriteRight;
-					this.sprite.tiles = this.sprite.STAND_DOWN_RIGHT;
 				}
 			}
 		}
 	},
-	eventKeyUp: function(key)
-	{
-		if (key == Game.KEY_LEFT && ! Game.isKeyPressed(Game.KEY_RIGHT))
-		{
-			this.hspeed = 0;
-		}		
-		if (key == Game.KEY_RIGHT && ! Game.isKeyPressed(Game.KEY_LEFT))
-		{
-			this.hspeed = 0;
-		}
-	},
-
+	
 	eventKeyDown: function(key)
 	{
 		// Saut de Mario avec flèche haut ou espace
@@ -231,6 +217,18 @@ Game.addClass({
 		if (key == Game.KEY_RIGHT)
 		{
 			this.hspeed = this.NB_PIX_DEPLACEMENT_HORIZ;
+		}
+	},
+	
+	eventKeyUp: function(key)
+	{
+		if (key == Game.KEY_LEFT && ! Game.isKeyPressed(Game.KEY_RIGHT))
+		{
+			this.hspeed = 0;
+		}		
+		if (key == Game.KEY_RIGHT && ! Game.isKeyPressed(Game.KEY_LEFT))
+		{
+			this.hspeed = 0;
 		}
 	},
 
