@@ -1,28 +1,26 @@
 <div ng-show="hasSavedGames">
-	<ul>
-		<h2>Parties sauvegardées</h2>
+	<h2>Parties sauvegardées</h2>
 
-		<table cellspacing="0">
-			<tr>
-				<th>ID</th>
-				<th>Level</th>
-				<th>Timestamp</th>
-				<th>Coins</th>
-				<th>Mario's position</th>
-				<th>Play</th>
-				<th>Remove</th>
-			</tr>
-			<tr ng-repeat="game in games">
-				<td>{{ $index }}</td>
-				<td title="{{ game.level }}">{{ game.level.substr(0, 15) }}...</td>
-				<td>{{ game.timestamp }}</td>
-				<td>{{ game.coins }}</td>
-				<td>{{ game.mario.x }}</td>
-				<td class="clearfix"><a class="clickable" href="#/game/{{ game.timestamp }}">Play</a></td>
-				<td class="clearfix"><button  class="clickable" ng-click="remove(game.timestamp)">Remove</button></td>
-			</tr>
-		</table>
-	</ul>
+	<table cellspacing="0">
+		<tr>
+			<th>ID</th>
+			<th>Level</th>
+			<th>Timestamp</th>
+			<th>Coins</th>
+			<th>Mario's position</th>
+			<th>Play</th>
+			<th>Remove</th>
+		</tr>
+		<tr ng-repeat="game in games">
+			<td>{{ $index }}</td>
+			<td title="{{ game.level }}">{{ game.level.substr(0, 15) }}...</td>
+			<td>{{ game.timestamp }}</td>
+			<td>{{ game.coins }}</td>
+			<td>{{ game.mario.x }}</td>
+			<td class="clearfix"><a class="clickable" href="#/game/{{ game.timestamp }}">Play</a></td>
+			<td class="clearfix"><button  class="clickable" ng-click="remove(game.timestamp)">Remove</button></td>
+		</tr>
+	</table>
 
 	<nav>
 		<a href="#/game" class="btn">New game</a>

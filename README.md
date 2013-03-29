@@ -11,6 +11,12 @@ With the help of:
 
 Any comments, PR or bug reports are appreciated! :-)
 
+## Demo
+
+You can see a [demo here](http://www.ens.math-info.univ-paris5.fr/~id01245/super-mario/jeu/).
+
+It should be pretty much up to date with the latest version available right here on Github.
+
 ## License
 
 The source code is released under the GPL v3 license. See [`license.md`](LICENSE.md) for more information.
