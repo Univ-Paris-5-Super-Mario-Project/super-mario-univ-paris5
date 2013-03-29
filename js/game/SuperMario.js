@@ -11,11 +11,10 @@ var SuperMario = {
 
 	toggleDayTime: function () { // Change le moment dans la journée (jour/nuit)
 		// Pour régler la vitesse de transition entre le jour et la nuit, aller dans style.css
-		var gameBG = document.getElementById("gameBG");
-		if (gameBG.className == 'gameBGDay')
-			gameBG.className = 'gameBGNight';
+		if (document.getElementById("gameBG").className == 'gameBGDay')
+			document.getElementById("gameBG").className = 'gameBGNight';
 		else
-			gameBG.className = 'gameBGDay';
+			document.getElementById("gameBG").className = 'gameBGDay';
 	},
 
 	savedGames: function() {
