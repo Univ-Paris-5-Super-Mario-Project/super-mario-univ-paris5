@@ -45,8 +45,7 @@ canvas {
   background-repeat: repeat-x;
   display: block;
   margin: 20px auto;
-  width: 592px;
-  height: 320px;
+  max-width: 592px;
 }
 
 nav {
