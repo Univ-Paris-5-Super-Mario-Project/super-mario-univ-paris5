@@ -1,4 +1,4 @@
-<div id="gameBG">
+<div id="gameBG" ng-show="gameExists">
 	<canvas id="jeu">
 		<p>Votre navigateur n'est pas capable d'afficher le jeu. Navigateurs compatibles:
 			<ul>
@@ -7,6 +7,10 @@
 			</ul>
 		</p>
 	</canvas>
+</div>
+
+<div ng-show="!gameExists">
+	<p>Partie introuvable.</p>
 </div>
 
 <button ng-click="saveCurrentGame()" class="btn">Sauvegarder la partie</button>

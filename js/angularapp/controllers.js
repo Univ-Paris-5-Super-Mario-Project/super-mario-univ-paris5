@@ -6,7 +6,8 @@ function CreditsCtrl($scope) {
 }
 
 function GameCtrl($scope) {
-  SuperMario.start();
+	$scope.gameExists = true; // indique à Angular qu'il faut afficher le canvas car cette partie est disponible
+  	SuperMario.start();
 
   // fonction de sauvegarde de la partie en cours
   $scope.saveCurrentGame = function() {
@@ -38,18 +39,19 @@ function GameCtrl($scope) {
 	}
 }
 
-function SavedGameCtrl($scope, $routeParams) {
-
+function SavedGameCtrl($scope, $routeParams, $location) {
 	var ts = $routeParams.timestamp;
 
 	var games = SuperMario.savedGames();
 	var game = games[ts];
+	// la partie est trouvée, on la démarre
 	if (games != {} && game != undefined && game.constructor == Object) {
+		$scope.gameExists = true;
 		SuperMario.start(game.coins, game.level, game.mario);
+	// sinon on indique à angularjs que la partie n'existe pas pour afficher un message d'erreur
 	} else {
-		console.log("Cette partie n'existe pas...");
+		$scope.gameExists = false;
 	}
-
 }
 
 function GameOverCtrl($scope) {
