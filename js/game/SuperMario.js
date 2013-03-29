@@ -5,6 +5,7 @@ var SuperMario = {
 	gameOverSound: new buzz.sound("sound/game/gameover.wav"),
 	
 	athleticTheme: new buzz.sound("sound/themes/Athletic-Theme.wav"), // Si c'est trop lourd, on peut utiliser la version mp3
+//	athleticTheme: new buzz.sound("sound/themes/Athletic-Theme.mp3"), // Sauf que mp3 ne marche pas dans firefox
 
 	savedGames: function() {
 		var games = localStorage['saved_games'];
