@@ -5,7 +5,6 @@ var SuperMario = {
 	gameOverSound: new buzz.sound("sound/game/gameover.wav"),
 	
 	athleticTheme: new buzz.sound("sound/themes/Athletic-Theme.wav", {
-		autoplay: true,
 		loop: true
 	}), // Si c'est trop lourd, on peut utiliser la version mp3
 //	athleticTheme: new buzz.sound("sound/themes/Athletic-Theme.mp3"), // Sauf que mp3 ne marche pas dans firefox
@@ -124,20 +123,22 @@ var SuperMario = {
 		setInterval(function(){
 			thisSuperMario.toggleDayTime()
 		}, dureeCycle / 2 * 1000);
+
+		this.athleticTheme.play();
 	},
-	gameOver: function() {
-		this.athleticTheme.stop();
-		
+	gameOver: function() {		
+		this.reset();
+
 		// Musique de fin
 		this.gameOverSound.play();
-		
-		this.reset();
 		
 		// redirection vers la page de game over
 		document.location.href = "#/game-over";
 	},
 
 	reset: function() {
+		this.athleticTheme.stop();
+
 		Game.end = true;
 
 		// Compteur de pièces à 0
