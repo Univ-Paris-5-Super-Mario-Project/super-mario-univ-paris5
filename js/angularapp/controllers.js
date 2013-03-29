@@ -58,9 +58,13 @@ function GameOverCtrl($scope) {
 }
 
 function PartiesCtrl($scope) {
-
 	$scope.games = SuperMario.savedGames();
 
+	$scope.remove = function(id)
+	{
+		delete $scope.games[id];
+		localStorage['saved_games'] = JSON.stringify($scope.games);
+	}
 }
 
 HomeCtrl.$inject = ['$scope'];
