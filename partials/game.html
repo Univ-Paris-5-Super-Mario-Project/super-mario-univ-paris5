@@ -1,12 +1,14 @@
-<div id="gameBG" ng-show="gameExists">
-	<canvas id="jeu">
-		<p>Votre navigateur n'est pas capable d'afficher le jeu. Navigateurs compatibles:
-			<ul>
-				<li><a href="http://www.mozilla.org/fr/firefox/new/">Firefox 18+</a></li>
-				<li><a href="http://www.google.com/chrome/">Google Chrome 24+</a></li>
-			</ul>
-		</p>
-	</canvas>
+<div ng-show="gameExists">
+	<div id="gameBG">
+		<canvas id="jeu">
+			<p>Votre navigateur n'est pas capable d'afficher le jeu. Navigateurs compatibles:
+				<ul>
+					<li><a href="http://www.mozilla.org/fr/firefox/new/">Firefox 18+</a></li>
+					<li><a href="http://www.google.com/chrome/">Google Chrome 24+</a></li>
+				</ul>
+			</p>
+		</canvas>
+	</div>
 
 	<button ng-click="saveCurrentGame()" class="btn">Sauvegarder la partie</button>
 </div>

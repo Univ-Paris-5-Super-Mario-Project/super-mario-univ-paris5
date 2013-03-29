@@ -3,19 +3,25 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Super Mario</title>
+	<link href='http://fonts.googleapis.com/css?family=Averia+Gruesa+Libre' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-	<div id="wrapper" class="clearfix">
-		<header class="clearfix">
-			<a href="#/home" class="btn clearfix">Back to the homepage</a>
+	<div id="wrapper">
+		<header>
+			<h1>
+				<a href="#/home">
+					<img src="img/design/realmario.JPG" height="200" width="200">
+					<h1>Super Mario</h1>
+				</a>
+			</h1>
 		</header>
 
-		<div ng-view class="clearfix">
+		<div ng-view>
 		</div>
 
-		<footer class="clearfix">
-			<a href="#/credits" class="btn clearfix">Credits</a>
+		<footer>
+			<a href="#/credits" class="btn">Credits</a>
 		</footer>
 	</div>
 

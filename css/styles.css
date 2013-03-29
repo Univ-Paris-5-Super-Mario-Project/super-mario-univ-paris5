@@ -7,16 +7,21 @@ ul,
 li,
 a,
 p,
-canvas {
+canvas,
+h1,
+img,
+button {
   margin: 0;
   padding: 0;
   outline: 0;
   border: none;
-  color: #fff;
+  color: #333;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   display: block;
+  text-align: center;
+  font-family: 'Averia Gruesa Libre', cursive;
 }
 
 /* clearfix */
@@ -29,12 +34,8 @@ canvas {
   height: 0;
 }
 
-.clearfix {
-  text-align: center;
-}
-
 body {
-  background: #222;
+  background: #fff;
   width: 100%;
   height: 100%;
 }
@@ -66,7 +67,10 @@ canvas {
   text-decoration: none;
   display: block;
   margin: 0 auto;
+  font-weight: 400;
+  font-size: 16px;
   text-align: center;
+  cursor: pointer;
 }
 
 #wrapper {
@@ -74,14 +78,14 @@ canvas {
   width: 960px;
 }
 
-#wrapper > div,
-header,
-footer {
-  margin: 50px 0;
+header h1 {
+  font-size: 48px;
 }
 
-p, ul {
-  display: block;
-  padding: 5px;
-  text-align: center;
+header a {
+  text-decoration: none;
+}
+
+header img {
+  margin: 0 auto;
 }
