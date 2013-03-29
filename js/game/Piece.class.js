@@ -3,7 +3,7 @@ Game.addClass({
 	'eventCreate': function()
 	{
 		this.collideSolid = false;
-		this.coinSound = new buzz.sound("sound/game/coin.wav");
+		this.coinSound = new buzz.sound("sound/effects/coin.wav");
 		this.sprite = new Sprite(Game.getImage('coinSprite'));
 		this.sprite.makeTiles(16,16,0);
 		for (var i = 1; i <= 4; i++)

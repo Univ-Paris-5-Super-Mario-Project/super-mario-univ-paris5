@@ -8,8 +8,13 @@ Game.addClass({
 	{
 		window.mainMario = this;
 		// Left sprites
-		this.spriteLeft =new Sprite(Game.getImage('marioSpriteLeft'));
+		this.spriteLeft = new Sprite(Game.getImage('marioSpriteLeft'));
 		this.spriteLeft.makeTiles(16,32,0);
+		
+		// Mario sounds
+		this.sounds = {
+			jump: new buzz.sound("sound/effects/jump.wav")
+		};
 
 		// Collision mask for left moves
 		this.spriteLeft.setMask(1,
@@ -300,6 +305,7 @@ Game.addClass({
 	jump: function()
 	{
 		// Donner une vitesse vers le haut
+		this.sounds.jump.play();
 		this.vspeed = -20;
 	},
 
