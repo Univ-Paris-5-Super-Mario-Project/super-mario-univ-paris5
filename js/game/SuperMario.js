@@ -45,7 +45,10 @@ var SuperMario = {
 				x: m.x,
 				y: m.y
 			},
-			level: Game.room.path
+			level: Game.room.path,
+			room: {
+				view_x: Game.room.view_x
+			}
 		};
 
 		// On rajoute la partie en cours aux parties enregistrées, sous forme de JSON car
@@ -61,7 +64,7 @@ var SuperMario = {
 		this.setSavedGames(games);
 	},
 
-	start: function(pieces, level_path, mario) {
+	start: function(pieces, level_path, mario, view_x) {
 		this.reset();
 		
 		Game.infoGameBuilder = false;
@@ -103,7 +106,7 @@ var SuperMario = {
 		  		m.x = mario.x;
 		  		m.y = mario.y;
 
-		  		Game.room.view_x = mario.x;
+		  		if (view_x) Game.room.view_x = view_x;
 			}, 1000); // Après une seconde, on considère que toute les instances auront été créées, y compris celle de Mario
 		}
 	},
