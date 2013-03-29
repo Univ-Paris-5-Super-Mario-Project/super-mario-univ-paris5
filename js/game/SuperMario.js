@@ -102,9 +102,6 @@ var SuperMario = {
 	gameOver: function() {
 		// Musique de fin
 		this.gameOverSound.play();
-
-		// sauvegarde de partie etc?
-		Game.end = true;
 		
 		this.reset();
 		
@@ -113,6 +110,8 @@ var SuperMario = {
 	},
 
 	reset: function() {
+		Game.end = true;
+
 		// Compteur de pièces à 0
 		Piece.counter = 0;
 

@@ -1,21 +1,26 @@
 function HomeCtrl($scope) {
-  Game.end = true;
+  	SuperMario.reset();
 }
 
 function CreditsCtrl($scope) {
+	SuperMario.reset();
 }
 
 function GameCtrl($scope) {
+	SuperMario.reset();
+
 	$scope.gameExists = true; // indique à Angular qu'il faut afficher le canvas car cette partie est disponible
   	SuperMario.start();
 
-  // fonction de sauvegarde de la partie en cours
-  $scope.saveCurrentGame = function() {
+  	// fonction de sauvegarde de la partie en cours
+  	$scope.saveCurrentGame = function() {
   		SuperMario.saveCurrentGame();
 	}
 }
 
 function SavedGameCtrl($scope, $routeParams, $location) {
+	SuperMario.reset();
+
 	var ts = $routeParams.timestamp;
 
 	var games = SuperMario.savedGames();
@@ -34,6 +39,8 @@ function GameOverCtrl($scope) {
 }
 
 function PartiesCtrl($scope) {
+	SuperMario.reset();
+	
 	$scope.games = SuperMario.savedGames();
 
 	$scope.hasSavedGames = ! _.isEmpty($scope.games);
