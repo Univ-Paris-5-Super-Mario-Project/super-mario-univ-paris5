@@ -1,6 +1,6 @@
-<h1>Parties sauvegardées</h1>
+<ul ng-show="hasSavedGames">
+	<h1>Parties sauvegardées</h1>
 
-<ul>
 	<li ng-repeat="game in games">
 		<h2><a href="#/game/{{ game.timestamp }}">Partie {{ $index }}</a></h2>
 		<p>Level : {{ game.level }}</p>
@@ -10,3 +10,8 @@
 		<button ng-click="remove(game.timestamp)">Supprimer cette partie</button>
 	</li>
 </ul>
+
+<div ng-show="!hasSavedGames">
+	Aucune partie n'a été sauvegardée.
+	<a href="#/game" class="btn">New game</a>
+</div>

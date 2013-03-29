@@ -13,6 +13,45 @@ var SuperMario = {
 		
 		return JSON.parse(games);
 	},
+
+	setSavedGames: function(games) {
+		localStorage['saved_games'] = JSON.stringify(games);
+	},
+
+	saveCurrentGame: function() {
+		// On récupère la seule instance de Mario
+  		var m = Game.getInstancesByType('Mario');
+  		m = m[0];
+
+  		// On formatte les données à enregistrer
+  		// * la date
+  		// * le nombre de pièces
+  		// * la position de Mario
+  		// * le fichier XML du level utilisé
+  		var timestamp = new Date().getTime();  		
+		var data = {
+			timestamp: timestamp,
+			coins: Piece.counter,
+			mario: {
+				x: m.x,
+				y: m.y
+			},
+			level: Game.room.path
+		};
+
+		// On rajoute la partie en cours aux parties enregistrées, sous forme de JSON car
+		// localStorage n'accepte pas d'objets javascript tel que Game, Mario, Piece, etc.
+		var saved_games = SuperMario.savedGames();
+		saved_games['' + timestamp] = data; // le '' + timestamp permet de convertir le timestamp (de type int) en chaine de caractères
+		this.setSavedGames(saved_games);
+	},
+
+	removeSavedGame: function(id) {
+		var games = this.savedGames();
+		delete games[id];
+		this.setSavedGames(games);
+	},
+
 	start: function(pieces, level_path, mario) {
 		this.reset();
 		
