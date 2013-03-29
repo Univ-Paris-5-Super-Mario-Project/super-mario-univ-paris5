@@ -43,6 +43,11 @@ canvas {
   display: block;
   margin: 20px auto;
   width: 592px;
+  transition: background-color 2s linear; /* Pour régler la vitesse de transition entre le jour et la nuit */
+  -webkit-transition: background-color 2s linear;
+  -moz-transition: background-color 2s linear;
+  -o-transition: background-color 2s linear;
+  -ms-transition: background-color 2s linear;
 }
 
 .gameBGDay {
