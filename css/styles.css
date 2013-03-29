@@ -51,8 +51,10 @@ canvas {
 
 nav {
   text-align: center;
+  display: block;
 }
 .btn {
+  vertical-align: bottom;
   border-radius: 3px;
   background: #fff;
   width: 200px;
