@@ -10,6 +10,15 @@ var SuperMario = {
 	}), // Si c'est trop lourd, on peut utiliser la version mp3
 //	athleticTheme: new buzz.sound("sound/themes/Athletic-Theme.mp3"), // Sauf que mp3 ne marche pas dans firefox
 
+	toggleDayTime: function () { // Change le moment dans la journée (jour/nuit)
+		// Pour régler la vitesse de transition entre le jour et la nuit, aller dans style.css
+		var gameBG = document.getElementById("gameBG");
+		if (gameBG.className == 'gameBGDay')
+			gameBG.className = 'gameBGNight';
+		else
+			gameBG.className = 'gameBGDay';
+	},
+
 	savedGames: function() {
 		var games = localStorage['saved_games'];
 
@@ -66,7 +75,6 @@ var SuperMario = {
 
 	start: function(pieces, level_path, mario, view_x) {
 		this.reset();
-		
 		Game.infoGameBuilder = false;
 
 		// si on ne charge pas de parties, on initialise à 0, sinon on récupère le nombre de pièces désiré
@@ -109,6 +117,11 @@ var SuperMario = {
 		  		if (view_x) Game.room.view_x = view_x;
 			}, 1000); // Après une seconde, on considère que toute les instances auront été créées, y compris celle de Mario
 		}
+		
+		// Mise à Jour Cycle Jour/Nuit
+		var thisSuperMario = this;
+		var dureeCycle = 40; // Duree du cycle jour/nuit (en secondes)
+		setInterval(function(){thisSuperMario.toggleDayTime()},dureeCycle/2*1000);
 	},
 	gameOver: function() {
 		this.athleticTheme.stop();

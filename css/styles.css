@@ -35,17 +35,35 @@ body {
 canvas {
   display: block;
   margin: 0 auto;
-  background: url('../img/game/background2.png');
+  background: url('../img/game/background.png');
   background-repeat: repeat-x;
 }
 
 #gameBG {
-  background: url('../img/game/backgroundfar.png');
-  background-color: #F8E0B3;
-  background-repeat: repeat-x;
   display: block;
   margin: 20px auto;
+<<<<<<< HEAD
   max-width: 592px;
+=======
+  width: 592px;
+  transition: background-color 2s linear; /* Pour régler la vitesse de transition entre le jour et la nuit */
+  -webkit-transition: background-color 2s linear;
+  -moz-transition: background-color 2s linear;
+  -o-transition: background-color 2s linear;
+  -ms-transition: background-color 2s linear;
+}
+
+.gameBGDay {
+  background: url('../img/game/backgroundfar.png');
+  background-color: #F8E0B0;
+  background-repeat: repeat-x;
+}
+
+.gameBGNight {
+  background: url('../img/game/backgroundfar.png');
+  background-color: #0064B8;
+  background-repeat: repeat-x;
+>>>>>>> 64d6403b730c56d41cf8feedf56c8c4bbf0d5569
 }
 
 nav {
