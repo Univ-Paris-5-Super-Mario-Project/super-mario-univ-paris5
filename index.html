@@ -5,6 +5,7 @@
 	<title>Super Mario</title>
 	<link href='http://fonts.googleapis.com/css?family=Averia+Gruesa+Libre' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 	<div id="wrapper">
@@ -15,6 +16,11 @@
 					<h1>Super Mario</h1>
 				</a>
 			</h1>
+
+			<div id="mute-button-container">
+				<label for="mute-button" class="icon-music"></label>
+				<input id="mute-button" type="checkbox" checked onChange="SuperMario.athleticTheme.togglePlay()">
+			</div>
 		</header>
 
 		<div ng-view>

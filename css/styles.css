@@ -95,3 +95,14 @@ header a {
 header img {
   margin: 0 auto;
 }
+
+#mute-button-container {
+  position: relative;
+  top: -35px;
+  text-align: right;
+  right: 250px;
+}
+
+#mute-button-container * {
+  cursor: pointer;
+}
