@@ -4,7 +4,10 @@ var SuperMario = {
 	
 	gameOverSound: new buzz.sound("sound/game/gameover.wav"),
 	
-	athleticTheme: new buzz.sound("sound/themes/Athletic-Theme.wav"), // Si c'est trop lourd, on peut utiliser la version mp3
+	athleticTheme: new buzz.sound("sound/themes/Athletic-Theme.wav", {
+		autoplay: true,
+		loop: true
+	}), // Si c'est trop lourd, on peut utiliser la version mp3
 //	athleticTheme: new buzz.sound("sound/themes/Athletic-Theme.mp3"), // Sauf que mp3 ne marche pas dans firefox
 
 	savedGames: function() {
@@ -72,8 +75,7 @@ var SuperMario = {
 		var level = new Room(level_path);
 		level.view_w = 592;
 		Game.setRooms([level]);
-		Game.lilo = false;	
-		this.athleticTheme.play();
+		Game.lilo = false;
 		
 		Game.gameEnd = function() {
 		};

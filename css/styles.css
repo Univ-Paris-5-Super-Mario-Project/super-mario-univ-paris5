@@ -20,7 +20,6 @@ button {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   display: block;
-  text-align: center;
   font-family: 'Averia Gruesa Libre', cursive;
 }
 
@@ -51,8 +50,10 @@ canvas {
   background: url('../img/game/backgroundfar.png');
   background-color: #F8E0B3;
   background-repeat: repeat-x;
-  display: inline-block;
-  margin-bottom: 40px;
+  display: block;
+  margin: 20px auto;
+  width: 592px;
+  height: 320px;
 }
 
 .btn {
@@ -76,6 +77,11 @@ canvas {
 #wrapper {
   margin: 0 auto;
   width: 960px;
+}
+
+h1,
+h2 {
+  text-align: center;
 }
 
 header h1 {

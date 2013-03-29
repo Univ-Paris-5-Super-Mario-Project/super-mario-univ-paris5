@@ -1,8 +1,8 @@
 <ul ng-show="hasSavedGames">
-	<h1>Parties sauvegardées</h1>
+	<h2>Parties sauvegardées</h1>
 
 	<li ng-repeat="game in games">
-		<h2><a href="#/game/{{ game.timestamp }}">Partie {{ $index }}</a></h2>
+		<h3><a href="#/game/{{ game.timestamp }}">Partie {{ $index }}</a></h2>
 		<p>Level : {{ game.level }}</p>
 		<p>Timestamp : {{ game.timestamp }}</p>
 		<p>Gold coins : {{ game.coins }}</p>

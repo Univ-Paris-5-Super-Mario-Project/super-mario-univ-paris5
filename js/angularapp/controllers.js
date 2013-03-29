@@ -36,6 +36,7 @@ function SavedGameCtrl($scope, $routeParams, $location) {
 }
 
 function GameOverCtrl($scope) {
+	SuperMario.reset();
 }
 
 function PartiesCtrl($scope) {
