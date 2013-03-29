@@ -427,10 +427,12 @@ Game.addClass({
 		if (this.state == Element.STATE_STAND && this.sprite.tiles != this.sprite.STATUS_BLOC_TAPE) {
 			this.state = Element.STATE_MOVE;
 			this.containerObject = Game.instanceCreate(this.x,this.y-this.pixelsNumToMove,this.container);
+			this.containerObject.setActive(false);
 			this.containerObject.checkForCollisions = false;
 			this.toFirstPlan();
 			var moveDown = function()
 			{
+				this.containerObject.setActive(true);
 				this.containerObject.pickUp();
 				this.sprite.tiles = this.sprite.STATUS_BLOC_TAPE;
 				this.moveToPoint(this.x,this.y+this.pixelsNumToMove,1,function(){
