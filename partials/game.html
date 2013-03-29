@@ -10,7 +10,11 @@
 		</canvas>
 	</div>
 
-	<button ng-click="saveCurrentGame()" class="btn">Sauvegarder la partie</button>
+	<nav>
+		<button ng-click="saveCurrentGame()" class="btn">Sauvegarder la partie</button>
+		<a href="#/game" class="btn">New game</a>
+		<a href="#/parties" class="btn">Saved games</a>
+	</nav>
 </div>
 
 <div ng-show="!gameExists">
