@@ -121,7 +121,9 @@ var SuperMario = {
 		// Mise à Jour Cycle Jour/Nuit
 		var thisSuperMario = this;
 		var dureeCycle = 40; // Duree du cycle jour/nuit (en secondes)
-		setInterval(function(){thisSuperMario.toggleDayTime()},dureeCycle/2*1000);
+		setInterval(function(){
+			thisSuperMario.toggleDayTime()
+		}, dureeCycle / 2 * 1000);
 	},
 	gameOver: function() {
 		this.athleticTheme.stop();

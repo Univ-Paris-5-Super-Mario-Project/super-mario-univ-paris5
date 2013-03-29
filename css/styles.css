@@ -49,18 +49,17 @@ canvas {
   -moz-transition: background-color 2s linear;
   -o-transition: background-color 2s linear;
   -ms-transition: background-color 2s linear;
+
+  background-image: url('../img/game/backgroundfar.png');
+  background-repeat: repeat-x;
 }
 
 .gameBGDay {
-  background: url('../img/game/backgroundfar.png');
   background-color: #F8E0B0;
-  background-repeat: repeat-x;
 }
 
 .gameBGNight {
-  background: url('../img/game/backgroundfar.png');
   background-color: #0064B8;
-  background-repeat: repeat-x;
 }
 
 nav {
