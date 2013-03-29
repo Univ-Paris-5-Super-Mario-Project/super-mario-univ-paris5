@@ -414,11 +414,11 @@ Game.addClass({
 Game.addClass({
 	'name': 'BlocSpecial',
 	'parent':'BlocTape',
-	'abstract': true,
 	'eventCreate': function()
 	{
 		this.callParent('eventCreate');
 		this.sprite.tiles = this.sprite.STATUS_BLOC_SPECIAL;
+		this.container = 'Piece';
 		this.pixelsNumToMove = 2;
 	},
 
@@ -447,26 +447,6 @@ Game.addClass({
 	{
 		if(this.isMouseOver())
 			this.hitBlock();
-	}
-});
-
-Game.addClass({
-	'name': 'BlocSpecialPiece',
-	'parent':'BlocSpecial',
-	'eventCreate': function()
-	{
-		this.callParent('eventCreate');
-		this.container = 'Piece';
-	}
-});
-
-Game.addClass({
-	'name': 'BlocSpecialChampignonRouge',
-	'parent':'BlocSpecial',
-	'eventCreate': function()
-	{
-		this.callParent('eventCreate');
-		this.container = 'ChampignonRouge';
 	}
 });
 
