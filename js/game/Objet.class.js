@@ -1,3 +1,77 @@
+// Utiliser cette injection javascript pour pop un bloc special contenant un champignon rouge:
+//javascript:Game.instanceCreate(150,250,BlocSpecialChampignonRouge);
+Game.addClass({
+	'name': 'ObjetMobile',
+	'abstract': true,
+	'eventCreate': function()
+	{
+		this.sprite = new Sprite(Game.getImage('itemsSprite'));
+		this.sprite.makeTiles(16,16,0);
+		for (var i = 1; i <= 4; i++)
+			this.sprite.setMask(i,{});
+		this.sprite.imagespeed = 0;
+		this.sprite.CHAMPIGNON_ROUGE = [1];
+		this.sprite.CHAMPIGNON_VERT = [2];
+		this.sprite.CHAMPIGNON_FLEUR = [3];
+		this.sprite.CHAMPIGNON_ETOILE = [4];
+		this.hspeed = 6;
+		this.vspeed = 8;
+	},
+	'eventCollisionWith': function(other)
+	{
+		var otherMask = other.sprite.getMask();
+		var thisMask = this.sprite.getMask();
+		if (!other.instanceOf(Monstre) && !other.instanceOf(ObjetMobile) && !other.instanceOf(Piece) && other.y + otherMask.y + otherMask.height >= this.y + thisMask.y && other.y + otherMask.y + otherMask.height <= this.y + thisMask.y + thisMask.height) {
+			if (other.instanceOf(Mario))
+				this.pickUp();
+			else
+				this.hspeed *= -1;
+		}
+	},
+	'popOut': function ()
+	{
+		// Lorsqu'on tape un bloc et que l'objet en sort.
+	},
+	'eventInsideView': function()
+	{
+		this.setActive(true);
+	},
+	'eventOutsideView': function()
+	{
+		this.setActive(false);
+	}
+});
+
+Game.addClass({
+	'name': 'ChampignonRouge',
+	'parent': 'ObjetMobile',
+	'eventCreate': function()
+	{
+		this.callParent('eventCreate');
+		this.sprite.tiles = this.sprite.CHAMPIGNON_ROUGE;
+	},
+	'pickUp': function ()
+	{
+		// Ici faire disparaitre le champignon et faire grandir Mario.
+		this.y-=100;
+	}
+});
+
+Game.addClass({
+	'name': 'ChampignonVert',
+	'parent': 'ObjetMobile',
+	'eventCreate': function()
+	{
+		this.callParent('eventCreate');
+		this.sprite.tiles = this.sprite.CHAMPIGNON_VERT;
+	},
+	'pickUp': function ()
+	{
+		// Ici faire disparaitre le champignon et incrementer le compteur de vies si on en met un.
+		this.y-=100;
+	}
+});
+
 Game.addClass({
 	'name': 'Piece',
 	'eventCreate': function()
