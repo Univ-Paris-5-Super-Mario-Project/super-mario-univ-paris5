@@ -308,6 +308,16 @@ Game.addClass({
 		this.sounds.jump.play();
 		this.vspeed = -20;
 	},
+	
+	becomeBig: function()
+	{
+		// Faire grandir Mario ICI.
+	},
+	
+	oneUp: function()
+	{
+		// Incrementer le nombre de vies de Mario ICI.
+	},
 
 	eventCollisionWith: function(other)
 	{
