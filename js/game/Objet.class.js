@@ -53,7 +53,8 @@ Game.addClass({
 	'pickUp': function ()
 	{
 		// Ici faire disparaitre le champignon et faire grandir Mario.
-		this.y-=100;
+		mainMario.becomeBig();
+		Game.instanceDestroy(this);
 	}
 });
 
@@ -68,7 +69,8 @@ Game.addClass({
 	'pickUp': function ()
 	{
 		// Ici faire disparaitre le champignon et incrementer le compteur de vies si on en met un.
-		this.y-=100;
+		mainMario.oneUp();
+		Game.instanceDestroy(this);
 	}
 });
 
