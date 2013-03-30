@@ -14,7 +14,7 @@ Game.addClass({
 		this.sprite.CHAMPIGNON_VERT = [2];
 		this.sprite.CHAMPIGNON_FLEUR = [3];
 		this.sprite.CHAMPIGNON_ETOILE = [4];
-		this.hspeed = 6;
+		this.hspeed = 3;
 		this.vspeed = 8;
 	},
 	'eventCollisionWith': function(other)
