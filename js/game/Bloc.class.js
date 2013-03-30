@@ -459,6 +459,7 @@ Game.addClass({
 		this.sprite.tiles = this.sprite.STATUS_BLOC_SPECIAL;
 		this.container = 'ChampignonRouge';
 		this.pixelsNumToMove = 2;
+		this.powerUpAppears = new buzz.sound('sound/effects/power-up_appears.wav');
 	},
 	'hitBlock': function()
 	{
@@ -471,6 +472,7 @@ Game.addClass({
 			this.toFirstPlan();
 			var moveDown = function()
 			{
+				this.powerUpAppears.play();
 				this.containerObject.setActive(true);
 				this.containerObject.hspeed = initialContainerObjectSpeed;
 				this.containerObject.popOut();
