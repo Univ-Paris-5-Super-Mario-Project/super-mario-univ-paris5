@@ -95,7 +95,7 @@ var SuperMario = {
 				'itemsSprite': 'img/game/itemsSprite.png',
 				'koopaSprite': 'img/game/koopaSprite.png',
 				'goombaSprite': 'img/game/goombaSprite.png',
-				'carapaceSprite': 'img/game/koopaSprite.png',
+				'carapaceSprite': 'img/game/carapaceSprite.png',
 				'blocSpecialSprite': 'img/game/blocSpecialSprite.png',
 				'coinSprite': 'img/game/coinSprite.png',
 				'blocMapSprite': 'img/game/mapsheet.png',
