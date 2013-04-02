@@ -116,56 +116,59 @@ Game.addClass({
 			this.hspeed = 0;
 		}
 
-		// Mario se releve
-		if (this.isDown() && ! Game.isKeyPressed(Game.KEY_DOWN))
+		if (this.state!=Element.STATE_DEATH)
 		{
-			// S'il etait a gauche
-			if (this.state == Element.STATE_STAND_DOWN_LEFT)
+			// Mario se releve
+			if (this.isDown() && ! Game.isKeyPressed(Game.KEY_DOWN))
 			{
-				this.state = Element.STATE_STAND_LEFT;
+				// S'il etait a gauche
+				if (this.state == Element.STATE_STAND_DOWN_LEFT)
+				{
+					this.state = Element.STATE_STAND_LEFT;
+				}
+				// S'il était à droite
+				else if (this.state == Element.STATE_STAND_DOWN_RIGHT)
+				{
+					this.state = Element.STATE_STAND_RIGHT;
+				}
 			}
-			// S'il était à droite
-			else if (this.state == Element.STATE_STAND_DOWN_RIGHT)
+	
+			var isOnGround = this.isAboveSolid();
+			// Mario se déplace à gauche
+			if (this.hspeed < 0)
 			{
-				this.state = Element.STATE_STAND_RIGHT;
+				if (isOnGround)
+				{
+					this.state = Element.STATE_MOVE_LEFT;
+				}
+				else
+				{
+					this.state = Element.STATE_MOVE_UP_LEFT;
+				}
 			}
-		}
-
-		var isOnGround = this.isAboveSolid();
-		// Mario se déplace à gauche
-		if (this.hspeed < 0)
-		{
-			if (isOnGround)
+			// Mario ne se déplace pas
+			else if (this.hspeed == 0)
 			{
-				this.state = Element.STATE_MOVE_LEFT;
+				if (this.state == Element.STATE_MOVE_LEFT || this.state == Element.STATE_MOVE_UP_LEFT)
+				{
+					this.state = Element.STATE_STAND_LEFT;
+				}
+				else if (this.state == Element.STATE_MOVE_RIGHT || this.state == Element.STATE_MOVE_UP_RIGHT)
+				{
+					this.state = Element.STATE_STAND_RIGHT;
+				}
 			}
-			else
+			// Mario se déplace à droite
+			else // this.hspeed > 0
 			{
-				this.state = Element.STATE_MOVE_UP_LEFT;
-			}
-		}
-		// Mario ne se déplace pas
-		else if (this.hspeed == 0)
-		{
-			if (this.state == Element.STATE_MOVE_LEFT || this.state == Element.STATE_MOVE_UP_LEFT)
-			{
-				this.state = Element.STATE_STAND_LEFT;
-			}
-			else if (this.state == Element.STATE_MOVE_RIGHT || this.state == Element.STATE_MOVE_UP_RIGHT)
-			{
-				this.state = Element.STATE_STAND_RIGHT;
-			}
-		}
-		// Mario se déplace à droite
-		else // this.hspeed > 0
-		{
-			if (isOnGround)
-			{
-				this.state = Element.STATE_MOVE_RIGHT;
-			}
-			else
-			{
-				this.state = Element.STATE_MOVE_UP_RIGHT;
+				if (isOnGround)
+				{
+					this.state = Element.STATE_MOVE_RIGHT;
+				}
+				else
+				{
+					this.state = Element.STATE_MOVE_UP_RIGHT;
+				}
 			}
 		}
 		
@@ -252,55 +255,64 @@ Game.addClass({
 	
 	eventKeyPressed: function(key)
 	{
-		// Tentative d'accroupissage (ou accroupissement) au sol
-		if (key == Game.KEY_DOWN && this.isAboveSolid())
+		if (this.state!=Element.STATE_DEATH)
 		{
-			// On ne marche pas accroupi
-			this.vspeed = 0;
-
-			// Mario regarde ou va à gauche
-			if (this.state == Element.STATE_MOVE_LEFT || this.state == Element.STATE_STAND_LEFT)
+			// Tentative d'accroupissage (ou accroupissement) au sol
+			if (key == Game.KEY_DOWN && this.isAboveSolid())
 			{
-				this.state = Element.STATE_STAND_DOWN_LEFT;
-
-			}
-			// Mario regarde ou va à droite
-			else if (this.state == Element.STATE_MOVE_RIGHT || this.state == Element.STATE_STAND_RIGHT)
-			{
-				this.state = Element.STATE_STAND_DOWN_RIGHT;
+				// On ne marche pas accroupi
+				this.vspeed = 0;
+	
+				// Mario regarde ou va à gauche
+				if (this.state == Element.STATE_MOVE_LEFT || this.state == Element.STATE_STAND_LEFT)
+				{
+					this.state = Element.STATE_STAND_DOWN_LEFT;
+	
+				}
+				// Mario regarde ou va à droite
+				else if (this.state == Element.STATE_MOVE_RIGHT || this.state == Element.STATE_STAND_RIGHT)
+				{
+					this.state = Element.STATE_STAND_DOWN_RIGHT;
+				}
 			}
 		}
 	},
 	
 	eventKeyDown: function(key)
 	{
-		// Saut de Mario avec flèche haut ou espace
-		if (key == Game.KEY_UP || key == Game.KEY_SPACE)
+		if (this.state!=Element.STATE_DEATH)
 		{
-			// uniquement si Mario est au sol	
-			if (this.isAboveSolid() && ! this.isDown()) this.jump();
-		}
-
-		if (key == Game.KEY_LEFT)
-		{
-			this.hspeed = -this.NB_PIX_DEPLACEMENT_HORIZ;
-		}
-
-		if (key == Game.KEY_RIGHT)
-		{
-			this.hspeed = this.NB_PIX_DEPLACEMENT_HORIZ;
+			// Saut de Mario avec flèche haut ou espace
+			if (key == Game.KEY_UP || key == Game.KEY_SPACE)
+			{
+				// uniquement si Mario est au sol	
+				if (this.isAboveSolid() && ! this.isDown()) this.jump();
+			}
+	
+			if (key == Game.KEY_LEFT)
+			{
+				this.hspeed = -this.NB_PIX_DEPLACEMENT_HORIZ;
+			}
+	
+			if (key == Game.KEY_RIGHT)
+			{
+				this.hspeed = this.NB_PIX_DEPLACEMENT_HORIZ;
+			}
 		}
 	},
 	
 	eventKeyUp: function(key)
 	{
-		if (key == Game.KEY_LEFT && ! Game.isKeyPressed(Game.KEY_RIGHT))
+		if (this.state!=Element.STATE_DEATH)
 		{
-			this.hspeed = 0;
-		}		
-		if (key == Game.KEY_RIGHT && ! Game.isKeyPressed(Game.KEY_LEFT))
-		{
-			this.hspeed = 0;
+			if (key == Game.KEY_LEFT && ! Game.isKeyPressed(Game.KEY_RIGHT))
+			{
+				this.hspeed = 0;
+			}		
+			if (key == Game.KEY_RIGHT && ! Game.isKeyPressed(Game.KEY_LEFT))
+			{
+				this.hspeed = 0;
+			}
 		}
 	},
 
@@ -326,12 +338,17 @@ Game.addClass({
 		var otherMask = other.sprite.getMask();
 		var thisMask = this.sprite.getMask();
 
-		if (other.instanceOf(Monstre)) {
-			if(this.y + thisMask.y + thisMask.height >= other.y + otherMask.y && other.y + otherMask.y + otherMask.height != this.y + thisMask.y + thisMask.height)
+		if (other.instanceOf(Monstre))
+		{
+			if(this.y + thisMask.y + thisMask.height >= other.y + otherMask.y && other.y + otherMask.y + otherMask.height != this.y + thisMask.y + thisMask.height && this.state!=Element.STATE_DEATH)
+			{
 				this.jump();
-            else
+			}
+            		else if (this.state!=Element.STATE_DEATH)
+			{
 				this.die();
-        }
+			}
+        	}
 		else if (other.instanceOf(Piece))
 		{
 			this.toFirstPlan();
