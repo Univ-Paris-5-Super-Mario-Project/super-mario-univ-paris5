@@ -2,11 +2,17 @@ var SuperMario = {
 	types: ['Air', 'Terre1', 'Terre2', 'Terre3', 'Terre4', 'Terre5', 'Terre6', 'Terre7', 'Terre8', 'Terre9', 'Terre10', 'Terre11', 'Terre12', 'Terre13', 'Terre14', 'Terre15', 'Terre16', 'Terre17', 'Terre18', 'Terre19', 'Terre20', 'Terre21', 'Terre22', 'Terre23', 'Terre24', 'Piece', 'TuyauV0', 'TuyauV1', 'TuyauV2', 'TuyauV3', 'TuyauV4', 'TuyauV5', 'TuyauH0', 'TuyauH1', 'TuyauH2', 'TuyauH3', 'TuyauH4', 'TuyauH5', 'BlocSpecial', 'BlocSpecialChampignonRouge', 'ChampignonRouge', 'ChampignonVert', 'BlocTourne', 'Mario', 'Koopa', 'Goomba'],
 	// retourne l'object contenant les parties sauvegardées
 	
-	gameOverSound: new buzz.sound("sound/game/gameover.wav"),
-	
-	athleticTheme: new buzz.sound("sound/themes/Athletic-Theme.wav", {
-		loop: true
-	}), // Si c'est trop lourd, on peut utiliser la version mp3
+	sounds: {
+		gameOver: new buzz.sound("sound/game/gameover.wav"),
+		athleticTheme: new buzz.sound("sound/themes/Athletic-Theme.wav", {
+			loop: true
+		}), // Si c'est trop lourd, on peut utiliser la version mp3
+		marioJump: new buzz.sound("sound/effects/jump.wav"),
+		powerUpAppears: new buzz.sound('sound/effects/power-up_appears.wav'),
+		powerUp: new buzz.sound('sound/effects/power-up.wav'),
+		oneUp: new buzz.sound('sound/effects/1-up.wav'),
+		coin: new buzz.sound("sound/effects/coin.wav")
+	},
 //	athleticTheme: new buzz.sound("sound/themes/Athletic-Theme.mp3"), // Sauf que mp3 ne marche pas dans firefox
 
 	toggleDayTime: function () { // Change le moment dans la journée (jour/nuit)
@@ -95,7 +101,7 @@ var SuperMario = {
 				'itemsSprite': 'img/game/itemsSprite.png',
 				'koopaSprite': 'img/game/koopaSprite.png',
 				'goombaSprite': 'img/game/goombaSprite.png',
-				'carapaceSprite': 'img/game/koopaSprite.png',
+				'carapaceSprite': 'img/game/carapaceSprite.png',
 				'blocSpecialSprite': 'img/game/blocSpecialSprite.png',
 				'coinSprite': 'img/game/coinSprite.png',
 				'blocMapSprite': 'img/game/mapsheet.png',
@@ -120,24 +126,25 @@ var SuperMario = {
 		// Mise à Jour Cycle Jour/Nuit
 		var thisSuperMario = this;
 		var dureeCycle = 40; // Duree du cycle jour/nuit (en secondes)
-		setInterval(function(){
+		this.dayCycle = setInterval(function(){
 			thisSuperMario.toggleDayTime()
 		}, dureeCycle / 2 * 1000);
 
-		this.athleticTheme.play();
+		this.sounds.athleticTheme.play();
 	},
-	gameOver: function() {		
+	gameOver: function() {
+		clearInterval(this.dayCycle);
 		this.reset();
 
 		// Musique de fin
-		this.gameOverSound.play();
+		this.sounds.gameOver.play();
 		
 		// redirection vers la page de game over
 		document.location.href = "#/game-over";
 	},
 
 	reset: function() {
-		this.athleticTheme.stop();
+		this.sounds.athleticTheme.stop();
 
 		Game.end = true;
 
