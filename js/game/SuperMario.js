@@ -98,6 +98,7 @@ var SuperMario = {
 			{
 				'marioSpriteLeft': 'img/game/marioSpriteLeft.png',
 				'marioSpriteRight': 'img/game/marioSpriteRight.png',
+				'marioSpriteDeath': 'img/game/marioSpriteDeath.png',
 				'itemsSprite': 'img/game/itemsSprite.png',
 				'koopaSprite': 'img/game/koopaSprite.png',
 				'goombaSprite': 'img/game/goombaSprite.png',
