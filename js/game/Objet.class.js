@@ -49,12 +49,11 @@ Game.addClass({
 	{
 		this.callParent('eventCreate');
 		this.sprite.tiles = this.sprite.CHAMPIGNON_ROUGE;
-		this.powerUp = new buzz.sound('sound/effects/power-up.wav');
 	},
 	'pickUp': function ()
 	{
 		// Ici faire disparaitre le champignon et faire grandir Mario.
-		this.powerUp.play();
+		SuperMario.sounds.powerUp.play();
 		mainMario.becomeBig();
 		Game.instanceDestroy(this);
 	}
@@ -67,12 +66,11 @@ Game.addClass({
 	{
 		this.callParent('eventCreate');
 		this.sprite.tiles = this.sprite.CHAMPIGNON_VERT;
-		this.oneUp = new buzz.sound('sound/effects/1-up.wav');
 	},
 	'pickUp': function ()
 	{
 		// Ici faire disparaitre le champignon et incrementer le compteur de vies si on en met un.
-		this.oneUp.play();
+		SuperMario.sounds.oneUp.play();
 		mainMario.oneUp();
 		Game.instanceDestroy(this);
 	}
@@ -83,7 +81,6 @@ Game.addClass({
 	'eventCreate': function()
 	{
 		this.collideSolid = false;
-		this.coinSound = new buzz.sound("sound/effects/coin.wav");
 		this.sprite = new Sprite(Game.getImage('coinSprite'));
 		this.sprite.makeTiles(16,16,0);
 		for (var i = 1; i <= 4; i++)
@@ -120,7 +117,7 @@ Game.addClass({
 	'pickUp' : function()
 	{
 		Piece.counter++;
-		this.coinSound.play();
+		SuperMario.sounds.coin.play();
 		this.animatePickUp();
 	},
 	'eventInsideView': function()
