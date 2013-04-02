@@ -216,7 +216,7 @@ Game.addClass({
 			Game.room.view_x += this.NB_PIX_DEPLACEMENT_HORIZ;
 		}
 
-		Game.canvas.style.backgroundPosition = -(Game.room.view_x*0.5)+'px bottom';
+		document.getElementById('gameMountains').style.backgroundPosition = -(Game.room.view_x*0.5)+'px bottom';
 		document.getElementById('gameBG').style.backgroundPosition = -(Game.room.view_x*0.2)+'px bottom';
 	},
 
