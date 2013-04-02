@@ -326,9 +326,12 @@ Game.addClass({
 		var otherMask = other.sprite.getMask();
 		var thisMask = this.sprite.getMask();
 
-		if (other.instanceOf(Koopa)) {
-			this.die();
-		}
+		if (other.instanceOf(Monstre)) {
+			if(this.y + thisMask.y + thisMask.height >= other.y + otherMask.y && other.y + otherMask.y + otherMask.height != this.y + thisMask.y + thisMask.height)
+				this.jump();
+            else
+				this.die();
+        }
 		else if (other.instanceOf(Piece))
 		{
 			this.toFirstPlan();
