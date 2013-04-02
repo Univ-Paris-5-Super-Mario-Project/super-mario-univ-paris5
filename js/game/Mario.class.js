@@ -64,7 +64,7 @@ Game.addClass({
 		this.spriteRight.imagespeed       = 0.8;
 		
 		// Sprite for death
-		this.spriteDeath = new Sprite(GamegetImage('marioSpriteDeath'));
+		this.spriteDeath = new Sprite(Game.getImage('marioSpriteDeath'));
 		
 		//Statut de départ de Mario
 		this.state = Element.STATE_STAND_RIGHT;
