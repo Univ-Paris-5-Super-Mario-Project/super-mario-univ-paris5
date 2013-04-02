@@ -63,6 +63,9 @@ Game.addClass({
 		this.spriteRight.MOVE_RIGHT       = [1,2,3];
 		this.spriteRight.imagespeed       = 0.8;
 		
+		// Sprite for death
+		this.spriteDeath = new Sprite(GamegetImage('marioSpriteDeath'));
+		
 		//Statut de départ de Mario
 		this.state = Element.STATE_STAND_RIGHT;
 		this.subState = this.state;
@@ -202,6 +205,10 @@ Game.addClass({
 			case Element.STATE_MOVE_UP_RIGHT :
 				this.sprite = this.spriteRight;
 				this.sprite.tiles=this.spriteRight.MOVE_UP_RIGHT;
+				break;
+			
+			case Element.STATE_DEATH :
+				this.sprite = this.spriteDeath;
 				break;
 		}
 	},
@@ -344,12 +351,23 @@ Game.addClass({
 	{
 		if (this.y > 0)
 		{
-			this.die();
+			if(this.state!=Element.STATE_DEATH)
+			{
+				this.die();
+			}
+			else if(this.vspeed>0)
+			{
+				SuperMario.gameOver();
+			}
 		}
 	},
 	
 	die: function()
 	{
-		SuperMario.gameOver();
+		this.state=Element.STATE_DEATH;
+		this.vspeed=-20;
+		this.hspeed=0;
+		this.gravity=3.5;
+		this.collideSolid=false;
 	}
 });
