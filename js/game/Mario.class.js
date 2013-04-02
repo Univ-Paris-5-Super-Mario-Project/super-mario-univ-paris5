@@ -6,6 +6,8 @@ Game.addClass({
 	name: 'Mario',
 	eventCreate: function()
 	{
+		Game.room.view_y = this.y - Game.room.view_h / 2;
+		Game.room.viewLink = this;
 		window.mainMario = this;
 		// Left sprites
 		this.spriteLeft = new Sprite(Game.getImage('marioSpriteLeft'));
@@ -64,7 +66,8 @@ Game.addClass({
 		this.spriteRight.imagespeed       = 0.8;
 		
 		// Sprite for death
-		this.spriteDeath = new Sprite(Game.getImage('marioSpriteDeath'));
+//		this.spriteDeath = new Sprite(Game.getImage('marioSpriteDeath'));
+		this.spriteDeath = this.spriteLeft;
 		
 		//Statut de départ de Mario
 		this.state = Element.STATE_STAND_RIGHT;
@@ -107,12 +110,12 @@ Game.addClass({
 	eventStartStep: function()
 	{
 		// Empeche Mario de sortir à gauche de l'écran:
-		if (this.x < Game.room.view_x + 15 && this.hspeed < 0) {
+		if (this.x < Game.room.view_x + 3 && this.hspeed < 0) {
 			this.hspeed = 0;
 		}
 
 		// Empeche Mario de sortir à droite de l'écran:
-		if (this.x > Game.room.width - 25 && this.hspeed > 0) {
+		if (this.x > Game.room.width - 18 && this.hspeed > 0) {
 			this.hspeed = 0;
 		}
 
@@ -218,14 +221,6 @@ Game.addClass({
 
 	eventStep: function()
 	{
-		// Pas de défilement quand Mario arrive à la fin
-		if (this.x >= (Game.room.view_x + Game.room.view_w * 3 / 5)
-			&& this.xprev < this.x
-			&& Game.room.view_x + Game.room.view_w + 5 < Game.room.width)
-		{
-			Game.room.view_x += this.NB_PIX_DEPLACEMENT_HORIZ;
-		}
-
 		document.getElementById('gameMountains').style.backgroundPosition = -(Game.room.view_x*0.5)+'px bottom';
 		document.getElementById('gameBG').style.backgroundPosition = -(Game.room.view_x*0.2)+'px bottom';
 	},

@@ -2,7 +2,7 @@
 
 session_start();
 
-$defaultId = '3891fd2b64e8d18d998eb1d6f301ab71';
+$defaultId = '6c81da7ffb2adbbf33cb4a90c8cb6007';
 
 // Si un niveau a été créé, on charge celui ci
 if (isset($_SESSION['levelId']))

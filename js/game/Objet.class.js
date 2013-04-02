@@ -141,17 +141,16 @@ Game.addClass({
 		this.sprite.STATUS_SPINNING = [1,2,3,4];
 		this.sprite.STATUS_NOT_SPINNING = [1];
 		this.sprite.tiles = this.sprite.STATUS_SPINNING;
-		this.x = Game.room.view_x + 10;
-		this.y = 12;
 	},
 
 	eventStep: function()
 	{
 		this.x = Game.room.view_x + 10;
+		this.y = Game.room.view_y + 10;
 		this.drawText({
 			'text': 'x ' + Piece.counter,
 			'x': 30, // Positionne le nombre de pieces en fonction de la position l'image de la piece.
-			'y': this.y - 5
+			'y': 7
 		});
 	}
 });

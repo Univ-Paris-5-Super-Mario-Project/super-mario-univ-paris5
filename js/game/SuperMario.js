@@ -88,7 +88,7 @@ var SuperMario = {
 		level_path = (level_path) ? level_path : 'levelEditor/getLevel.php';
 
 		var level = new Room(level_path);
-		level.view_w = 592;
+		level.setView(592,292);
 		Game.setRooms([level]);
 		Game.lilo = false;
 		
