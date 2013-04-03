@@ -14,7 +14,7 @@ Game.addClass({
 		var thisMask = this.sprite.getMask();
 //		if (other.y<this.y)
 //			document.title = (other.y + otherMask.y) + ' >= ' + (this.y + thisMask.y) + ' ' + (other.y + otherMask.y + otherMask.height) + ' <= ' + (this.y + thisMask.y + thisMask.height);
-		if (!other.instanceOf(Monstre) && !other.instanceOf(Mario) && other.y + otherMask.y + otherMask.height >= this.y + thisMask.y && other.y + otherMask.y + otherMask.height <= this.y + thisMask.y + thisMask.height) {
+		if (!other.instanceOf(Monstre) && !other.instanceOf(Mario) && !other.instanceOf(ObjetMobile) && other.y + otherMask.y + otherMask.height >= this.y + thisMask.y && other.y + otherMask.y + otherMask.height <= this.y + thisMask.y + thisMask.height) {
 			this.hspeed *= -1;
 			if (this.hspeed > 0)
 				this.sprite.tiles = this.sprite.MOVE_RIGHT;
