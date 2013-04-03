@@ -338,7 +338,7 @@ Game.addClass({
 
 		if (other.instanceOf(Monstre))
 		{
-			if(this.y + thisMask.y + thisMask.height >= other.y + otherMask.y && other.y + otherMask.y + otherMask.height != this.y + thisMask.y + thisMask.height && this.state!=Element.STATE_DEATH)
+			if(this.y + thisMask.y + thisMask.height >= other.y + otherMask.y  && this.yprev < this.y && this.state!=Element.STATE_DEATH)
 			{
 				this.jump();
 			}
