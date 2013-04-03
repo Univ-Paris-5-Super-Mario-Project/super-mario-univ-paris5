@@ -4,7 +4,22 @@ var SuperMario = {
 	
 	sounds: {
 		athleticTheme: new buzz.sound("sounds/themes/Athletic-Theme", {
-			formats: ["mp3","wav"],
+			formats: ["mp3","ogg"],
+			loop: true,
+			preload: true
+		}),
+		endingTheme: new buzz.sound("sounds/themes/Ending-Theme", {
+			formats: ["mp3","ogg"],
+			loop: true,
+			preload: true
+		}),
+		overworldTheme: new buzz.sound("sounds/themes/Overworld-Theme", {
+			formats: ["mp3","ogg"],
+			loop: true,
+			preload: true
+		}),
+		titleTheme: new buzz.sound("sounds/themes/Title-Theme", {
+			formats: ["mp3","ogg"],
 			loop: true,
 			preload: true
 		}),
@@ -80,6 +95,13 @@ var SuperMario = {
 
 	start: function(pieces, level_path, mario, view_x) {
 		this.reset();
+		
+		// Musique du niveau aléatoire
+		if (Math.random() < 0.5)
+			this.sounds.overworldTheme.play();
+		else
+			this.sounds.athleticTheme.play();
+		
 		var infoGameBuilderSpan = document.createElement("span");
 		infoGameBuilderSpan.id = "infoGameBuilder";
 		document.getElementsByTagName("body")[0].appendChild(infoGameBuilderSpan);
@@ -133,13 +155,9 @@ var SuperMario = {
 			thisSuperMario.toggleDayTime()
 		}, dureeCycle / 2 * 1000);
 
-		this.sounds.athleticTheme.play();
 		Game.gameEnd = function() {
 			clearInterval(this.dayCycle);
 			thisSuperMario.reset();
-	
-			// Musique de fin
-			thisSuperMario.sounds.gameOver.play();
 			
 			// redirection vers la page de game over
 			document.location.href = "#/game-over";
@@ -149,8 +167,8 @@ var SuperMario = {
 	reset: function() {
 		Game.end = false;
 		
-		// Arrêt de la musique de fond
-		this.sounds.athleticTheme.stop();
+		// Arrêt des musiques
+		buzz.all().stop()
 
 		// Compteur de pièces à 0
 		Piece.counter = 0;

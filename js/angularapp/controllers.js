@@ -1,9 +1,15 @@
 function HomeCtrl($scope) {
   	SuperMario.reset();
+	
+	// Musique des crédits
+	SuperMario.sounds.titleTheme.play();
 }
 
 function CreditsCtrl($scope) {
 	SuperMario.reset();
+	
+	// Musique des crédits
+	SuperMario.sounds.endingTheme.play();
 }
 
 function GameCtrl($scope) {
@@ -37,6 +43,9 @@ function SavedGameCtrl($scope, $routeParams, $location) {
 
 function GameOverCtrl($scope) {
 	SuperMario.reset();
+	
+	// Musique de Game Over
+	SuperMario.sounds.gameOver.play();
 }
 
 function PartiesCtrl($scope) {
