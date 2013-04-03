@@ -3,15 +3,15 @@ var SuperMario = {
 	// retourne l'object contenant les parties sauvegardées
 	
 	sounds: {
-		gameOver: new buzz.sound("sound/game/gameover.wav"),
-		athleticTheme: new buzz.sound("sound/themes/Athletic-Theme.wav", {
+		gameOver: new buzz.sound("sounds/game/gameover.wav"),
+		athleticTheme: new buzz.sound("sounds/themes/Athletic-Theme.wav", {
 			loop: true
 		}), // Si c'est trop lourd, on peut utiliser la version mp3
-		marioJump: new buzz.sound("sound/effects/jump.wav"),
-		powerUpAppears: new buzz.sound('sound/effects/power-up_appears.wav'),
-		powerUp: new buzz.sound('sound/effects/power-up.wav'),
-		oneUp: new buzz.sound('sound/effects/1-up.wav'),
-		coin: new buzz.sound("sound/effects/coin.wav")
+		marioJump: new buzz.sound("sounds/effects/jump.wav"),
+		powerUpAppears: new buzz.sound('sounds/effects/power-up_appears.wav'),
+		powerUp: new buzz.sound('sounds/effects/power-up.wav'),
+		oneUp: new buzz.sound('sounds/effects/1-up.wav'),
+		coin: new buzz.sound("sounds/effects/coin.wav")
 	},
 //	athleticTheme: new buzz.sound("sound/themes/Athletic-Theme.mp3"), // Sauf que mp3 ne marche pas dans firefox
 
