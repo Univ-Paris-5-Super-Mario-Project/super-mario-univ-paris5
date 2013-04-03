@@ -4,39 +4,30 @@ var SuperMario = {
 	
 	sounds: {
 		titleTheme: new buzz.sound("sounds/themes/Title-Theme", {
-			formats: ["mp3","ogg"],
-			loop: true,
-			preload: true
+			loop: true
 		}),
 		athleticTheme: new buzz.sound("sounds/themes/Athletic-Theme", {
-			formats: ["mp3","ogg"],
-			loop: true,
-			preload: true
+			loop: true
 		}),
 		overworldTheme: new buzz.sound("sounds/themes/Overworld-Theme", {
-			formats: ["mp3","ogg"],
-			loop: true,
-			preload: true
+			loop: true
 		}),
 		endingTheme: new buzz.sound("sounds/themes/Ending-Theme", {
-			formats: ["mp3","ogg"],
-			loop: true,
-			preload: true
+			loop: true
 		}),
 		scoresTheme: new buzz.sound("sounds/themes/Scores-Theme", {
-			formats: ["mp3","ogg"],
-			loop: true,
-			preload: true
+			loop: true
 		}),
-		invincibleTheme: new buzz.sound("sounds/themes/Invincible-Theme", {
-			formats: ["mp3","ogg"],
-		}),
-		gameOver: new buzz.sound("sounds/game/gameover.wav"),
-		marioJump: new buzz.sound("sounds/effects/jump.wav"),
-		powerUpAppears: new buzz.sound('sounds/effects/power-up_appears.wav'),
-		powerUp: new buzz.sound('sounds/effects/power-up.wav'),
-		oneUp: new buzz.sound('sounds/effects/1-up.wav'),
-		coin: new buzz.sound("sounds/effects/coin.wav")
+		// invincibleTheme pas encore utilisé
+		/*invincibleTheme: new buzz.sound("sounds/themes/Invincible-Theme", {
+			preload: false
+		}),*/
+		gameOver: new buzz.sound("sounds/game/game-over"),
+		marioJump: new buzz.sound("sounds/effects/jump"),
+		powerUpAppears: new buzz.sound("sounds/effects/power-up_appears"),
+		powerUp: new buzz.sound("sounds/effects/power-up"),
+		oneUp: new buzz.sound("sounds/effects/1-up"),
+		coin: new buzz.sound("sounds/effects/coin")
 	},
 
 	toggleDayTime: function () { // Change le moment dans la journée (jour/nuit)
