@@ -3,10 +3,12 @@ var SuperMario = {
 	// retourne l'object contenant les parties sauvegardées
 	
 	sounds: {
-		gameOver: new buzz.sound("sounds/game/gameover.wav"),
-		athleticTheme: new buzz.sound("sounds/themes/Athletic-Theme.wav", {
-			loop: true
+		athleticTheme: new buzz.sound("sounds/themes/Athletic-Theme", {
+			formats: ["mp3","wav"],
+			loop: true,
+			preload: true
 		}), // Si c'est trop lourd, on peut utiliser la version mp3
+		gameOver: new buzz.sound("sounds/game/gameover.wav"),
 		marioJump: new buzz.sound("sounds/effects/jump.wav"),
 		powerUpAppears: new buzz.sound('sounds/effects/power-up_appears.wav'),
 		powerUp: new buzz.sound('sounds/effects/power-up.wav'),
