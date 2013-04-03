@@ -251,7 +251,6 @@ Game.addClass({
 			this.vspeed = this.MAX_VSPEED;
 		else if (this.vspeed < -this.MAX_VSPEED)
 			this.vspeed = -this.MAX_VSPEED;
-		document.title = this.vspeed;
 	},
 	
 	eventKeyPressed: function(key)
