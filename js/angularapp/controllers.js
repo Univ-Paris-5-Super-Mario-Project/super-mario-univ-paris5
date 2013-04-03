@@ -62,6 +62,9 @@ function PartiesCtrl($scope) {
 
 		$scope.hasSavedGames = ! _.isEmpty($scope.games);
 	}
+	
+	// Musique des scores
+	SuperMario.sounds.scoresTheme.play();
 }
 
 HomeCtrl.$inject = ['$scope'];

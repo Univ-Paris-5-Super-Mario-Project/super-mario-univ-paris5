@@ -3,12 +3,12 @@ var SuperMario = {
 	// retourne l'object contenant les parties sauvegardées
 	
 	sounds: {
-		athleticTheme: new buzz.sound("sounds/themes/Athletic-Theme", {
+		titleTheme: new buzz.sound("sounds/themes/Title-Theme", {
 			formats: ["mp3","ogg"],
 			loop: true,
 			preload: true
 		}),
-		endingTheme: new buzz.sound("sounds/themes/Ending-Theme", {
+		athleticTheme: new buzz.sound("sounds/themes/Athletic-Theme", {
 			formats: ["mp3","ogg"],
 			loop: true,
 			preload: true
@@ -18,10 +18,18 @@ var SuperMario = {
 			loop: true,
 			preload: true
 		}),
-		titleTheme: new buzz.sound("sounds/themes/Title-Theme", {
+		endingTheme: new buzz.sound("sounds/themes/Ending-Theme", {
 			formats: ["mp3","ogg"],
 			loop: true,
 			preload: true
+		}),
+		scoresTheme: new buzz.sound("sounds/themes/Scores-Theme", {
+			formats: ["mp3","ogg"],
+			loop: true,
+			preload: true
+		}),
+		invincibleTheme: new buzz.sound("sounds/themes/Invincible-Theme", {
+			formats: ["mp3","ogg"],
 		}),
 		gameOver: new buzz.sound("sounds/game/gameover.wav"),
 		marioJump: new buzz.sound("sounds/effects/jump.wav"),
