@@ -408,6 +408,11 @@ Game.addClass({
 	'eventOutsideView': function()
 	{
 		this.setActive(false);
+	},
+	'eventClick': function()
+	{
+//		if(this.isMouseOver())
+//			this.hitBlock();
 	}
 });
 
@@ -442,11 +447,6 @@ Game.addClass({
 			};
 			this.moveToPoint(this.x,this.y-this.pixelsNumToMove,1,moveDown);
 		}
-	},
-	'eventClick': function()
-	{
-		if(this.isMouseOver())
-			this.hitBlock();
 	}
 });
 
@@ -483,11 +483,6 @@ Game.addClass({
 			};
 			this.moveToPoint(this.x,this.y-this.pixelsNumToMove,1,moveDown);
 		}
-	},
-	'eventClick': function()
-	{
-		if(this.isMouseOver())
-			this.hitBlock();
 	}
 });
 
@@ -514,10 +509,5 @@ Game.addClass({
 			};
 			setTimeout(stopSpinning,4000);
 		}
-	},
-	'eventClick': function()
-	{
-		if(this.isMouseOver())
-			this.hitBlock();
 	}
 });
