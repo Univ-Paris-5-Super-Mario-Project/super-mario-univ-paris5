@@ -7,7 +7,7 @@ var SuperMario = {
 			formats: ["mp3","wav"],
 			loop: true,
 			preload: true
-		}), // Si c'est trop lourd, on peut utiliser la version mp3
+		}),
 		gameOver: new buzz.sound("sounds/game/gameover.wav"),
 		marioJump: new buzz.sound("sounds/effects/jump.wav"),
 		powerUpAppears: new buzz.sound('sounds/effects/power-up_appears.wav'),
@@ -15,7 +15,6 @@ var SuperMario = {
 		oneUp: new buzz.sound('sounds/effects/1-up.wav'),
 		coin: new buzz.sound("sounds/effects/coin.wav")
 	},
-//	athleticTheme: new buzz.sound("sound/themes/Athletic-Theme.mp3"), // Sauf que mp3 ne marche pas dans firefox
 
 	toggleDayTime: function () { // Change le moment dans la journée (jour/nuit)
 		// Pour régler la vitesse de transition entre le jour et la nuit, aller dans style.css
