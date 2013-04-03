@@ -67,10 +67,6 @@ Game.addClass({
 		
 		// Sprite for death
 		this.spriteDeath = new Sprite(Game.getImage('marioSpriteDeath'));
-		this.spriteDeath.makeTiles(16,16,0);
-		this.spriteDeath.setMask(1,{});
-		this.spriteDeath.DIE = [1,1];
-		this.spriteDeath.tiles = this.spriteDeath.DIE;
 		
 		//Statut de départ de Mario
 		this.state = Element.STATE_STAND_RIGHT;
@@ -383,6 +379,7 @@ Game.addClass({
 	die: function()
 	{
 		this.state=Element.STATE_DEATH;
+		this.toFirstPlan();
 		this.vspeed=-20;
 		this.hspeed=0;
 		this.gravity=3.5;
