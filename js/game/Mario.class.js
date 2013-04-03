@@ -78,6 +78,7 @@ Game.addClass({
 		this.NB_PIX_DEPLACEMENT_HORIZ = 6;
 		this.NB_PIX_DEPLACEMENT_VERTIC = 6;
 		this.NB_PIX_SAUT = 16;
+		this.MAX_VSPEED = 20;
 		
 		//Définition de la gravité de l'élément
 		this.gravity = 0;
@@ -96,9 +97,10 @@ Game.addClass({
 	// Retourne true si la tête de Mario touche un Element solide, false autrement
 	headTouchSolid: function()
 	{
-		var mask = this.sprite.getMask();
+	// Function Depreciated use "if (this.y + thisMask.y <= other.y + otherMask.y + otherMask.height  && this.yprev > this.y)" instead.
+	/*	var mask = this.sprite.getMask();
 		return true !== Game.placeIsFree(this.x + mask.x, this.y + mask.y - 1, mask.width, 1);
-	},
+	*/},
 
 	isDown: function()
 	{
@@ -245,6 +247,11 @@ Game.addClass({
 				this.gravity = 3.5;
 			}
 		}
+		if (this.vspeed > this.MAX_VSPEED) // Seuils de vspeed
+			this.vspeed = this.MAX_VSPEED;
+		else if (this.vspeed < -this.MAX_VSPEED)
+			this.vspeed = -this.MAX_VSPEED;
+		document.title = this.vspeed;
 	},
 	
 	eventKeyPressed: function(key)
@@ -350,13 +357,14 @@ Game.addClass({
 		}
 		else if (other.instanceOf(BlocTape))
 		{
-			if (this.headTouchSolid())
+			if (this.y + thisMask.y <= other.y + otherMask.y + otherMask.height  && this.yprev > this.y)
 			{
-				other.hitBlock();
-
 				// pour éviter que Mario ne continue de monter
 				// après avoir touché le bloc avec sa tête
+				if (!other.instanceOf(BlocTourne) || other.solid)
 				this.vspeed = 0;
+				
+				other.hitBlock();
 			}
 		}
 	},
