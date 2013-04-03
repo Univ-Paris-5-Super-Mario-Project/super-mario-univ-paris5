@@ -79,6 +79,9 @@ var SuperMario = {
 
 	start: function(pieces, level_path, mario, view_x) {
 		this.reset();
+		var infoGameBuilderSpan = document.createElement("span");
+		infoGameBuilderSpan.id = "infoGameBuilder";
+		document.getElementsByTagName("body")[0].appendChild(infoGameBuilderSpan);
 		Game.infoGameBuilder = false;
 
 		// si on ne charge pas de parties, on initialise à 0, sinon on récupère le nombre de pièces désiré
@@ -92,8 +95,6 @@ var SuperMario = {
 		Game.setRooms([level]);
 		Game.lilo = false;
 		
-		Game.gameEnd = function() {
-		};
 		Game.loadAndRun('jeu',
 			{
 				'marioSpriteLeft': 'img/game/marioSpriteLeft.png',
@@ -132,31 +133,25 @@ var SuperMario = {
 		}, dureeCycle / 2 * 1000);
 
 		this.sounds.athleticTheme.play();
-	},
-	gameOver: function() {
-		clearInterval(this.dayCycle);
-		this.reset();
-
-		// Musique de fin
-		this.sounds.gameOver.play();
-		
-		// redirection vers la page de game over
-		document.location.href = "#/game-over";
+		Game.gameEnd = function() {
+			clearInterval(this.dayCycle);
+			thisSuperMario.reset();
+	
+			// Musique de fin
+			thisSuperMario.sounds.gameOver.play();
+			
+			// redirection vers la page de game over
+			document.location.href = "#/game-over";
+		};
 	},
 
 	reset: function() {
+		Game.end = false;
+		
+		// Arrêt de la musique de fond
 		this.sounds.athleticTheme.stop();
-
-		Game.end = true;
 
 		// Compteur de pièces à 0
 		Piece.counter = 0;
-
-		// On supprime les anciennes instances
-		// le GC du navigateur s'occupera de les retirer de la mémoire
-		Game.elements=[];
-		Game.activeElements=[];
-		Game.tilesAndElements=[];
-		Game.rooms=[];
 	}
 };

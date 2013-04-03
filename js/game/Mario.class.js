@@ -375,7 +375,7 @@ Game.addClass({
 			}
 			else if(this.vspeed>0)
 			{
-				SuperMario.gameOver();
+				Game.end = true; // Lorsque cette ligne est exécutée, JSGlib appelle la fonction gameEnd() (cf. SuperMario.js)
 			}
 		}
 	},
