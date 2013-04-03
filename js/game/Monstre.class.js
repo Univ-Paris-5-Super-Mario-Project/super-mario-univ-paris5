@@ -77,9 +77,21 @@ Game.addClass({
         this.sprite.MOVE_LEFT =[12,11,10,9];
         this.sprite.MOVE_RIGHT =[10,11,12,9];
     },
-    'eventStep': function()
+    'eventAlarm1': function()
+    {   
+        if(this.sprite.tiles == this.sprite.STAND_CARAP){
+            this.sprite.imagespeed = 0.2;
+            this.hspeed = 0;
+            this.sprite.tiles = this.sprite.WAKE_CARAP;
+            this.setAlarm(2,2);
+        }
+        
+    },
+    'eventAlarm2': function()
     {
-       
+        this.becomeKoopa();
+        this.sprite.tiles = this.sprite.MOVE_LEFT;
+        this.hspeed = -2;
     },
     'eventCollisionWith': function(other)
     {
@@ -88,28 +100,34 @@ Game.addClass({
         this.callParent('eventCollisionWith',[other]); //rajouter le son correspondant à la transformation en carapace
         
         if(other.instanceOf(Mario)){
-            if(/*other.y + otherMask.y + otherMask.height >= this.y + thisMask.y &&*/ other.yprev < other.y){
-//                alert((other.y + otherMask.y + otherMask.height) + ' ' + (this.y + thisMask.y));
+            if(/*other.y + otherMask.y + otherMask.height >= this.y + thisMask.y &&*/ other.yprev < other.y){ //vérifie que mario est au dessus du koopa
                 if(this.sprite.tiles == this.sprite.STAND_CARAP){
-                    
-                    this.becomeCarapace();
-//                    alert(this.sprite.MOVE_RIGHT);
+                    this.becomeCarapace(); // fonction changeant les sprites de mouvement de koopa -> carapace
                     if(other.sprite.tiles == other.spriteLeft.STAND_LEFT || other.sprite.tiles == other.spriteLeft.MOVE_UP_LEFT){
                         this.sprite.tiles = this.sprite.MOVE_LEFT;
-                        this.hspeed = -4;
+                        this.sprite.imagespeed = 0.8;
+                        this.hspeed = -8;
                     }
                     else if(other.sprite.tiles == other.spriteRight.STAND_RIGHT || other.sprite.tiles == other.spriteRight.MOVE_UP_RIGHT){                   
                         this.sprite.tiles = this.sprite.MOVE_RIGHT;
-                        this.hspeed= 4;
+                        this.sprite.imagespeed = 0.8;
+                        this.hspeed= 8;
                     }
                 }
                 else if(this.isCarapace && (this.sprite.tiles == this.sprite.MOVE_LEFT || this.sprite.tiles == this.sprite.MOVE_RIGHT)){               
+                    this.hspeed = 0; 
+                    this.sprite.tiles = this.sprite.STAND_CARAP; //si l'on saute sur la carapace alors qu'elle est en mouvement, elle s'arrete
+                    this.setAlarm(1,4); //timer avant le retour carapace -> koopa
+                    
+                }
+                else if(this.sprite.tiles == this.sprite.WAKE_CARAP){               
                     Game.instanceDestroy(this);  
                     
                 }
                 else{
                     this.hspeed = 0;
                     this.sprite.tiles = this.sprite.STAND_CARAP;
+                    this.setAlarm(1,4);//timer avant le retour carapace -> koopa
                 
                 }
             }
