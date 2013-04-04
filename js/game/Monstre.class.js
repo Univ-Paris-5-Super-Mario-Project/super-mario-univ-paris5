@@ -3,7 +3,7 @@ Game.addClass({
 	'abstract': true,
 	'eventCreate': function()
 	{
-		this.state = Element.STATE_MOVE_LEFT;
+		this.state = Element.STATE_MOVE_LEFT; //les monstres apparaissent toujours vers la gauche
 //		this.gravity = 0.2;
 		this.hspeed = -2;
 		this.vspeed = 8;
@@ -11,19 +11,17 @@ Game.addClass({
 	'eventCollisionWith': function(other)
 	{
 		var otherMask = other.sprite.getMask();
-		var thisMask = this.sprite.getMask();
-//		if (other.y<this.y)
-//			document.title = (other.y + otherMask.y) + ' >= ' + (this.y + thisMask.y) + ' ' + (other.y + otherMask.y + otherMask.height) + ' <= ' + (this.y + thisMask.y + thisMask.height);
+		var thisMask = this.sprite.getMask();  //le if teste si le bas du bloc est compris entre le haut de ka tête et le pieds du monstre
 		if (!other.instanceOf(Monstre) && !other.instanceOf(Mario) && !other.instanceOf(ObjetMobile) && other.y + otherMask.y + otherMask.height >= this.y + thisMask.y && other.y + otherMask.y + otherMask.height <= this.y + thisMask.y + thisMask.height) {
-			this.bumpSound();
-            this.hspeed *= -1;
+			this.bumpSound();   //rebond pour les carapace, rien pour le reste
+            this.hspeed *= -1; //inverse la direction du monstre et ses tiles
 			if (this.hspeed > 0)
 				this.sprite.tiles = this.sprite.MOVE_RIGHT;
 			else
 				this.sprite.tiles = this.sprite.MOVE_LEFT;
 		}
 	},
-     'bumpSound': function(){
+     'bumpSound': function(){ //fonction vide parce qu'elle n'est utilisée que pour les koopas en mode carapace
     },
 	'eventInsideView': function()
 	{
@@ -63,28 +61,21 @@ Game.addClass({
 		this.sprite.imagespeed = 0.2;
 		this.sprite.tiles = this.sprite.MOVE_LEFT;
         this.isCarapace = false;
-        
-//		this.gravity = 0.2;
-//		this.hspeed = 2;
-//		this.vspeed = 8;
-        //this.carapSprite = new Sprite(Game.getImage('carapaceSprite'));
-        //this.carapSprite.makeTiles(16,16,0);
-       // for (var i = 1; i <= 6; i++)
-       //     this.carapSprite.setMask(i,{x:4,width:8});
+
  	},
-    'becomeKoopa': function()
+    'becomeKoopa': function() ////fonction changeant les sprites de mouvement de la carapace -> koopa
     {
         this.isCarapace = false;
         this.sprite.MOVE_RIGHT = [6,5];
         this.sprite.MOVE_LEFT = [1,2];
     },
-    'becomeCarapace': function()
+    'becomeCarapace': function() //fonction changeant les sprites de mouvement du koopa -> carapace
     {
         this.isCarapace = true;
         this.sprite.MOVE_LEFT =[12,11,10,9];
         this.sprite.MOVE_RIGHT =[10,11,12,9];
     },
-    'eventAlarm1': function()
+    'eventAlarm1': function() //timer responsable du reveil de la carapace
     {   
         if(this.sprite.tiles == this.sprite.STAND_CARAP){
             this.sprite.imagespeed = 0.2;
@@ -94,13 +85,13 @@ Game.addClass({
         }
         
     },
-    'eventAlarm2': function()
+    'eventAlarm2': function()  //timer responsable du retour carapace -> koopa
     {
         this.becomeKoopa();
         this.sprite.tiles = this.sprite.MOVE_LEFT;
         this.hspeed = -2;
     },
-     'bumpSound': function(){
+     'bumpSound': function(){ //fonction responsable du son de rebond des carapaces contre les blocs
         if(this.isCarapace)
             SuperMario.sounds.bump.play();
     },
@@ -108,20 +99,20 @@ Game.addClass({
     {
         var otherMask = other.sprite.getMask();
         var thisMask = this.sprite.getMask();
-        this.callParent('eventCollisionWith',[other]); //rajouter le son correspondant à la transformation en carapace
+        this.callParent('eventCollisionWith',[other]);
         
         if(other.instanceOf(Mario)){
-            if(/*other.y + otherMask.y + otherMask.height >= this.y + thisMask.y &&*/ other.yprev < other.y){ //vérifie que mario est au dessus du koopa
+            if(other.yprev < other.y){ //vérifie que mario est en descente au dessus du koopa, la collision s'effectuant au contact du sprite et non du masque
                 if(this.sprite.tiles == this.sprite.STAND_CARAP){
                     this.becomeCarapace(); // fonction changeant les sprites de mouvement de koopa -> carapace
                     if(other.sprite.tiles == other.spriteLeft.STAND_LEFT || other.sprite.tiles == other.spriteLeft.MOVE_UP_LEFT){
                         this.sprite.tiles = this.sprite.MOVE_LEFT;
                         this.sprite.imagespeed = 0.8;
-                        this.hspeed = -8;
-                    }
+                        this.hspeed = -8;       //pour ce if et ce else :
+                    }                           //si l'on saute sur la carapace alors qu'elle est immobile elle partira dans la direction d'arrivée de mario
                     else if(other.sprite.tiles == other.spriteRight.STAND_RIGHT || other.sprite.tiles == other.spriteRight.MOVE_UP_RIGHT){                   
-                        this.sprite.tiles = this.sprite.MOVE_RIGHT;
-                        this.sprite.imagespeed = 0.8;
+                        this.sprite.tiles = this.sprite.MOVE_RIGHT;                                                
+                        this.sprite.imagespeed = 0.8;               // 
                         this.hspeed= 8;
                     }
                 }
@@ -131,14 +122,14 @@ Game.addClass({
                     this.setAlarm(1,4); //timer avant le retour carapace -> koopa
                     
                 }
-                else if(this.sprite.tiles == this.sprite.WAKE_CARAP){               
+                else if(this.sprite.tiles == this.sprite.WAKE_CARAP){  //si l'on saute sur la carapace alors qu'elle est en réveil, elle meurt                
                     this.die();
                     
                 }
-                else{
+                else{                                                   //le koopa devient une carapace immobile si on saute dessus
                     this.hspeed = 0;
                     this.sprite.tiles = this.sprite.STAND_CARAP;
-                    this.setAlarm(1,4);//timer avant le retour carapace -> koopa
+                    this.setAlarm(1,4);//timer avant le reveil de la carapace puis retour carapace -> koopa
                 
                 }
             }
@@ -166,8 +157,6 @@ Game.addClass({
 		this.sprite.MOVE_RIGHT = [4,3];
 		this.sprite.imagespeed = 0.2;
 		this.sprite.tiles = this.sprite.MOVE_LEFT;
-//		this.gravity = 0.2;
-//		this.hspeed = 2;
-//		this.vspeed = 8;
+
 	}
 });

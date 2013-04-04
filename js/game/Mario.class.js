@@ -361,12 +361,13 @@ Game.addClass({
 		{
 			if (this.isInvincible)
 			{
+                SuperMario.sounds.stomp.play();
 				other.die();
 			}
 			// Si Mario n'est pas mort et est au dessus de other alors mario saute
-			else if(this.y + thisMask.y + thisMask.height >= other.y + otherMask.y  && this.yprev < this.y && this.state!=Element.STATE_DEATH)
+			else if(this.yprev < this.y && this.state!=Element.STATE_DEATH)
 			{
-				this.jump(false);
+                this.jump(false);
 			}
             else if (this.state!=Element.STATE_DEATH)
 			{
