@@ -39,7 +39,7 @@ Game.addClass({
 	},
 	'eventInsideView': function()
 	{
-		this.setActive(true); // Lorsque l'objet sort de la view, on le désactive.
+		this.setActive(true); // Lorsque l'objet rentre dans la view, on l'active.
 	},
 	'eventOutsideView': function()
 	{
@@ -101,7 +101,8 @@ Game.addClass({
 	'name': 'Piece',
 	'eventCreate': function()
 	{
-		this.collideSolid = false;
+		this.collideSolid = false; // Pas de collisions avec les objets "solides".
+		// Définition du sprite, des masques, des tiles.
 		this.sprite = new Sprite(Game.getImage('coinSprite'));
 		this.sprite.makeTiles(16,16,0);
 		for (var i = 1; i <= 4; i++)
@@ -111,57 +112,55 @@ Game.addClass({
 		this.sprite.STATUS_NOT_SPINNING = [1];
 		this.sprite.tiles = this.sprite.STATUS_SPINNING;
 		this.state = Element.STATE_STAND;
-		this.pixelsNumToMove = 24;
+		this.pixelsNumToMove = 24; // Pixels pour le déplacement vertical de la pièce dans l'animation.
 	},
-
 	'animatePickUp': function()
 	{
-		if (this.state == Element.STATE_STAND) {
-			this.checkForCollisions = false;
-			this.state = Element.STATE_MOVE;
-			var moveUp = function()
+		if (this.state == Element.STATE_STAND) { // Si la pièce n'est pas en mouvement.
+			this.checkForCollisions = false; // On ne peut pas la ramasser plus d'une fois.
+			this.state = Element.STATE_MOVE; // On met son statut à "en mouvement".
+			var moveUp = function() // Fonction de callback lorsque la pièce a été déplacée au point souhaité.
 			{
-				this.vspeed = 0;
-				this.sprite.tiles = this.sprite.STATUS_NOT_SPINNING;
+				this.vspeed = 0; // Sa vitesse devient nulle.
+				this.sprite.tiles = this.sprite.STATUS_NOT_SPINNING; // On arrête de la faire tourner.
 				var piece = this;
 				setTimeout(
 					function()
 					{
-						Game.instanceDestroy(piece);
+						Game.instanceDestroy(piece); // On détruit l'instance la pièce.
 					},300
 				);
 			};
-			this.moveToPoint(this.x,this.y-this.pixelsNumToMove,4,moveUp);
+			this.moveToPoint(this.x,this.y-this.pixelsNumToMove,4,moveUp); // On déplace la pièce vers le haut.
 		}
 	},
-
 	'pickUp' : function()
 	{
-		SuperMario.coinsCounter++;
-		// Si le joueur a 100 pièces, on incrémente de 1 le nombre de vies.
+		SuperMario.coinsCounter++; // On incrémente le compteur de pièces.
+		// Pour chaque paquet de 100 pièces ramssées, on incrémente le compteur de vies de 1, et on retranche ces paquets de pièces.
 		if (SuperMario.coinsCounter >= 100) {
 			var nombreDeCentainesDePieces = SuperMario.coinsCounter % 100;
 			SuperMario.livesCounter += nombreDeCentainesDePieces;
 			SuperMario.coinsCounter -= nombreDeCentainesDePieces * 100;
 		}
-		SuperMario.sounds.coin.play();
-		this.animatePickUp();
+		SuperMario.sounds.coin.play(); // On joue la musique de pièce ramassée.
+		this.animatePickUp(); // On lance l'animation.
 	},
 	'eventInsideView': function()
 	{
-		this.setActive(true);
+		this.setActive(true); // Lorsque la pièce rentre dans la view, on l'active.
 	},
 	'eventOutsideView': function()
 	{
-		this.setActive(false);
+		this.setActive(false); // Lorsque la pièce sort de la view, on la désactive.
 	}
 });
 
 Game.addClass({
 	'name': 'PieceController',
-
-	eventCreate: function()
+	'eventCreate': function()
 	{
+		// Création du sprite de la pièce.
 		this.sprite = new Sprite(Game.getImage('coinSprite'));
 		this.sprite.makeTiles(16,16,0);
 		this.sprite.imagespeed = 0.2;
@@ -169,14 +168,16 @@ Game.addClass({
 		this.sprite.STATUS_NOT_SPINNING = [1];
 		this.sprite.tiles = this.sprite.STATUS_SPINNING;
 	},
-
-	eventStep: function()
+	'eventStep': function()
 	{
+		// On place le sprite de la pièce en haut à gauche.
 		this.x = Game.room.view_x + 10;
 		this.y = Game.room.view_y + 10;
+		
+		// On affiche sous forme de texte le nombre de pièces.
 		this.drawText({
 			'text': 'x ' + SuperMario.coinsCounter,
-			'x': 30, // Positionne le nombre de pieces en fonction de la position l'image de la piece.
+			'x': 30,
 			'y': 7
 		});
 	}
@@ -184,22 +185,24 @@ Game.addClass({
 
 Game.addClass({
 	'name': 'LifeController',
-
-	eventCreate: function()
+	'eventCreate': function()
 	{
+		// Création du sprite de la tête de Mario.
 		this.sprite = new Sprite(Game.getImage('editorSprite'));
 		this.sprite.makeTiles(16,16,0);
 		this.sprite.imagespeed = 0;
 		this.sprite.tiles = [44];
 	},
-
-	eventStep: function()
+	'eventStep': function()
 	{
+		// On place le sprite de la tête de Mario en haut à gauche.
 		this.x = Game.room.view_x + 80;
 		this.y = Game.room.view_y + 10;
+		
+		// On affiche sous forme de texte le nombre de vies.
 		this.drawText({
-			'text': 'x ' + ((SuperMario.livesCounter<0)?0:SuperMario.livesCounter),
-			'x': 100, // Positionne le nombre de pieces en fonction de la position l'image de la piece.
+			'text': 'x ' + ((SuperMario.livesCounter<0)?0:SuperMario.livesCounter), // Si le nombre de vies est moins que 0, on le laisse à 0.
+			'x': 100,
 			'y': 7
 		});
 	}
