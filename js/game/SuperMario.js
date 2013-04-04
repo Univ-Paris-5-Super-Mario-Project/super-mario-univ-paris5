@@ -164,7 +164,6 @@ var SuperMario = {
 		}, dureeCycle / 2 * 1000);
 
 		Game.gameEnd = function() {
-			clearInterval(this.dayCycle);
 			thisSuperMario.reset();
 			
 			// redirection vers la page de game over
@@ -173,6 +172,7 @@ var SuperMario = {
 	},
 
 	reset: function() {
+		clearInterval(this.dayCycle);
 		Game.end = false;
 		
 		// Arrêt des musiques
