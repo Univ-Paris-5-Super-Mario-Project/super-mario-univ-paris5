@@ -6,8 +6,8 @@ Game.addClass({
 	name: 'Mario',
 	eventCreate: function()
 	{
-		Game.room.view_y = this.y - Game.room.view_h / 2;
-		Game.room.viewLink = this;
+		Game.room.view_y = this.y - Game.room.view_h / 2; // Par défaut on met la view avec Mario au centre selon l'axe des ordonnées.
+		Game.room.viewLink = this; // La view suit Mario et fait défiler le niveau en conséquence de ses déplacements.
 		window.mainMario = this;
 		// Left sprites
 		this.spriteLeft = new Sprite(Game.getImage('marioSpriteLeft'));
@@ -90,9 +90,8 @@ Game.addClass({
 		this.isInvincible = false;
 	},
 	
-	// A la fin de l'effet de l'étoile, on remet Mario vulnérable.
 	eventAlarm1: function () {
-		this.isInvincible = false;
+		this.isInvincible = false; // A la fin de l'effet de l'étoile, on remet Mario à l'état vulnérable.
 		// Stop musique étoile, relance musique niveau
 		SuperMario.sounds.invincibleTheme.stop();
 		SuperMario.sounds.levelTheme.togglePlay();
@@ -105,14 +104,6 @@ Game.addClass({
 		return true !== Game.placeIsFree(this.x + mask.x, this.y + mask.y + mask.height, mask.width, 1);
 	},
 	
-	// Retourne true si la tête de Mario touche un Element solide, false autrement
-	headTouchSolid: function()
-	{
-	// Function Depreciated use "if (this.y + thisMask.y <= other.y + otherMask.y + otherMask.height  && this.yprev > this.y)" instead.
-	/*	var mask = this.sprite.getMask();
-		return true !== Game.placeIsFree(this.x + mask.x, this.y + mask.y - 1, mask.width, 1);
-	*/},
-
 	isDown: function()
 	{
 		return this.state == Element.STATE_STAND_DOWN_LEFT || this.state == Element.STATE_STAND_DOWN_RIGHT;
@@ -381,14 +372,12 @@ Game.addClass({
 		}
 		else if (other.instanceOf(BlocTape))
 		{
-			// Si Mario tape un bloc solide par dessous en montant
+			// Si le haut du masque de Mario et au dessus du bas du masque du bloc et que Mario a un mouvements vers le haut.
 			if (this.y + thisMask.y <= other.y + otherMask.y + otherMask.height  && this.yprev > this.y)
 			{
-				// pour éviter que Mario ne continue de monter après avoir touché le bloc avec sa tête
-				if (!other.instanceOf(BlocTourne) || other.solid)
-				this.vspeed = 0;
-				
-				other.hitBlock();
+				if (!other.instanceOf(BlocTourne) || other.solid) // Si le bloc n'est pas un bloc qui tourne.
+					this.vspeed = 0; // On met sa vitesse verticale à 0 pour éviter que Mario ne continue de monter après avoir touché le bloc avec sa tête.
+				other.hitBlock(); // Mario frappe le bloc.
 			}
 		}
 	},
@@ -401,28 +390,22 @@ Game.addClass({
 			{
 				this.die();
 			}
-			else if(this.vspeed>0)
-			{
-				// Lorsque la musique de perte de vie se termine, on lance la fonction callback suivante.
-				SuperMario.sounds.lostALife.bind('ended',
-					function()
-					{
-						if (SuperMario.livesCounter < 0)
-								Game.end = true; // Lorsque cette ligne est exécutée, JSGlib appelle la fonction gameEnd() (cf. SuperMario.js)
-						else
-							Game.restartRoom();
-							SuperMario.sounds.levelTheme.play();
-					}
-				);
-			}
 		}
 	},
 	
 	die: function()
 	{
-		SuperMario.sounds.levelTheme.togglePlay();
-		SuperMario.sounds.lostALife.play();
-		SuperMario.livesCounter--;
+		SuperMario.sounds.levelTheme.pause(); // On met en pause la musique du niveau.
+		SuperMario.sounds.lostALife.play(); // Musique de perte de vie.
+		// Lorsque la musique de perte de vie se termine, on lance la fonction soit qui recharge le niveau, soit qui créé le game-over.
+		setTimeout(function()
+		{
+			if (SuperMario.livesCounter < 0) // S'il ne reste plus de vies, on lance le game-over.
+				Game.end = true; // Lorsque cette ligne est exécutée, JSGlib appelle la fonction gameEnd() (cf. SuperMario.js)
+			else // Sinon on recharge le niveau.
+				Game.restartRoom();
+		},3000);
+		SuperMario.livesCounter--; // On décrémente le nombre de vies.
 		this.state=Element.STATE_DEATH;
 		this.toFirstPlan();
 		this.vspeed=-20;

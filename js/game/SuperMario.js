@@ -110,6 +110,7 @@ var SuperMario = {
 	},
 
 	start: function(pieces, vies, level_path, mario, view_x) {
+		var thisSuperMario = this;
 		this.reset();
 		
 		// Musique du niveau aléatoire
@@ -117,7 +118,6 @@ var SuperMario = {
 			this.sounds.levelTheme = this.sounds.overworldTheme;
 		else
 			this.sounds.levelTheme = this.sounds.athleticTheme;
-		this.sounds.levelTheme.play();
 		
 		var infoGameBuilderSpan = document.createElement("span");
 		infoGameBuilderSpan.id = "infoGameBuilder";
@@ -134,6 +134,9 @@ var SuperMario = {
 		level_path = (level_path) ? level_path : 'levelEditor/getLevel.php';
 
 		var level = new Room(level_path);
+		level.eventStart = function () {
+			thisSuperMario.sounds.levelTheme.play(); // Lance la musique lorsque le niveau est chargé.
+		};
 		level.setView(592,292);
 		Game.setRooms([level]);
 		Game.lilo = false;
@@ -169,7 +172,6 @@ var SuperMario = {
 		}
 		
 		// Mise à Jour Cycle Jour/Nuit
-		var thisSuperMario = this;
 		var dureeCycle = 40; // Duree du cycle jour/nuit (en secondes)
 		this.dayCycle = setInterval(function(){
 			thisSuperMario.toggleDayTime()
