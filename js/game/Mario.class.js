@@ -90,9 +90,10 @@ Game.addClass({
 		this.isInvincible = false;
 	},
 	
-// UN COMMENTAIRE SERAIT LE BIEN VENU
+	// A la fin de l'effet de l'étoile, on remet Mario vulnérable.
 	eventAlarm1: function () {
 		this.isInvincible = false;
+		// Stop musique étoile, relance musique niveau
 		SuperMario.sounds.invincibleTheme.stop();
 		SuperMario.sounds.levelTheme.togglePlay();
 	},
@@ -233,7 +234,7 @@ Game.addClass({
 
 	eventStep: function()
 	{
-// UN COMMENTAIRE SERAIT LE BIEN VENU
+		// Défilement Montagnes et défilement background, 
 		document.getElementById('gameMountains').style.backgroundPosition = -(Game.room.view_x*0.5)+'px bottom';
 		document.getElementById('gameBG').style.backgroundPosition = -(Game.room.view_x*0.2)+'px bottom';
 	},
@@ -268,7 +269,7 @@ Game.addClass({
 	eventKeyPressed: function(key)
 	{
 		if (this.state!=Element.STATE_DEATH)
-		{
+		{th
 			// Tentative d'accroupissage (ou accroupissement) au sol
 			if (key == Game.KEY_DOWN && this.isAboveSolid())
 			{
@@ -397,7 +398,7 @@ Game.addClass({
 			}
 			else if(this.vspeed>0)
 			{
-// UN COMMENTAIRE SERAIT LE BIEN VENU
+				// Lorsque la musique de perte de vie se termine, on lance la fonction callback suivante.
 				SuperMario.sounds.lostALife.bind('ended',
 					function()
 					{
