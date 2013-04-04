@@ -129,6 +129,22 @@ header img {
   cursor: pointer;
 }
 
+#mute-button {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-image: url("../img/design/glyphicons-halflings.png");
+  background-repeat: no-repeat;
+}
+
+.muteOff {
+  background-position: -409px -25px;
+}
+
+.muteOn {
+  background-position: -361px -25px;
+}
+
 ul {
   list-style-position: inside;
 }

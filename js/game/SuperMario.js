@@ -3,6 +3,18 @@ var SuperMario = {
 	// retourne l'object contenant les parties sauvegardées
 	
 	sounds: {
+		areMuted: false,
+		toggleMute: function () {
+			if (SuperMario.sounds.areMuted) {
+				document.getElementById("mute-button").className = "muteOff";
+				buzz.all().unmute();
+				SuperMario.sounds.areMuted = false;
+			} else {
+				document.getElementById("mute-button").className = "muteOn";
+				buzz.all().mute();
+				SuperMario.sounds.areMuted = true;
+			}
+		},
 		titleTheme: new buzz.sound("sounds/themes/Title-Theme", {
 			loop: true
 		}),
