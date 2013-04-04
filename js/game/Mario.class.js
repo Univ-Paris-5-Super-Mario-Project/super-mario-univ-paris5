@@ -90,6 +90,7 @@ Game.addClass({
 		this.isInvincible = false;
 	},
 	
+// UN COMMENTAIRE SERAIT LE BIEN VENU
 	eventAlarm1: function () {
 		this.isInvincible = false;
 		SuperMario.sounds.invincibleTheme.stop();
@@ -145,7 +146,7 @@ Game.addClass({
 					this.state = Element.STATE_STAND_RIGHT;
 				}
 			}
-	
+		
 			var isOnGround = this.isAboveSolid();
 			// Mario se déplace à gauche
 			if (this.hspeed < 0)
@@ -185,6 +186,7 @@ Game.addClass({
 			}
 		}
 		
+		// Attribut le bon sprite à Mario selon son statut
 		switch(this.state)
 		{
 			case Element.STATE_STAND_LEFT :
@@ -231,6 +233,7 @@ Game.addClass({
 
 	eventStep: function()
 	{
+// UN COMMENTAIRE SERAIT LE BIEN VENU
 		document.getElementById('gameMountains').style.backgroundPosition = -(Game.room.view_x*0.5)+'px bottom';
 		document.getElementById('gameBG').style.backgroundPosition = -(Game.room.view_x*0.2)+'px bottom';
 	},
@@ -345,6 +348,7 @@ Game.addClass({
 
 	eventCollisionWith: function(other)
 	{
+		// On récupère les masques de Mario et de other
 		var otherMask = other.sprite.getMask();
 		var thisMask = this.sprite.getMask();
 
@@ -354,15 +358,16 @@ Game.addClass({
 			{
 				other.die();
 			}
+			// Si Mario n'est pas mort et est au dessus de other alors mario saute
 			else if(this.y + thisMask.y + thisMask.height >= other.y + otherMask.y  && this.yprev < this.y && this.state!=Element.STATE_DEATH)
 			{
 				this.jump();
 			}
-            		else if (this.state!=Element.STATE_DEATH)
+            else if (this.state!=Element.STATE_DEATH)
 			{
 				this.die();
 			}
-        	}
+        }
 		else if (other.instanceOf(Piece))
 		{
 			this.toFirstPlan();
@@ -370,10 +375,10 @@ Game.addClass({
 		}
 		else if (other.instanceOf(BlocTape))
 		{
+			// Si Mario tape un bloc solide par dessous en montant
 			if (this.y + thisMask.y <= other.y + otherMask.y + otherMask.height  && this.yprev > this.y)
 			{
-				// pour éviter que Mario ne continue de monter
-				// après avoir touché le bloc avec sa tête
+				// pour éviter que Mario ne continue de monter après avoir touché le bloc avec sa tête
 				if (!other.instanceOf(BlocTourne) || other.solid)
 				this.vspeed = 0;
 				
@@ -392,13 +397,17 @@ Game.addClass({
 			}
 			else if(this.vspeed>0)
 			{
-				SuperMario.sounds.lostALife.bind('ended',function(){
-					if (SuperMario.livesCounter < 0)
-							Game.end = true; // Lorsque cette ligne est exécutée, JSGlib appelle la fonction gameEnd() (cf. SuperMario.js)
-					else
-						Game.restartRoom();
-						SuperMario.sounds.levelTheme.play();
-				});
+// UN COMMENTAIRE SERAIT LE BIEN VENU
+				SuperMario.sounds.lostALife.bind('ended',
+					function()
+					{
+						if (SuperMario.livesCounter < 0)
+								Game.end = true; // Lorsque cette ligne est exécutée, JSGlib appelle la fonction gameEnd() (cf. SuperMario.js)
+						else
+							Game.restartRoom();
+							SuperMario.sounds.levelTheme.play();
+					}
+				);
 			}
 		}
 	},
