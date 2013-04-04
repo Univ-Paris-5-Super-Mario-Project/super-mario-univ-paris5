@@ -1,44 +1,49 @@
 // Utiliser cette injection javascript pour pop un bloc special contenant un champignon rouge:
 //javascript:Game.instanceCreate(150,250,BlocSpecialChampignonRouge);
+
+/*
+ * ObjetMobile: classe parente des objets ChampignonRouge, ChampignonVert, et Etoile.
+ */
 Game.addClass({
 	'name': 'ObjetMobile',
 	'abstract': true,
 	'eventCreate': function()
 	{
-		this.sprite = new Sprite(Game.getImage('itemsSprite'));
+		this.sprite = new Sprite(Game.getImage('itemsSprite')); // Création du sprite communs aux objets mobiles
 		this.sprite.makeTiles(16,16,0);
 		for (var i = 1; i <= 4; i++)
 			this.sprite.setMask(i,{});
 		this.sprite.imagespeed = 0;
 		this.sprite.CHAMPIGNON_ROUGE = [1];
 		this.sprite.CHAMPIGNON_VERT = [2];
-		this.sprite.FLEUR = [3];
 		this.sprite.ETOILE = [4];
-		this.hspeed = 3;
-		this.vspeed = 8;
+		this.hspeed = 3; // Vitesse Horizontale par défaut
+		this.vspeed = 8; // Vitesse Verticale par défaut
 	},
 	'eventCollisionWith': function(other)
 	{
-		var otherMask = other.sprite.getMask();
-		var thisMask = this.sprite.getMask();
-		if (!other.instanceOf(Monstre) && !other.instanceOf(ObjetMobile) && !other.instanceOf(Piece) && other.y + otherMask.y + otherMask.height >= this.y + thisMask.y && other.y + otherMask.y + otherMask.height <= this.y + thisMask.y + thisMask.height) {
-			if (other.instanceOf(Mario))
-				this.pickUp();
-			else
-				this.hspeed *= -1;
+		var otherMask = other.sprite.getMask(); // On stocke le masque de other.
+		var thisMask = this.sprite.getMask(); // On stocke le masque de this.
+		if (!other.instanceOf(Monstre) && !other.instanceOf(ObjetMobile) && !other.instanceOf(Piece) // On n'intercepte pas les collisions des ObjetsMobiles avec des Monstres, ni d'autres ObjetsMobiles ni des Pieces.
+			&& other.y + otherMask.y + otherMask.height >= this.y + thisMask.y // Le bas du masque de other doit être situé au dessous de l'ObjetMobile.
+			&& other.y + otherMask.y + otherMask.height <= this.y + thisMask.y + thisMask.height) { // Le bas du masque de other doit être également situé au dessus de l'ObjetMobile.
+			if (other.instanceOf(Mario)) // Si other est une instance de Mario,
+				this.pickUp(); // on ramasse l'objet,
+			else // sinon,
+				this.hspeed *= -1; // Il y a collision avec un bloc, donc l'objet fait demi-tour.
 		}
 	},
-	'popOut': function ()
+	'popOut': function()
 	{
 		// Lorsqu'on tape un bloc et que l'objet en sort.
 	},
 	'eventInsideView': function()
 	{
-		this.setActive(true);
+		this.setActive(true); // Lorsque l'objet sort de la view, on le désactive.
 	},
 	'eventOutsideView': function()
 	{
-		this.setActive(false);
+		this.setActive(false); // Lorsque l'objet sort de la view, on le désactive.
 	}
 });
 
@@ -47,15 +52,14 @@ Game.addClass({
 	'parent': 'ObjetMobile',
 	'eventCreate': function()
 	{
-		this.callParent('eventCreate');
+		this.callParent('eventCreate'); // On appelle l'eventCreate de la classe parente ObjetMobile.
 		this.sprite.tiles = this.sprite.CHAMPIGNON_ROUGE;
 	},
-	'pickUp': function ()
+	'pickUp': function()
 	{
-		// Ici faire disparaitre le champignon et faire grandir Mario.
-		SuperMario.sounds.powerUp.play();
-		mainMario.becomeBig();
-		Game.instanceDestroy(this);
+		SuperMario.sounds.powerUp.play(); // On lance la musique de Mario qui attrape un champignon rouge.
+		mainMario.becomeBig(); // On fait grandir Mario.
+		Game.instanceDestroy(this); // On detruit l'instance du champignon.
 	}
 });
 
@@ -64,15 +68,14 @@ Game.addClass({
 	'parent': 'ObjetMobile',
 	'eventCreate': function()
 	{
-		this.callParent('eventCreate');
+		this.callParent('eventCreate'); // On appelle l'eventCreate de la classe parente ObjetMobile.
 		this.sprite.tiles = this.sprite.CHAMPIGNON_VERT;
 	},
-	'pickUp': function ()
+	'pickUp': function()
 	{
-		// Ici faire disparaitre le champignon et incrementer le compteur de vies si on en met un.
-		SuperMario.sounds.oneUp.play();
-		mainMario.oneUp();
-		Game.instanceDestroy(this);
+		SuperMario.sounds.oneUp.play(); // On lance la musique de Mario qui attrape un champignon vert.
+		mainMario.oneUp(); // On ajoute une vie à Mario.
+		Game.instanceDestroy(this); // On detruit l'instance du champignon.
 	}
 });
 
@@ -81,16 +84,16 @@ Game.addClass({
 	'parent': 'ObjetMobile',
 	'eventCreate': function()
 	{
-		this.callParent('eventCreate');
+		this.callParent('eventCreate'); // On appelle l'eventCreate de la classe parente ObjetMobile.
 		this.sprite.tiles = this.sprite.ETOILE;
 	},
-	'pickUp': function ()
+	'pickUp': function()
 	{
-		SuperMario.sounds.levelTheme.togglePlay();
-		SuperMario.sounds.invincibleTheme.play();
-		mainMario.isInvincible = true;
-		mainMario.setAlarm(1,6);
-		Game.instanceDestroy(this);
+		SuperMario.sounds.levelTheme.togglePlay(); // On arrete la musique du niveau pendant la durée de "l'effet étoile".
+		SuperMario.sounds.invincibleTheme.play(); // On lance la musique de l'étoile d'invincibilité.
+		mainMario.isInvincible = true; // On l'état de Mario à invincible.
+		mainMario.setAlarm(1,6); // On déclenche une alarme de 6 secondes pour annuler l'effet de l'étoile d'invincibilité.
+		Game.instanceDestroy(this); // On détruit l'instance de l'étoile.
 	}
 });
 
