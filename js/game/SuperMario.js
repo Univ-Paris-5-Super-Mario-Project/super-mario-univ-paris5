@@ -21,6 +21,7 @@ var SuperMario = {
 		invincibleTheme: new buzz.sound("sounds/themes/Invincible-Theme", {
 			preload: false
 		}),
+		lostALife: new buzz.sound("sounds/game/lost-a-life"),
 		gameOver: new buzz.sound("sounds/game/game-over"),
 		marioJump: new buzz.sound("sounds/effects/jump"),
 		powerUpAppears: new buzz.sound("sounds/effects/power-up_appears"),
@@ -28,6 +29,8 @@ var SuperMario = {
 		oneUp: new buzz.sound("sounds/effects/1-up"),
 		coin: new buzz.sound("sounds/effects/coin")
 	},
+	
+	livesCounter: 3,
 
 	toggleDayTime: function () { // Change le moment dans la journée (jour/nuit)
 		// Pour régler la vitesse de transition entre le jour et la nuit, aller dans style.css

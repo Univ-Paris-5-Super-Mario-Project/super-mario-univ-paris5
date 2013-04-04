@@ -340,6 +340,7 @@ Game.addClass({
 	oneUp: function()
 	{
 		// Incrementer le nombre de vies de Mario ICI.
+		SuperMario.livesCounter++;
 	},
 
 	eventCollisionWith: function(other)
@@ -391,18 +392,27 @@ Game.addClass({
 			}
 			else if(this.vspeed>0)
 			{
-				Game.end = true; // Lorsque cette ligne est exécutée, JSGlib appelle la fonction gameEnd() (cf. SuperMario.js)
+				SuperMario.sounds.lostALife.bind('ended',function(){
+					if (SuperMario.livesCounter < 0)
+							Game.end = true; // Lorsque cette ligne est exécutée, JSGlib appelle la fonction gameEnd() (cf. SuperMario.js)
+					else
+						Game.restartRoom();
+						SuperMario.sounds.levelTheme.play();
+				});
 			}
 		}
 	},
 	
 	die: function()
 	{
+		SuperMario.sounds.levelTheme.togglePlay();
+		SuperMario.sounds.lostALife.play();
+		SuperMario.livesCounter--;
 		this.state=Element.STATE_DEATH;
 		this.toFirstPlan();
 		this.vspeed=-20;
 		this.hspeed=0;
-		this.gravity=3.5;
+		this.gravity=1;
 		this.collideSolid=false;
 	}
 });

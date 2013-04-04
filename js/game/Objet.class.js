@@ -172,3 +172,26 @@ Game.addClass({
 		});
 	}
 });
+
+Game.addClass({
+	'name': 'LifeController',
+
+	eventCreate: function()
+	{
+		this.sprite = new Sprite(Game.getImage('editorSprite'));
+		this.sprite.makeTiles(16,16,0);
+		this.sprite.imagespeed = 0;
+		this.sprite.tiles = [42];
+	},
+
+	eventStep: function()
+	{
+		this.x = Game.room.view_x + 80;
+		this.y = Game.room.view_y + 10;
+		this.drawText({
+			'text': 'x ' + ((SuperMario.livesCounter<0)?0:SuperMario.livesCounter),
+			'x': 100, // Positionne le nombre de pieces en fonction de la position l'image de la piece.
+			'y': 7
+		});
+	}
+});
