@@ -181,7 +181,7 @@ Game.addClass({
 		this.sprite = new Sprite(Game.getImage('editorSprite'));
 		this.sprite.makeTiles(16,16,0);
 		this.sprite.imagespeed = 0;
-		this.sprite.tiles = [42];
+		this.sprite.tiles = [44];
 	},
 
 	eventStep: function()

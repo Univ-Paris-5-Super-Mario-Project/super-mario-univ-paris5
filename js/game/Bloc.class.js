@@ -487,6 +487,78 @@ Game.addClass({
 });
 
 Game.addClass({
+	'name': 'BlocSpecialChampignonVert',
+	'parent': 'BlocTape',
+	'eventCreate': function()
+	{
+		this.callParent('eventCreate');
+		this.sprite.tiles = this.sprite.STATUS_BLOC_SPECIAL;
+		this.container = 'ChampignonVert';
+		this.pixelsNumToMove = 2;
+	},
+	'hitBlock': function()
+	{
+		if (this.state == Element.STATE_STAND && this.sprite.tiles != this.sprite.STATUS_BLOC_TAPE) {
+			this.state = Element.STATE_MOVE;
+			this.containerObject = Game.instanceCreate(this.x,this.y-this.pixelsNumToMove-16,this.container);
+			this.containerObject.setActive(false);
+			var initialContainerObjectSpeed = this.containerObject.hspeed;
+			this.containerObject.hspeed = 0;
+			this.toFirstPlan();
+			var moveDown = function()
+			{
+				SuperMario.sounds.powerUpAppears.play();
+				this.containerObject.setActive(true);
+				this.containerObject.hspeed = initialContainerObjectSpeed;
+				this.containerObject.popOut();
+				this.sprite.tiles = this.sprite.STATUS_BLOC_TAPE;
+				this.moveToPoint(this.x,this.y+this.pixelsNumToMove,1,function(){
+					this.state = Element.STATE_STAND;
+					this.vspeed = 0;
+				});
+			};
+			this.moveToPoint(this.x,this.y-this.pixelsNumToMove,1,moveDown);
+		}
+	}
+});
+
+Game.addClass({
+	'name': 'BlocSpecialEtoile',
+	'parent': 'BlocTape',
+	'eventCreate': function()
+	{
+		this.callParent('eventCreate');
+		this.sprite.tiles = this.sprite.STATUS_BLOC_SPECIAL;
+		this.container = 'Etoile';
+		this.pixelsNumToMove = 2;
+	},
+	'hitBlock': function()
+	{
+		if (this.state == Element.STATE_STAND && this.sprite.tiles != this.sprite.STATUS_BLOC_TAPE) {
+			this.state = Element.STATE_MOVE;
+			this.containerObject = Game.instanceCreate(this.x,this.y-this.pixelsNumToMove-16,this.container);
+			this.containerObject.setActive(false);
+			var initialContainerObjectSpeed = this.containerObject.hspeed;
+			this.containerObject.hspeed = 0;
+			this.toFirstPlan();
+			var moveDown = function()
+			{
+				SuperMario.sounds.powerUpAppears.play();
+				this.containerObject.setActive(true);
+				this.containerObject.hspeed = initialContainerObjectSpeed;
+				this.containerObject.popOut();
+				this.sprite.tiles = this.sprite.STATUS_BLOC_TAPE;
+				this.moveToPoint(this.x,this.y+this.pixelsNumToMove,1,function(){
+					this.state = Element.STATE_STAND;
+					this.vspeed = 0;
+				});
+			};
+			this.moveToPoint(this.x,this.y-this.pixelsNumToMove,1,moveDown);
+		}
+	}
+});
+
+Game.addClass({
     'name': 'BlocTourne',
 	'parent':'BlocTape',
 	'eventCreate': function()
