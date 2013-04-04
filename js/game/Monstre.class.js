@@ -95,6 +95,21 @@ Game.addClass({
         if(this.isCarapace)
             SuperMario.sounds.bump.play();
     },
+    'spinCarapace': function(mario)
+    {
+        this.becomeCarapace(); // fonction changeant les sprites de mouvement de koopa -> carapace        
+        if(mario.sprite.tiles == mario.spriteLeft.MOVE_LEFT){
+                        this.sprite.tiles = this.sprite.MOVE_LEFT;
+                        this.sprite.imagespeed = 0.8;
+                        this.hspeed = -12;       //pour ce if et ce else :
+                    }                           //si l'on shoot ou saute sur la carapace alors qu'elle est immobile elle partira dans la direction d'arrivée de mario
+        else if(mario.sprite.tiles == mario.spriteRight.MOVE_RIGHT){                   
+            this.sprite.tiles = this.sprite.MOVE_RIGHT;                                                
+            this.sprite.imagespeed = 0.8;               
+            this.hspeed= 12;
+                    }
+        
+    },
     'eventCollisionWith': function(other)
     {
         var otherMask = other.sprite.getMask();
@@ -104,17 +119,7 @@ Game.addClass({
         if(other.instanceOf(Mario)){
             if(other.yprev < other.y){ //vérifie que mario est en descente au dessus du koopa, la collision s'effectuant au contact du sprite et non du masque
                 if(this.sprite.tiles == this.sprite.STAND_CARAP){
-                    this.becomeCarapace(); // fonction changeant les sprites de mouvement de koopa -> carapace
-                    if(other.sprite.tiles == other.spriteLeft.STAND_LEFT || other.sprite.tiles == other.spriteLeft.MOVE_UP_LEFT){
-                        this.sprite.tiles = this.sprite.MOVE_LEFT;
-                        this.sprite.imagespeed = 0.8;
-                        this.hspeed = -8;       //pour ce if et ce else :
-                    }                           //si l'on saute sur la carapace alors qu'elle est immobile elle partira dans la direction d'arrivée de mario
-                    else if(other.sprite.tiles == other.spriteRight.STAND_RIGHT || other.sprite.tiles == other.spriteRight.MOVE_UP_RIGHT){                   
-                        this.sprite.tiles = this.sprite.MOVE_RIGHT;                                                
-                        this.sprite.imagespeed = 0.8;               // 
-                        this.hspeed= 8;
-                    }
+                    this.spinCarapace(other);
                 }
                 else if(this.isCarapace && (this.sprite.tiles == this.sprite.MOVE_LEFT || this.sprite.tiles == this.sprite.MOVE_RIGHT)){               
                     this.hspeed = 0; 
@@ -133,10 +138,7 @@ Game.addClass({
                 
                 }
             }
-            /*else if(this.isCarapace && other.yprev == other.y && this.sprite.tiles == this.sprite.STAND_CARAP){  //pour shooter dans la carapace
-                this.sprite.tiles = this.sprite.MOVE_LEFT;
-                this.hspeed = -4;
-            }*/
+           
         }
     }
 });
