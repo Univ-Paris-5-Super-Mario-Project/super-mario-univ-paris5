@@ -72,7 +72,7 @@ var SuperMario = {
   		var timestamp = new Date().getTime();  		
 		var data = {
 			timestamp: timestamp,
-			coins: Piece.counter,
+			coins: this.coinsCounter,
 			lives: this.livesCounter,
 			mario: {
 				x: m.x,
@@ -113,7 +113,7 @@ var SuperMario = {
 		Game.infoGameBuilder = false;
 
 		// si on ne charge pas de parties, on initialise à 0, sinon on récupère le nombre de pièces désiré
-		Piece.counter = (pieces) ? pieces : 0;
+		this.coinsCounter = (pieces) ? pieces : 0;
 		
 		// si on ne charge pas de parties, on initialise à 0, sinon on récupère le nombre de pièces désiré
 		this.livesCounter = (vies) ? vies : 3;
@@ -179,7 +179,7 @@ var SuperMario = {
 		buzz.all().stop();
 
 		// Compteur de pièces à 0
-		Piece.counter = 0;
+		this.coinsCounter = 0;
 		
 		// Compteur de Vies à 3
 		this.livesCounter = 3;

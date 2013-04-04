@@ -134,7 +134,13 @@ Game.addClass({
 
 	'pickUp' : function()
 	{
-		Piece.counter++;
+		SuperMario.coinsCounter++;
+		// Si le joueur a 100 pièces, on incrémente de 1 le nombre de vies.
+		if (SuperMario.coinsCounter >= 100) {
+			var nombreDeCentainesDePieces = SuperMario.coinsCounter % 100;
+			SuperMario.livesCounter += nombreDeCentainesDePieces;
+			SuperMario.coinsCounter -= nombreDeCentainesDePieces * 100;
+		}
 		SuperMario.sounds.coin.play();
 		this.animatePickUp();
 	},
@@ -166,7 +172,7 @@ Game.addClass({
 		this.x = Game.room.view_x + 10;
 		this.y = Game.room.view_y + 10;
 		this.drawText({
-			'text': 'x ' + Piece.counter,
+			'text': 'x ' + SuperMario.coinsCounter,
 			'x': 30, // Positionne le nombre de pieces en fonction de la position l'image de la piece.
 			'y': 7
 		});
