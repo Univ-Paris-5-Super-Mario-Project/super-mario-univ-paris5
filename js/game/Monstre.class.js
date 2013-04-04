@@ -29,6 +29,10 @@ Game.addClass({
 	'eventOutsideView': function()
 	{
 		this.setActive(false);
+	},
+	'die': function()
+	{
+		Game.instanceDestroy(this);
 	}
 });
 
@@ -121,7 +125,7 @@ Game.addClass({
                     
                 }
                 else if(this.sprite.tiles == this.sprite.WAKE_CARAP){               
-                    Game.instanceDestroy(this);  
+                    Game.instanceDestroy(this);
                     
                 }
                 else{

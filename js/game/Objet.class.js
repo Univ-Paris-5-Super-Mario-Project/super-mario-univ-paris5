@@ -12,8 +12,8 @@ Game.addClass({
 		this.sprite.imagespeed = 0;
 		this.sprite.CHAMPIGNON_ROUGE = [1];
 		this.sprite.CHAMPIGNON_VERT = [2];
-		this.sprite.CHAMPIGNON_FLEUR = [3];
-		this.sprite.CHAMPIGNON_ETOILE = [4];
+		this.sprite.FLEUR = [3];
+		this.sprite.ETOILE = [4];
 		this.hspeed = 3;
 		this.vspeed = 8;
 	},
@@ -72,6 +72,24 @@ Game.addClass({
 		// Ici faire disparaitre le champignon et incrementer le compteur de vies si on en met un.
 		SuperMario.sounds.oneUp.play();
 		mainMario.oneUp();
+		Game.instanceDestroy(this);
+	}
+});
+
+Game.addClass({
+	'name': 'Etoile',
+	'parent': 'ObjetMobile',
+	'eventCreate': function()
+	{
+		this.callParent('eventCreate');
+		this.sprite.tiles = this.sprite.ETOILE;
+	},
+	'pickUp': function ()
+	{
+		SuperMario.sounds.levelTheme.togglePlay();
+		SuperMario.sounds.invincibleTheme.play();
+		mainMario.isInvincible = true;
+		mainMario.setAlarm(1,6);
 		Game.instanceDestroy(this);
 	}
 });

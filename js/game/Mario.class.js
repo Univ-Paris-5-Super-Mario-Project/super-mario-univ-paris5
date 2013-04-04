@@ -85,6 +85,15 @@ Game.addClass({
 		
 		// Indique si l'instance doit être téléportée de l'autre côté de la room lorsqu'elle sort de celle-ci.
 		this.switchPositionWhenLeave = false;
+		
+		// Par défaut, Mario est vulnérable
+		this.isInvincible = false;
+	},
+	
+	eventAlarm1: function () {
+		this.isInvincible = false;
+		SuperMario.sounds.invincibleTheme.stop();
+		SuperMario.sounds.levelTheme.togglePlay();
 	},
 	
 	// Retourne true si Mario est sur un Element solide, false autrement
@@ -340,7 +349,11 @@ Game.addClass({
 
 		if (other.instanceOf(Monstre))
 		{
-			if(this.y + thisMask.y + thisMask.height >= other.y + otherMask.y  && this.yprev < this.y && this.state!=Element.STATE_DEATH)
+			if (this.isInvincible)
+			{
+				other.die();
+			}
+			else if(this.y + thisMask.y + thisMask.height >= other.y + otherMask.y  && this.yprev < this.y && this.state!=Element.STATE_DEATH)
 			{
 				this.jump();
 			}

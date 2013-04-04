@@ -18,10 +18,9 @@ var SuperMario = {
 		scoresTheme: new buzz.sound("sounds/themes/Scores-Theme", {
 			loop: true
 		}),
-		// invincibleTheme pas encore utilisé
-		/*invincibleTheme: new buzz.sound("sounds/themes/Invincible-Theme", {
+		invincibleTheme: new buzz.sound("sounds/themes/Invincible-Theme", {
 			preload: false
-		}),*/
+		}),
 		gameOver: new buzz.sound("sounds/game/game-over"),
 		marioJump: new buzz.sound("sounds/effects/jump"),
 		powerUpAppears: new buzz.sound("sounds/effects/power-up_appears"),
@@ -97,9 +96,10 @@ var SuperMario = {
 		
 		// Musique du niveau aléatoire
 		if (Math.random() < 0.5)
-			this.sounds.overworldTheme.play();
+			this.sounds.levelTheme = this.sounds.overworldTheme;
 		else
-			this.sounds.athleticTheme.play();
+			this.sounds.levelTheme = this.sounds.athleticTheme;
+		this.sounds.levelTheme.play();
 		
 		var infoGameBuilderSpan = document.createElement("span");
 		infoGameBuilderSpan.id = "infoGameBuilder";
