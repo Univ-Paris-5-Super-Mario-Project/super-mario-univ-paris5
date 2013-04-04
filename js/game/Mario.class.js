@@ -269,7 +269,7 @@ Game.addClass({
 	eventKeyPressed: function(key)
 	{
 		if (this.state!=Element.STATE_DEATH)
-		{th
+		{
 			// Tentative d'accroupissage (ou accroupissement) au sol
 			if (key == Game.KEY_DOWN && this.isAboveSolid())
 			{
