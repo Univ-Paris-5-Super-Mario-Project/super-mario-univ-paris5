@@ -371,7 +371,15 @@ Game.addClass({
 			}
             else if (this.state!=Element.STATE_DEATH)
 			{
-				this.die();
+                if(other.instanceOf(Koopa))
+                {
+                    if(other.sprite.tiles != other.sprite.STAND_CARAP)
+                        this.die();
+                    else
+                        other.spinCarapace(this);
+                }                        
+                else
+                    this.die();
 			}
         }
 		else if (other.instanceOf(Piece))
