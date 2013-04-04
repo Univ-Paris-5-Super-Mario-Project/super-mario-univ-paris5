@@ -103,15 +103,17 @@ function Grid (rows, cols) { // Constructeur de la grille
 			this.table.style.width = this.colsNum*this.cellSize + "px";
 		}
 	};
-	this.getRowAt = function (row) {
+	this.getRowAt = function (row) { // Renvoie l'objet ligne spécifié par le numéro de ligne.
 		return this.table.rows[row];
 	};
-	this.getCellAt = function (row, col) {
+	this.getCellAt = function (row, col) { // Renvoie l'objet cellule spécifiée par le numéro de ligne et le numéro de colonne.
 		return this.table.rows[row].cells[col];
 	};
-	this.save = function () {
+	this.save = function () { // Enregistrement du niveau sous forme de chaîne de caractères dans le format XML, et envoi au formulaire php.
 		var result = '<' + '?' + 'xml version="1.0" encoding="UTF-8"' + '?' + '>';
 		result += '<level width="' + this.cellSize*this.colsNum + '" height="' + this.cellSize*this.rowsNum + '" tiles_width="' + this.cellSize + '" tiles_height="' + this.cellSize + '" background="background">';
+		// Partie des tiles (éléments décoratifs).
+		// On récupère les identifiants des blocs d'arrière plan.
 		result += '<tiles><Tiles width="' + tilesSource.width + '" height="' + tilesSource.height + '" src="' + tilesSource.value + '" tiles_width="' + 16 + '" tiles_height="' + 16 + '" sep="' + 0 + '">';
 		for (var i = 0; i < this.rowsNum; i++) {
 			for (var j = 0; j < this.colsNum; j++) {
@@ -120,10 +122,11 @@ function Grid (rows, cols) { // Constructeur de la grille
 			}
 		}
 		result += '</Tiles></tiles>';
+		// Partie des éléments qui deviendront intéractifs dans le jeu.
+		// On récupère les identifiants des blocs de premier plan.
 		result += '<elements>';
 		result += '<element x="0" y="0">PieceController</element>';
 		result += '<element x="0" y="0">LifeController</element>';
-		//result += '<element x="16" y="160">Mario</element>';
 		for (var i = 0; i < this.rowsNum; i++) {
 			for (var j = 0; j < this.colsNum; j++) {
 				if (this.table.rows[i].cells[j].elementID && nomClasses[this.table.rows[i].cells[j].elementID] != 'Air')
@@ -132,6 +135,7 @@ function Grid (rows, cols) { // Constructeur de la grille
 		}
 		result += '</elements>';
 		result += '</level>';
+		// Création dynamique du formulaire.
 		var form = document.createElement("form");
 		form.method = "post";
 		form.action = "levelEditor.php";
@@ -144,12 +148,13 @@ function Grid (rows, cols) { // Constructeur de la grille
 		xmlContent.name = "xmlfile";
 		form.appendChild(xmlContent);
 		document.getElementsByTagName("body")[0].appendChild(form);
+		// Envoi du contenu du fichier XML.
 		form.submit();
 	};
-	for (var i = 0; i < this.height; i++) {
+	for (var i = 0; i < this.height; i++) { // On ajoute "height" lignes.
 		this.addRow();
 	}
-	for (var i = 0; i < this.width; i++) {
+	for (var i = 0; i < this.width; i++) { // On ajoute "width" colonnes.
 		this.addColumn();
 	}
 }
