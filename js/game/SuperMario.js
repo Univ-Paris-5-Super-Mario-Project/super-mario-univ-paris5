@@ -30,8 +30,6 @@ var SuperMario = {
 		coin: new buzz.sound("sounds/effects/coin")
 	},
 	
-	livesCounter: 3,
-
 	toggleDayTime: function () { // Change le moment dans la journée (jour/nuit)
 		// Pour régler la vitesse de transition entre le jour et la nuit, aller dans style.css
 		if (document.getElementById("gameBG").className == 'gameBGDay')
@@ -65,12 +63,14 @@ var SuperMario = {
   		// On formatte les données à enregistrer
   		// * la date
   		// * le nombre de pièces
+  		// * le nombre de vies
   		// * la position de Mario
   		// * le fichier XML du level utilisé
   		var timestamp = new Date().getTime();  		
 		var data = {
 			timestamp: timestamp,
 			coins: Piece.counter,
+			lives: this.livesCounter,
 			mario: {
 				x: m.x,
 				y: m.y
@@ -94,7 +94,7 @@ var SuperMario = {
 		this.setSavedGames(games);
 	},
 
-	start: function(pieces, level_path, mario, view_x) {
+	start: function(pieces, vies, level_path, mario, view_x) {
 		this.reset();
 		
 		// Musique du niveau aléatoire
@@ -111,6 +111,9 @@ var SuperMario = {
 
 		// si on ne charge pas de parties, on initialise à 0, sinon on récupère le nombre de pièces désiré
 		Piece.counter = (pieces) ? pieces : 0;
+		
+		// si on ne charge pas de parties, on initialise à 0, sinon on récupère le nombre de pièces désiré
+		this.livesCounter = (vies) ? vies : 3;
 		
 		// idem pour le level
 		level_path = (level_path) ? level_path : 'levelEditor/getLevel.php';
@@ -170,9 +173,12 @@ var SuperMario = {
 		Game.end = false;
 		
 		// Arrêt des musiques
-		buzz.all().stop()
+		buzz.all().stop();
 
 		// Compteur de pièces à 0
 		Piece.counter = 0;
+		
+		// Compteur de Vies à 3
+		this.livesCounter = 3;
 	}
 };

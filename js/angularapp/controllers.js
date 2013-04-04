@@ -34,7 +34,7 @@ function SavedGameCtrl($scope, $routeParams, $location) {
 	// la partie est trouvée, on la démarre
 	if (games != {} && game != undefined && game.constructor == Object) {
 		$scope.gameExists = true;
-		SuperMario.start(game.coins, game.level, game.mario, game.room.view_x);
+		SuperMario.start(game.coins, game.lives, game.level, game.mario, game.room.view_x);
 	// sinon on indique à angularjs que la partie n'existe pas pour afficher un message d'erreur
 	} else {
 		$scope.gameExists = false;
