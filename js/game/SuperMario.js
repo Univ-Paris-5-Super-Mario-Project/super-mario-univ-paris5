@@ -27,7 +27,10 @@ var SuperMario = {
 		powerUpAppears: new buzz.sound("sounds/effects/power-up_appears"),
 		powerUp: new buzz.sound("sounds/effects/power-up"),
 		oneUp: new buzz.sound("sounds/effects/1-up"),
-		coin: new buzz.sound("sounds/effects/coin")
+		coin: new buzz.sound("sounds/effects/coin"),
+		stomp: new buzz.sound("sounds/effects/stomp"),
+        bump: new buzz.sound("sounds/effects/bump")
+
 	},
 	
 	toggleDayTime: function () { // Change le moment dans la journée (jour/nuit)

@@ -299,7 +299,7 @@ Game.addClass({
 			if (key == Game.KEY_UP || key == Game.KEY_SPACE)
 			{
 				// uniquement si Mario est au sol	
-				if (this.isAboveSolid() && ! this.isDown()) this.jump();
+				if (this.isAboveSolid() && ! this.isDown()) this.jump(true);
 			}
 	
 			if (key == Game.KEY_LEFT)
@@ -329,10 +329,14 @@ Game.addClass({
 		}
 	},
 
-	jump: function()
+	jump: function(keyCall) //si keyCall true alors sound jump sinon sound stomp
 	{
 		// Donner une vitesse vers le haut
-		SuperMario.sounds.marioJump.play();
+        if(keyCall)
+            SuperMario.sounds.marioJump.play();
+        else
+            SuperMario.sounds.stomp.play();
+            
 		this.vspeed = -20;
 	},
 	
@@ -362,7 +366,7 @@ Game.addClass({
 			// Si Mario n'est pas mort et est au dessus de other alors mario saute
 			else if(this.y + thisMask.y + thisMask.height >= other.y + otherMask.y  && this.yprev < this.y && this.state!=Element.STATE_DEATH)
 			{
-				this.jump();
+				this.jump(false);
 			}
             else if (this.state!=Element.STATE_DEATH)
 			{

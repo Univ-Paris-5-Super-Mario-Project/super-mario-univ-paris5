@@ -15,13 +15,16 @@ Game.addClass({
 //		if (other.y<this.y)
 //			document.title = (other.y + otherMask.y) + ' >= ' + (this.y + thisMask.y) + ' ' + (other.y + otherMask.y + otherMask.height) + ' <= ' + (this.y + thisMask.y + thisMask.height);
 		if (!other.instanceOf(Monstre) && !other.instanceOf(Mario) && !other.instanceOf(ObjetMobile) && other.y + otherMask.y + otherMask.height >= this.y + thisMask.y && other.y + otherMask.y + otherMask.height <= this.y + thisMask.y + thisMask.height) {
-			this.hspeed *= -1;
+			this.bumpSound();
+            this.hspeed *= -1;
 			if (this.hspeed > 0)
 				this.sprite.tiles = this.sprite.MOVE_RIGHT;
 			else
 				this.sprite.tiles = this.sprite.MOVE_LEFT;
 		}
 	},
+     'bumpSound': function(){
+    },
 	'eventInsideView': function()
 	{
 		this.setActive(true);
@@ -97,6 +100,10 @@ Game.addClass({
         this.sprite.tiles = this.sprite.MOVE_LEFT;
         this.hspeed = -2;
     },
+     'bumpSound': function(){
+        if(this.isCarapace)
+            SuperMario.sounds.bump.play();
+    },
     'eventCollisionWith': function(other)
     {
         var otherMask = other.sprite.getMask();
@@ -125,7 +132,7 @@ Game.addClass({
                     
                 }
                 else if(this.sprite.tiles == this.sprite.WAKE_CARAP){               
-                    Game.instanceDestroy(this);
+                    this.die();
                     
                 }
                 else{
