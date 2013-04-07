@@ -1,6 +1,3 @@
-// Utiliser cette injection javascript pour pop un bloc special contenant un champignon rouge:
-//javascript:Game.instanceCreate(150,250,BlocSpecialChampignonRouge);
-
 /*
  * ObjetMobile: classe parente des objets ChampignonRouge, ChampignonVert, et Etoile.
  */
