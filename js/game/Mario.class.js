@@ -225,6 +225,11 @@ Game.addClass({
 
 	eventStep: function()
 	{
+		if (this.isInvincible) // Si Mario est invincible (en mode étoile),
+				this.drawFilter({
+					color: [255,255,0],
+					mode: "overlay"
+				}); // on lui applique un filtre de couleur jaune.
 		// Défilement Montagnes et défilement background, 
 		document.getElementById('gameMountains').style.backgroundPosition = -(Game.room.view_x*0.5)+'px bottom';
 		document.getElementById('gameBG').style.backgroundPosition = -(Game.room.view_x*0.2)+'px bottom';
