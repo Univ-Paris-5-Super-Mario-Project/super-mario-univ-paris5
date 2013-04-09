@@ -98,12 +98,12 @@ Game.addClass({
     'spinCarapace': function(mario)
     {
         this.becomeCarapace(); // fonction changeant les sprites de mouvement de koopa -> carapace        
-        if(mario.sprite.tiles == mario.spriteLeft.MOVE_LEFT){
+        if(mario.sprite.tiles == mario.spriteLeft.MOVE_LEFT || mario.state == Element.STATE_STAND_LEFT || mario.sprite.tiles == mario.spriteLeft.MOVE_UP_LEFT){
                         this.sprite.tiles = this.sprite.MOVE_LEFT;
                         this.sprite.imagespeed = 0.8;
                         this.hspeed = -12;       //pour ce if et ce else :
-                    }                           //si l'on shoot ou saute sur la carapace alors qu'elle est immobile elle partira dans la direction d'arrivée de mario
-        else if(mario.sprite.tiles == mario.spriteRight.MOVE_RIGHT){                   
+                    }                           //si l'on saute ou shoot sur la carapace alors qu'elle est immobile elle partira dans la direction d'arrivée de mario
+        else if(mario.sprite.tiles == mario.spriteRight.MOVE_RIGHT || mario.state == Element.STATE_STAND_RIGHT || mario.sprite.tiles == mario.spriteLeft.MOVE_UP_RIGHT){                   
             this.sprite.tiles = this.sprite.MOVE_RIGHT;                                                
             this.sprite.imagespeed = 0.8;               
             this.hspeed= 12;
@@ -118,12 +118,12 @@ Game.addClass({
         
         if(other.instanceOf(Mario)){
             if(other.yprev < other.y){ //vérifie que mario est en descente au dessus du koopa, la collision s'effectuant au contact du sprite et non du masque
-                if(this.sprite.tiles == this.sprite.STAND_CARAP){
+                if(this.sprite.tiles == this.sprite.STAND_CARAP && this.isCarapace){
                     this.spinCarapace(other);
                 }
                 else if(this.isCarapace && (this.sprite.tiles == this.sprite.MOVE_LEFT || this.sprite.tiles == this.sprite.MOVE_RIGHT)){               
                     this.hspeed = 0; 
-                    this.sprite.tiles = this.sprite.STAND_CARAP; //si l'on saute sur la carapace alors qu'elle est en mouvement, elle s'arrete
+                    this.sprite.tiles = this.sprite.STAND_CARAP; //si l'on saute ou shoot sur la carapace alors qu'elle est en mouvement, elle s'arrete
                     this.setAlarm(1,4); //timer avant le retour carapace -> koopa
                     
                 }
@@ -133,6 +133,7 @@ Game.addClass({
                 }
                 else{                                                   //le koopa devient une carapace immobile si on saute dessus
                     this.hspeed = 0;
+                    this.becomeCarapace();
                     this.sprite.tiles = this.sprite.STAND_CARAP;
                     this.setAlarm(1,4);//timer avant le reveil de la carapace puis retour carapace -> koopa
                 
