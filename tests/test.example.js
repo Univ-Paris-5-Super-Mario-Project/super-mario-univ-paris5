@@ -30,3 +30,16 @@
 		})
 	})
 })
+
+
+﻿describe('Mario.class', function() {
+  describe('#jump(Boolean bool)', function() {
+    it('change l\'attribut vspeed de la classe Mario', function() {
+      var mario = new Mario;
+      mario.vspeed=0;
+      mario.jump(false);
+      expect(mario.vspeed).to.eql(-20);
+    })
+	})
+})
+
