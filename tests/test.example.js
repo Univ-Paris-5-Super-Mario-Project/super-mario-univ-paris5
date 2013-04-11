@@ -33,12 +33,61 @@
 
 
 ﻿describe('Mario.class', function() {
+
   describe('#jump(Boolean bool)', function() {
-    it('change l\'attribut vspeed de la classe Mario', function() {
+    it('change l\'attribut vspeed de Mario', function() {
       var mario = new Mario;
       mario.vspeed=0;
       mario.jump(false);
       expect(mario.vspeed).to.eql(-20);
+    })
+	})
+
+  describe('#eventAlarm1()', function() {
+    it('met l\'attribut isInvincible de Mario à false', function() {
+      var mario = new Mario;
+      mario.isInvincible=true;
+      mario.eventAlarm1();
+      expect(mario.isInvincible).to.eql(false);
+    })
+	})
+
+
+  describe('#isDown()', function() {
+    it('retourne true si l\attribut state de Mario indique que Mario est accroupit', function() {
+      var mario = new Mario;
+
+      mario.state=Element.STATE_STAND_DOWN_RIGHT;
+      expect(mario.isDown()).to.eql(true);
+
+      mario.state=Element.STATE_STAND_DOWN_LEFT;
+      expect(mario.isDown()).to.eql(true);
+
+      mario.state=Element.STATE_STAND_LEFT;
+      expect(mario.isDown()).to.eql(false);
+
+      mario.state=Element.STATE_STAND_RIGHT;
+      expect(mario.isDown()).to.eql(false);
+    })
+	})
+
+  describe('#die()', function() {
+    it('met le statut de Mario à mort, sa vitesse h à 0 et v à -20, la gravité à 1 et igniore les collisions\n(tout n\'est pas testé', function() {
+      var mario = new Mario;
+      mario.state=Element.STATE_STAND_DOWN_RIGHT;
+      mario.hspeed=10;
+      mario.vspeed=10;
+      mario.gravity=0;
+      mario.collideSolid=true;
+
+      mario.die();
+
+      expect(mario.state).to.eql(Element.STATE_DEATH);
+      expect(mario.hspeed).to.eql(0);
+      expect(mario.vspeed).to.eql(-20);
+      expect(mario.gravity).to.eql(1);
+      expect(mario.collideSolid).to.eql(false);
+
     })
 	})
 })
