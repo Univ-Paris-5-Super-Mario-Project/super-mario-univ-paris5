@@ -3,6 +3,18 @@ svn:wc:ra_dav:version-url
 V 39
 /svn/2012-l2o2/!svn/ver/5/sounds/themes
 END
+Ending-Theme.ogg
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/2012-l2o2/!svn/ver/5/sounds/themes/Ending-Theme.ogg
+END
+Title-Theme.mp3
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/2012-l2o2/!svn/ver/5/sounds/themes/Title-Theme.mp3
+END
 Invincible-Theme.mp3
 K 25
 svn:wc:ra_dav:version-url
@@ -62,16 +74,4 @@ K 25
 svn:wc:ra_dav:version-url
 V 59
 /svn/2012-l2o2/!svn/ver/5/sounds/themes/Overworld-Theme.ogg
-END
-Ending-Theme.ogg
-K 25
-svn:wc:ra_dav:version-url
-V 56
-/svn/2012-l2o2/!svn/ver/5/sounds/themes/Ending-Theme.ogg
-END
-Title-Theme.mp3
-K 25
-svn:wc:ra_dav:version-url
-V 55
-/svn/2012-l2o2/!svn/ver/5/sounds/themes/Title-Theme.mp3
 END

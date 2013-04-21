@@ -7,5 +7,6 @@ angular.module('super-mario', []).
       when('/credits', {templateUrl: 'partials/credits.html', controller: CreditsCtrl}).
       when('/game-over', {templateUrl: 'partials/game-over.html', controller: GameOverCtrl}).
       when('/parties', {templateUrl: 'partials/parties.html', controller: PartiesCtrl}).
+      when('/worlds', {templateUrl: 'partials/worlds.html', controller: WorldsCtrl}).
       otherwise({redirectTo: '/home'});
 }]);

@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 // Tableau de mondes.
@@ -11,16 +10,24 @@ $worlds = array(
 		// Monde 1, niveau 2.
 		'2a97cc62c757437bf0fea26036493efa'
 	),
-	explode(';',$_COOKIE["customworld"])
+	
+	// Monde 2
+	array(
+		// Monde 2, niveau 1.
+		'5ade3d57576f83e65ef58485bb43cc6d'
+	),
+	
+	// Monde custom (niveaux crées par le joueur dans l'éditeur)
+	explode(';',(isset($_COOKIE["customworld"])) ? $_COOKIE["customworld"] : '')
 );
 
-if ($_GET['worlds']=='getinfo') { // Affiche le javascript contenant les informations sur le nombre de mondes et de niveaux.
+if (isset($_GET['worlds']) && $_GET['worlds']=='getinfo') { // Affiche le javascript contenant les informations sur le nombre de mondes et de niveaux.
 	echo 'var worldsInfo = ' . json_encode($worlds) . ';';
 } else {
 	$defaultId = $worlds[0][0];
 	
 	// Si le niveau et le monde indiqués existent, on charge le niveau.
-	if (isset($worlds[$_GET['worldId']][$_GET['levelId']])) {
+	if (isset($_GET['worldId'], $_GET['levelId']) && isset($worlds[$_GET['worldId']][$_GET['levelId']])) {
 		$id = $worlds[$_GET['worldId']][$_GET['levelId']];
 	}
 	
@@ -61,5 +68,3 @@ if ($_GET['worlds']=='getinfo') { // Affiche le javascript contenant les informa
 	// On affiche le xml du dernier niveau sauvegardé.
 	echo file_get_contents($path);
 }
-
-?>

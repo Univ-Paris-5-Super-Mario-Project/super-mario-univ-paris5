@@ -33,6 +33,7 @@ var SuperMario = {
 		invincibleTheme: new buzz.sound("sounds/themes/Invincible-Theme", {
 			preload: false
 		}),
+		letsAGo: new buzz.sound("sounds/game/lets-a-go"),
 		courseClearTheme: new buzz.sound("sounds/game/course-clear"),
 		lostALife: new buzz.sound("sounds/game/lost-a-life"),
 		gameOver: new buzz.sound("sounds/game/game-over"),
@@ -70,6 +71,8 @@ var SuperMario = {
 	setSavedGames: function(games) {
 		localStorage['saved_games'] = JSON.stringify(games);
 	},
+	
+	selectedWorld: 0,
 
 	saveCurrentGame: function() {
 		// On récupère la seule instance de Mario
@@ -87,6 +90,7 @@ var SuperMario = {
 			timestamp: timestamp,
 			coins: this.coinsCounter,
 			lives: this.livesCounter,
+			worldId: this.selectedWorld,
 			mario: {
 				x: m.x,
 				y: m.y
@@ -110,7 +114,7 @@ var SuperMario = {
 		this.setSavedGames(games);
 	},
 
-	start: function(pieces, vies, level_path, mario, view_x) {
+	start: function(pieces, vies, level_path, mario, view_x, worldId) {
 		this.animateBGs = true;
 		var thisSuperMario = this;
 		this.reset();
@@ -132,11 +136,12 @@ var SuperMario = {
 		// si on ne charge pas de parties, on initialise à 0, sinon on récupère le nombre de pièces désiré
 		this.livesCounter = (vies) ? vies : 3;
 		
-		var worldToPlay; // Choix du monde à jouer aléatoirement.
-		do {
-			worldToPlay = Math.floor((Math.random()*worldsInfo.length));
-		} while (worldsInfo[worldToPlay][0] == "");
-
+		var worldToPlay = 0; // Choix du monde à jouer.
+		if (this.selectedWorld < worldsInfo.length)
+			worldToPlay = (worldsInfo[this.selectedWorld][0] == "") ? 0 : this.selectedWorld;
+		if (worldId)
+			worldToPlay = worldId;
+		
 		var numLevels = worldsInfo[worldToPlay].length; // Nombre de niveaux dans le monde choisi.
 		var tableauDeNiveaux = new Array();
 		for (var i = 0; i < numLevels; i++) {

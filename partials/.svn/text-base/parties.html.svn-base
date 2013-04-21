@@ -1,11 +1,11 @@
 <div ng-show="hasSavedGames">
-	<h2>Parties sauvegardées</h2>
+	<h2>Saved Games</h2>
 
 	<table cellspacing="0">
 		<tr>
 			<th>ID</th>
 			<th>Level</th>
-			<th>Timestamp</th>
+			<th>Date</th>
 			<th>Coins</th>
 			<th>Lives</th>
 			<th>Mario's position</th>
@@ -15,7 +15,7 @@
 		<tr ng-repeat="game in games">
 			<td>{{ $index }}</td>
 			<td title="{{ game.level }}">{{ game.level.substr(0, 15) }}...</td>
-			<td>{{ game.timestamp }}</td>
+			<td>{{ timestampToDate(game.timestamp) }}</td>
 			<td>{{ game.coins }}</td>
 			<td>{{ game.lives }}</td>
 			<td>{{ game.mario.x }}</td>
@@ -25,7 +25,7 @@
 	</table>
 
 	<nav>
-		<a href="#/game" class="btn">New game</a>
+		<a href="#/worlds" class="btn">New game</a>
 	</nav>
 </div>
 

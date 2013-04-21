@@ -25,6 +25,42 @@
 		<div ng-view>
 		</div>
 
+	<noscript><center style="color: red">Veuillez activer le Javascript dans les préférences de votre navigateur.</center></noscript>
+	<script type="text/javascript">
+		(function() {
+			var errorMsg = function(msg) {
+				document.write('<center style="color: red">' + msg + '</center>')
+			}
+
+			var areCookiesEnabled = function() {
+				document.cookie = "__verify=1";
+				var supportsCookies = document.cookie.length > 1 &&
+				document.cookie.indexOf("__verify=1") > -1;
+				var thePast = new Date(1976, 8, 16);
+				document.cookie = "__verify=1;expires=" + thePast.toUTCString();
+				return supportsCookies;
+			}
+
+			var hasLocalStorage = function() {
+				try {
+					localStorage.setItem('test_local_storage', 1);
+					localStorage.removeItem('test_local_storage');
+					return true;
+				} catch(e) {
+					return false;
+				}
+			}
+
+			if ( ! areCookiesEnabled()) {
+				errorMsg('Veuillez activer les cookies dans les préférences de votre navigateur.')
+			}
+
+			if ( ! hasLocalStorage()) {
+				errorMsg('Veuillez utiliser un navigateur qui supporte la technologie LocalStorage.')
+			}
+		})()
+	</script>
+
 		<footer>
 			<nav>
 				<a href="#/home">Home</a>

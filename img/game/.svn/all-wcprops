@@ -3,6 +3,24 @@ svn:wc:ra_dav:version-url
 V 35
 /svn/2012-l2o2/!svn/ver/30/img/game
 END
+marioSpriteRight.png
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/2012-l2o2/!svn/ver/10/img/game/marioSpriteRight.png
+END
+marioSprite.png
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/2012-l2o2/!svn/ver/10/img/game/marioSprite.png
+END
+koopaSprite.png
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/2012-l2o2/!svn/ver/10/img/game/koopaSprite.png
+END
 marioSpriteDeath.png
 K 25
 svn:wc:ra_dav:version-url
@@ -80,22 +98,4 @@ K 25
 svn:wc:ra_dav:version-url
 V 52
 /svn/2012-l2o2/!svn/ver/10/img/game/goombaSprite.png
-END
-marioSpriteRight.png
-K 25
-svn:wc:ra_dav:version-url
-V 56
-/svn/2012-l2o2/!svn/ver/10/img/game/marioSpriteRight.png
-END
-marioSprite.png
-K 25
-svn:wc:ra_dav:version-url
-V 51
-/svn/2012-l2o2/!svn/ver/10/img/game/marioSprite.png
-END
-koopaSprite.png
-K 25
-svn:wc:ra_dav:version-url
-V 51
-/svn/2012-l2o2/!svn/ver/10/img/game/koopaSprite.png
 END

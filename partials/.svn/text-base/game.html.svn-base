@@ -13,8 +13,8 @@
 	</div>
 
 	<nav>
-		<button ng-click="saveCurrentGame()" class="btn">Sauvegarder la partie</button>
-		<a href="#/game" class="btn">New game</a>
+		<button ng-click="saveCurrentGame()" class="btn">Save this game</button>
+		<a href="#/worlds" class="btn">New game</a>
 		<a href="#/parties" class="btn">Saved games</a>
 	</nav>
 </div>

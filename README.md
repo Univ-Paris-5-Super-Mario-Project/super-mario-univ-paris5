@@ -30,10 +30,12 @@ This project was made possible in part thanks to open source projects and fan si
 
 ## License
 
+**We are not affiliated with Nintendo in any way. All sounds, character names and Mario Sprites are copyrights of Nintendo Co. Ltd.** 
+
 This project uses sounds, images and fonts that do not belong to us. We believe their usage in this project falls under **fair use**:
 * this is a non profit & open source project
 * the project is part of our Bachelor degree at [Paris Descartes University](http://www.univ-paris5.fr/)
 * we don't claim any owner ship to the copyrighted material
 * the amount of copyrighted material used is relatively small compared to the project as a whole
 
-The source code is released under the GPL v3 license. See [`license.md`](LICENSE.md) for more information.
+The source code written by us is released under the GPL v3 license. See [`license.md`](LICENSE.md) for more information. Any third party code, such as code from third party libraries, belong to their copyright owners and have their own license.

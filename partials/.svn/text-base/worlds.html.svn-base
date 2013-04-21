@@ -1,0 +1,7 @@
+<h2>Select your world:</h2>
+
+<nav id="worldList">
+</nav>
+<nav>
+	<a href="levelEditor/editor.html">Add a custom level</a>
+</nav>

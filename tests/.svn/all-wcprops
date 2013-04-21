@@ -3,12 +3,6 @@ svn:wc:ra_dav:version-url
 V 32
 /svn/2012-l2o2/!svn/ver/50/tests
 END
-mocha.css
-K 25
-svn:wc:ra_dav:version-url
-V 42
-/svn/2012-l2o2/!svn/ver/26/tests/mocha.css
-END
 mocha.js
 K 25
 svn:wc:ra_dav:version-url
@@ -32,4 +26,10 @@ K 25
 svn:wc:ra_dav:version-url
 V 43
 /svn/2012-l2o2/!svn/ver/45/tests/index.html
+END
+mocha.css
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/2012-l2o2/!svn/ver/26/tests/mocha.css
 END

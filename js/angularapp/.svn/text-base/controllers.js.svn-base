@@ -1,3 +1,7 @@
+function timestampToDate(timestamp) {
+	var date = new Date(timestamp);
+	return date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear() + ' - ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+}
 function HomeCtrl($scope) {
   	SuperMario.reset();
 	
@@ -26,7 +30,6 @@ function GameCtrl($scope) {
 
 function SavedGameCtrl($scope, $routeParams, $location) {
 	SuperMario.reset();
-
 	var ts = $routeParams.timestamp;
 
 	var games = SuperMario.savedGames();
@@ -34,7 +37,7 @@ function SavedGameCtrl($scope, $routeParams, $location) {
 	// la partie est trouvée, on la démarre
 	if (games != {} && game != undefined && game.constructor == Object) {
 		$scope.gameExists = true;
-		SuperMario.start(game.coins, game.lives, game.level, game.mario, game.room.view_x);
+		SuperMario.start(game.coins, game.lives, game.level, game.mario, game.room.view_x, game.worldId);
 	// sinon on indique à angularjs que la partie n'existe pas pour afficher un message d'erreur
 	} else {
 		$scope.gameExists = false;
@@ -53,6 +56,8 @@ function PartiesCtrl($scope) {
 	
 	$scope.games = SuperMario.savedGames();
 
+	$scope.timestampToDate = timestampToDate;
+
 	$scope.hasSavedGames = ! _.isEmpty($scope.games);
 
 	$scope.remove = function(id)
@@ -67,9 +72,35 @@ function PartiesCtrl($scope) {
 	SuperMario.sounds.scoresTheme.play();
 }
 
+function WorldsCtrl($scope) {
+	SuperMario.reset();
+	
+	// Musique du menu des mondes.
+	SuperMario.sounds.letsAGo.play();
+	var worldList = document.getElementById('worldList');
+	var worldButton = function (text, worldIndex) {
+		var thisWorld = document.createElement('button');
+		thisWorld.className="btn";
+		thisWorld.appendChild(document.createTextNode(text));
+		thisWorld.onclick = function(){SuperMario.selectedWorld=worldIndex;document.location.href='#/game';};
+		return thisWorld;
+	};
+	
+	// Boutons des mondes par défaut
+	for (var i = 0; i < worldsInfo.length - 1; i++) {
+		worldList.appendChild(new worldButton('World ' + (i+1), i));
+		worldList.appendChild(document.createElement('br'));
+	}
+	
+	// S'il y a des niveaux qui ont été crées dans l'éditeur, on affiche le bouton du monde custom
+	if (worldsInfo[i][0] != "")
+		worldList.appendChild(new worldButton('Custom World', i));
+}
+
 HomeCtrl.$inject = ['$scope'];
 GameCtrl.$inject = ['$scope'];
 CreditsCtrl.$inject = ['$scope'];
 GameOverCtrl.$inject = ['$scope'];
 PartiesCtrl.$inject = ['$scope'];
 SavedGameCtrl.$inject = ['$scope', '$routeParams'];
+WorldsCtrl.$inject = ['$scope'];

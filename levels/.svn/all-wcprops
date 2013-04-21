@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 33
-/svn/2012-l2o2/!svn/ver/37/levels
+/svn/2012-l2o2/!svn/ver/52/levels
 END
 6c81da7ffb2adbbf33cb4a90c8cb6007.xml
 K 25
@@ -14,4 +14,10 @@ K 25
 svn:wc:ra_dav:version-url
 V 70
 /svn/2012-l2o2/!svn/ver/32/levels/2a97cc62c757437bf0fea26036493efa.xml
+END
+5ade3d57576f83e65ef58485bb43cc6d.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/2012-l2o2/!svn/ver/52/levels/5ade3d57576f83e65ef58485bb43cc6d.xml
 END

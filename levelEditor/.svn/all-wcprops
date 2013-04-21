@@ -1,13 +1,13 @@
 K 25
 svn:wc:ra_dav:version-url
 V 38
-/svn/2012-l2o2/!svn/ver/43/levelEditor
+/svn/2012-l2o2/!svn/ver/59/levelEditor
 END
 levelEditor.php
 K 25
 svn:wc:ra_dav:version-url
 V 54
-/svn/2012-l2o2/!svn/ver/39/levelEditor/levelEditor.php
+/svn/2012-l2o2/!svn/ver/52/levelEditor/levelEditor.php
 END
 editorScript.js
 K 25
@@ -37,5 +37,5 @@ getLevel.php
 K 25
 svn:wc:ra_dav:version-url
 V 51
-/svn/2012-l2o2/!svn/ver/39/levelEditor/getLevel.php
+/svn/2012-l2o2/!svn/ver/59/levelEditor/getLevel.php
 END
