@@ -27,6 +27,12 @@ $worlds = array(
 		'b7af26e6f17ba8dacb2a307557acc6d9' // Niveau de démonstration des blocs spéciaux pour la soutenance.
 	),
 	
+	// Monde 5 (Monde de démo pour la soutenance)
+	array(
+		'342715ae3364f595c2e656c10b31e8d3',
+		'1bb359fb39048f6c58caebc256c6b32f'
+	),
+	
 	// Monde custom (niveaux crées par le joueur dans l'éditeur)
 	explode(';',(isset($_COOKIE["customworld"])) ? $_COOKIE["customworld"] : '')
 );
