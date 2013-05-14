@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html ng-app="super-mario">
+<head>
+	<meta charset="UTF-8">
+	<title>Super Mario</title>
+	<link href='http://fonts.googleapis.com/css?family=Averia+Gruesa+Libre' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+	<div id="wrapper">
+		<header>
+			<h1>
+				<a href="#/home">
+					<img src="img/design/realmario.JPG" height="200" width="200">
+					<h1>Super Mario</h1>
+				</a>
+			</h1>
+
+			<div id="mute-button-container">
+				<span id="mute-button" class="muteOff" onClick="SuperMario.sounds.toggleMute()"></span>
+			</div>
+		</header>
+
+		<div ng-view>
+		</div>
+
+	<noscript><center style="color: red">Please enable Javascript in your browser preferences.</center></noscript>
+	<script type="text/javascript">
+		(function() {
+			var errorMsg = function(msg) {
+				document.write('<center style="color: red">' + msg + '</center>')
+			}
+
+			var areCookiesEnabled = function() {
+				document.cookie = "__verify=1";
+				var supportsCookies = document.cookie.length > 1 &&
+				document.cookie.indexOf("__verify=1") > -1;
+				var thePast = new Date(1976, 8, 16);
+				document.cookie = "__verify=1;expires=" + thePast.toUTCString();
+				return supportsCookies;
+			}
+
+			var hasLocalStorage = function() {
+				try {
+					localStorage.setItem('test_local_storage', 1);
+					localStorage.removeItem('test_local_storage');
+					return true;
+				} catch(e) {
+					return false;
+				}
+			}
+
+			if ( ! areCookiesEnabled()) {
+				errorMsg('Please enable cookies in your browser preferences.')
+			}
+
+			if ( ! hasLocalStorage()) {
+				errorMsg('Your browser does not seem to support the LocalStorage technology. If possible, please use a browser that does.')
+			}
+		})()
+	</script>
+
+		<footer>
+			<nav>
+				<a href="#/home">Home</a>
+				<a href="#/credits">Credits</a>
+			</nav>	
+		</footer>
+	</div>
+
+	<!-- Javascripts -->
+	<script type="text/javascript" src="levelEditor/getLevel.php?worlds=getinfo"></script>
+	<script type="text/javascript" src="js/vendor/JSGlib-min.js"></script>
+	<script type="text/javascript" src="js/vendor/buzz.js"></script>
+	<script type="text/javascript">
+		// Attributs par défaut pour Buzz
+		buzz.defaults.formats = ["mp3","ogg"];
+		buzz.defaults.preload = true;
+	</script>
+	<script type="text/javascript" src="js/game/Mario.class.js"></script>
+	<script type="text/javascript" src="js/game/Objet.class.js"></script>
+	<script type="text/javascript" src="js/game/Bloc.class.js"></script>
+	<script type="text/javascript" src="js/game/SuperMario.js"></script>
+	<script type="text/javascript" src="js/game/Monstre.class.js"></script>
+	<script type="text/javascript" src="js/vendor/underscore-min.js"></script>
+	<script type="text/javascript" src="js/vendor/angular.min.js"></script>
+	<script type="text/javascript" src="js/angularapp/app.js"></script>
+	<script type="text/javascript" src="js/angularapp/controllers.js"></script>
+</body>
+</html>
