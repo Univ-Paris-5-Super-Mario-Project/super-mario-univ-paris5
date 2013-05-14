@@ -231,10 +231,16 @@ Game.addClass({
 					mode: "overlay"
 				}); // on lui applique un filtre de couleur jaune.
 		// Défilement Montagnes et défilement background,
+/*
+		// Cette portion de code pose des problèmes.
 		if (SuperMario.animateBGs) {
-			document.getElementById('gameMountains').style.backgroundPosition = -(Game.room.view_x*0.5)+'px bottom';
-			document.getElementById('gameBG').style.backgroundPosition = -(Game.room.view_x*0.2)+'px bottom';
+			var el;
+			if(el = document.getElementById('gameMountains')) el.style.backgroundPosition = -(Game.room.view_x*0.5)+'px bottom';
+			if(el = document.getElementById('gameBG')) el.style.backgroundPosition = -(Game.room.view_x*0.2)+'px bottom';
 		}
+*/
+		document.getElementById('gameMountains').style.backgroundPosition = -(Game.room.view_x*0.5)+'px bottom';
+		document.getElementById('gameBG').style.backgroundPosition = -(Game.room.view_x*0.2)+'px bottom';
 	},
 
 	eventEndStep: function()
@@ -401,20 +407,34 @@ Game.addClass({
 				&& this.y + thisMask.y + thisMask.height >= other.y + otherMask.y
 				&& this.x + thisMask.x + thisMask.width >= other.x + otherMask.x
 				&& this.x + thisMask.x <= other.x + otherMask.x + otherMask.width) {
+
+				var winLevelDiv = document.getElementById('win-level');
+				winLevelDiv.style.display = "block";
+				var winLevelTimerDiv = document.getElementById('win-level-timer');
+				var t = 8;
+				winLevelTimerDiv.innerHTML = '' + t;
+
+				var winTimerInterval = setInterval(function() {
+					winLevelTimerDiv.innerHTML = '' + (--t);
+				}, 1000);
+
 				other.checkForCollisions = false;
 				SuperMario.sounds.levelTheme.pause(); // On met en pause la musique du niveau.
 				SuperMario.sounds.courseClearTheme.play(); // Musique de niveau gagné.
 				setTimeout(function()
 				{
+					winLevelDiv.style.display = "none";
+					clearInterval(winTimerInterval);
+
 					if (SuperMario.roomId < Game.rooms.length-1) { // S'il reste des niveaux pour le monde en cours,
 						SuperMario.roomId++;
 						Game.goToNextRoom(); // on passe au niveau suivant.
 					} else { // Sinon,
 						// le joueur a fini le monde.
 						document.location.href = "#/home";
-						alert('Vous avez gagné tous les niveaux de ce monde!');
+						alert('You have won all levels for this world!');
 					}
-				},8000);
+				}, 8000);
 			}
 		}
 	},

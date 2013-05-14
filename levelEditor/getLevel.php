@@ -17,11 +17,23 @@ $worlds = array(
 		'5ade3d57576f83e65ef58485bb43cc6d'
 	),
 	
+	// Monde 3
+	array(
+		'254b0eaf48a338889e71f39cfcfb869e' // Niveau de démonstration des monstres pour la soutenance.
+	),
+	
+	// Monde 4
+	array(
+		'b7af26e6f17ba8dacb2a307557acc6d9' // Niveau de démonstration des blocs spéciaux pour la soutenance.
+	),
+	
 	// Monde custom (niveaux crées par le joueur dans l'éditeur)
 	explode(';',(isset($_COOKIE["customworld"])) ? $_COOKIE["customworld"] : '')
 );
 
 if (isset($_GET['worlds']) && $_GET['worlds']=='getinfo') { // Affiche le javascript contenant les informations sur le nombre de mondes et de niveaux.
+	header('Content-type: text/javascript');
+
 	echo 'var worldsInfo = ' . json_encode($worlds) . ';';
 } else {
 	$defaultId = $worlds[0][0];

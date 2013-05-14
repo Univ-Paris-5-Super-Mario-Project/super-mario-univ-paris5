@@ -17,18 +17,33 @@ function CreditsCtrl($scope) {
 }
 
 function GameCtrl($scope) {
+	// fonction de sauvegarde de la partie en cours
+  	$scope.saveCurrentGame = function() {
+  		SuperMario.saveCurrentGame();
+  		var el = document.getElementById("save-game-success");
+  		el.style.display = "block";
+  		window.setTimeout(function() {
+  			el.style.display = "none";
+  		}, 1000);
+	}
+
 	SuperMario.reset();
 
 	$scope.gameExists = true; // indique à Angular qu'il faut afficher le canvas car cette partie est disponible
   	SuperMario.start();
-
-  	// fonction de sauvegarde de la partie en cours
-  	$scope.saveCurrentGame = function() {
-  		SuperMario.saveCurrentGame();
-	}
 }
 
 function SavedGameCtrl($scope, $routeParams, $location) {
+	// fonction de sauvegarde de la partie en cours
+  	$scope.saveCurrentGame = function() {
+  		SuperMario.saveCurrentGame();
+  		var el = document.getElementById("save-game-success");
+  		el.style.display = "block";
+  		window.setTimeout(function() {
+  			el.style.display = "none";
+  		}, 1000);
+	}
+
 	SuperMario.reset();
 	var ts = $routeParams.timestamp;
 

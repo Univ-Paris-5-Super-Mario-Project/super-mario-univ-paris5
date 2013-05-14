@@ -18,5 +18,5 @@ if (isset($_POST['xmlfile'])) {
 	else
 		setcookie("customworld", $id, time()+60*60*24*365);
 	
-	header('Location: ../#/worlds.html');
+	header('Location: ../#/worlds');
 }

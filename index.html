@@ -25,7 +25,7 @@
 		<div ng-view>
 		</div>
 
-	<noscript><center style="color: red">Veuillez activer le Javascript dans les préférences de votre navigateur.</center></noscript>
+	<noscript><center style="color: red">Please enable Javascript in your browser preferences.</center></noscript>
 	<script type="text/javascript">
 		(function() {
 			var errorMsg = function(msg) {
@@ -52,11 +52,11 @@
 			}
 
 			if ( ! areCookiesEnabled()) {
-				errorMsg('Veuillez activer les cookies dans les préférences de votre navigateur.')
+				errorMsg('Please enable cookies in your browser preferences.')
 			}
 
 			if ( ! hasLocalStorage()) {
-				errorMsg('Veuillez utiliser un navigateur qui supporte la technologie LocalStorage.')
+				errorMsg('Your browser does not seem to support the LocalStorage technology. If possible, please use a browser that does.')
 			}
 		})()
 	</script>
